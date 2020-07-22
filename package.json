@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev:server": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules --no-notify src/server.ts",
+    "dev:server": "ts-node-dev --inspect -r tsconfig-paths/register --ignore-watch node_modules --no-notify src/server.ts",
     "test": "jest",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
@@ -36,6 +36,8 @@
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
     "bcrypt": "^5.0.0",
+    "brazilian-values": "^0.7.5",
+    "cep-promise": "^3.0.9",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",

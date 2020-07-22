@@ -2,12 +2,12 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  UpdateDateColumn,
   CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('users')
-class User {
+@Entity('company')
+class Company {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -15,10 +15,19 @@ class User {
   name: string;
 
   @Column()
-  email: string;
+  fantasyName: string;
+
+  @Column()
+  documentNumber: string;
 
   @Column()
   phone: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  CEP: string;
 
   @Column()
   password: string;
@@ -30,4 +39,4 @@ class User {
   updated_at: Date;
 }
 
-export default User;
+export default Company;

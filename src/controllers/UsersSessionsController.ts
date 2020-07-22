@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import AuthenticateUserService from '../services/AuthenticateUserService';
 
-class SessionsController {
+class UsersSessionsControllers {
   public async create(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
     const authenticateUser = new AuthenticateUserService();
@@ -14,4 +14,4 @@ class SessionsController {
   }
 }
 
-export default SessionsController;
+export default UsersSessionsControllers;

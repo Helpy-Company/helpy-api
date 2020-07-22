@@ -4,11 +4,11 @@ import CreateUserService from '../services/CreateUserServices';
 class UsersControllers {
   public async create(request: Request, response: Response): Promise<Response> {
     try {
-      const { name, email, password } = request.body;
+      const { name, email, phone, password } = request.body;
 
       const createUser = new CreateUserService();
 
-      const user = await createUser.execute({ name, email, password });
+      const user = await createUser.execute({ name, email, phone, password });
 
       delete user.password;
 

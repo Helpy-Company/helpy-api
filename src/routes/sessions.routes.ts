@@ -1,9 +1,12 @@
 import Router from 'express';
-import SessionsController from '../controllers/SessionsController';
+import UsersSessionsController from '../controllers/UsersSessionsController';
+import CompaniesSessionsController from '../controllers/CompaniesSessionsController';
 
 const sessionRouter = Router();
-const sessionsController = new SessionsController();
+const usersSessionsController = new UsersSessionsController();
+const companiesSessionsController = new CompaniesSessionsController();
 
-sessionRouter.post('/', sessionsController.create);
+sessionRouter.post('/users', usersSessionsController.create);
+sessionRouter.post('/companies', companiesSessionsController.create);
 
 export default sessionRouter;

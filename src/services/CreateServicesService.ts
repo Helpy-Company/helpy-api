@@ -1,5 +1,7 @@
 import { getRepository } from 'typeorm';
 import Services from '@entities/Services';
+import User from '@entities/User';
+import AppError from '../errors/AppError';
 
 interface RequestDTO {
   user_id: string;
@@ -16,12 +18,19 @@ class CreateServicesService {
     description,
   }: RequestDTO): Promise<Services> {
     const servicesRepository = getRepository(Services);
+    const usersRepository = getRepository(User);
+
+    const userExists = await usersRepository.findOne(user_id);
+
+    if (!userExists) {
+      throw new AppError('User does not exist.');
+    }
 
     const service = servicesRepository.create({
-      user_id,
-      title,
-      filters,
+      user: userExists,
       description,
+      filters,
+      title,
     });
 
     await servicesRepository.save(service);

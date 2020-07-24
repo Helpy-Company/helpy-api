@@ -20,15 +20,15 @@ class Services {
   @Column()
   filters: string;
 
-  @ManyToOne((_type) => User, (user) => user.id, {
-    eager: true,
-    cascade: ['insert'],
-  })
-  @JoinColumn({ name: 'user_id' })
-  user_id: string;
-
   @Column()
   description: string;
+
+  @ManyToOne((_type) => User)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
+
+  @Column()
+  user_id: string;
 
   @CreateDateColumn()
   created_at: Date;

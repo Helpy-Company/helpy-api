@@ -15,6 +15,8 @@ class ServicesController {
         title,
       });
 
+      delete service.user.password;
+
       return response.json(service);
     } catch (err) {
       return response.status(400).json({ error: err.message });

@@ -1,6 +1,5 @@
 import { getRepository } from 'typeorm';
-import { formatToCPFOrCNPJ, isCPF, isCNPJ } from 'brazilian-values';
-import cep from 'cep-promise';
+import { formatToCPFOrCNPJ, isCPF, isCNPJ, isCEP } from 'brazilian-values';
 import { hash } from 'bcrypt';
 import Company from '../entities/Company';
 import AppError from '../errors/AppError';
@@ -44,7 +43,7 @@ class CompanyService {
       throw new AppError('Wrong CPF/CNPJ.');
     }
 
-    const isCep = cep(CEP).catch();
+    const isCep = isCEP(CEP);
 
     if (!isCep) {
       throw new AppError('CEP não encontrado.');

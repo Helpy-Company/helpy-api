@@ -8,6 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import User from './User';
+import ServiceCategory from './ServiceCategory';
 
 @Entity('services')
 class Services {
@@ -29,6 +30,10 @@ class Services {
 
   @Column()
   user_id: string;
+
+  @ManyToOne((_type) => ServiceCategory)
+  @JoinColumn({ name: 'service_category' })
+  service_category: string;
 
   @CreateDateColumn()
   created_at: Date;

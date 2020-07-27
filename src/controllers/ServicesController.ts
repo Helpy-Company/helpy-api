@@ -4,7 +4,13 @@ import CreateServicesService from '../services/CreateServicesService';
 class ServicesController {
   public async create(request: Request, response: Response): Promise<Response> {
     try {
-      const { user_id, filters, description, title } = request.body;
+      const {
+        user_id,
+        filters,
+        description,
+        title,
+        service_category,
+      } = request.body;
 
       const createService = new CreateServicesService();
 
@@ -13,6 +19,7 @@ class ServicesController {
         filters,
         description,
         title,
+        service_category,
       });
 
       delete service.user.password;

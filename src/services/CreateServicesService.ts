@@ -8,6 +8,7 @@ interface RequestDTO {
   title: string;
   filters: string;
   description: string;
+  service_category: string;
 }
 
 class CreateServicesService {
@@ -16,6 +17,7 @@ class CreateServicesService {
     title,
     filters,
     description,
+    service_category,
   }: RequestDTO): Promise<Services> {
     const servicesRepository = getRepository(Services);
     const usersRepository = getRepository(User);
@@ -31,6 +33,7 @@ class CreateServicesService {
       description,
       filters,
       title,
+      service_category,
     });
 
     await servicesRepository.save(service);

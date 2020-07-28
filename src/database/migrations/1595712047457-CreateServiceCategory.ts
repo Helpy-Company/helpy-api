@@ -29,7 +29,6 @@ export default class CreateServiceCategory1595712047457
         name: 'service_category',
         type: 'varchar',
         isNullable: true,
-        isUnique: true,
       })
     );
   }

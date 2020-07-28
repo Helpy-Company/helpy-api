@@ -29,7 +29,6 @@ export default class CreateServices1595601523150 implements MigrationInterface {
           {
             name: 'user_id',
             type: 'uuid',
-            isUnique: true,
           },
           {
             name: 'description',

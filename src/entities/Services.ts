@@ -33,6 +33,9 @@ class Services {
 
   @ManyToOne((_type) => ServiceCategory)
   @JoinColumn({ name: 'service_category' })
+  category: ServiceCategory;
+
+  @Column()
   service_category: string;
 
   @CreateDateColumn()

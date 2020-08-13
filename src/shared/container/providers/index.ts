@@ -6,12 +6,20 @@ import EtherealMailProvider from './MailProvider/implementations/EtherealMailPro
 import IHashProvider from './HashProvider/models/IHashProvider';
 import BCryptHashProvider from './HashProvider/implementations/BCryptHashProvider';
 
-container.registerInstance<IMailProvider>(
-  'MailProvider',
-  new EtherealMailProvider(),
-);
+import IMailTemplateProvider from './MailTemplateProvider/models/IMailTemplateProvider';
+import HandleBarsMailTemplateProvider from './MailTemplateProvider/implementations/HandleBarsMailTemplateProvider';
 
 container.registerSingleton<IHashProvider>(
   'HashProvider',
   BCryptHashProvider,
+);
+
+container.registerSingleton<IMailTemplateProvider>(
+  'MailTemplateProvider',
+  HandleBarsMailTemplateProvider,
+);
+
+container.registerInstance<IMailProvider>(
+  'MailProvider',
+  container.resolve(EtherealMailProvider),
 );

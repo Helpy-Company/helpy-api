@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import SendForgotPasswordEmail from '@shared/services/SendForgotPasswordEmail';
+import SendForgotUserPasswordEmail from '@modules/users/services/SendForgotUserPasswordEmail';
 
 class ForgotUserPasswordController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { email } = request.body;
-    const sendForgotPasswordService = new SendForgotPasswordEmail();
+    const sendForgotPasswordService = container.resolve(SendForgotUserPasswordEmail);
 
     await sendForgotPasswordService.execute({ email });
 

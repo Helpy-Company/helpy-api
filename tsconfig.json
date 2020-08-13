@@ -9,10 +9,6 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types"
-    ],
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true,
@@ -21,8 +17,8 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
     "paths": {
-      "@entities/*": [
-        "entities/*"
+      "@modules/*": [
+        "modules/*"
       ],
       "@config/*": [
         "config/*"

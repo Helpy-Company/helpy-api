@@ -11,3 +11,27 @@
 
 **RN**
 
+
+
+# Resetar senha
+
+**RF**
+
+- O usuário deve poder resetar sua senha informando seu email
+- O usuário deve rever um e-mail com as instruções de recuperação de senha;
+- O usuário deve poder resetar sua senha informando (password e token enviado)
+
+**RNF**
+
+- Utilizar Ethereal para testar envios em ambiente de desenvolvimento
+- Utilizar o Amazon SES para envios em produção
+- o envio de e-mails, deve acontecer em segundo plano
+
+**RN**
+
+- O link enviado por e-mail pro usuário deve ter duração de 2h;
+
+
+
+
+# Arrumar os cointainers.resolve EM TODOS OS CONTROLLERS

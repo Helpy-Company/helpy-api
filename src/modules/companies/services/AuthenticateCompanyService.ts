@@ -19,15 +19,15 @@ interface IResponseDTO {
 @injectable()
 class AuthenticateCompanyService {
   constructor(
-    @inject('CompanyRepository')
-    private companyRepository: CompaniesRepository,
+    @inject('CompaniesRepository')
+    private companiesRepository: CompaniesRepository,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
   ) { }
 
   public async execute({ email, password }: IRequestDTO): Promise<IResponseDTO> {
-    const company = await this.companyRepository.findByEmail(email);
+    const company = await this.companiesRepository.findByEmail(email);
 
     if (!company) {
       throw new AppError('Incorrect email/password combination', 401);

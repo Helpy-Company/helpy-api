@@ -20,8 +20,6 @@ class UsersControllers {
     return response.json(user);
   }
 
-  // TODO trocar esse index para um controller especifico para serviços de um unico user
-
   public async index(request: Request, response: Response): Promise<Response> {
     const { id } = request.user;
 

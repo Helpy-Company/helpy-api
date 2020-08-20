@@ -20,8 +20,8 @@ interface IRequestDTO {
 @injectable()
 class CompanyService {
   constructor(
-    @inject('CompanyRepository')
-    private companyRepository: CompaniesRepository,
+    @inject('CompaniesRepository')
+    private companiesRepository: CompaniesRepository,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
@@ -36,7 +36,7 @@ class CompanyService {
     password,
     CEP,
   }: IRequestDTO): Promise<Company> {
-    const companyExists = await this.companyRepository.findByEmail(email);
+    const companyExists = await this.companiesRepository.findByEmail(email);
 
     if (companyExists) {
       throw new AppError('Company already exists.');
@@ -57,9 +57,9 @@ class CompanyService {
       throw new AppError('CEP não encontrado.');
     }
 
-    const hashedPassword = await this.hashProvider.generateHash(password, 8);
+    const hashedPassword = await this.hashProvider.generateHash(password);
 
-    const company = await this.companyRepository.create({
+    const company = await this.companiesRepository.create({
       name,
       email,
       phone,

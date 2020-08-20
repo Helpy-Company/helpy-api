@@ -29,6 +29,12 @@ class ServiceRepository implements IServiceRepository {
 
     return services;
   }
+
+  public async show(): Promise<Service[]> {
+    const services = await this.ormRepository.find();
+
+    return services;
+  }
 }
 
 export default ServiceRepository;

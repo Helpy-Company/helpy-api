@@ -16,22 +16,22 @@ class ResetCompanyPasswordService {
     @inject('HashProvider')
     private hashProvider: IHashProvider,
 
-    @inject('CompanyRepository')
-    private companyRepository: CompaniesRepository,
+    @inject('CompaniesRepository')
+    private companiesRepository: CompaniesRepository,
 
-    @inject('CompanyTokenRepository')
-    private companyTokenRepository: CompaniesTokenRepository,
+    @inject('CompaniesTokenRepository')
+    private companiesTokenRepository: CompaniesTokenRepository,
 
   ) { }
 
   public async execute({ token, password }: IRequestDTO): Promise<void> {
-    const companyToken = await this.companyTokenRepository.findByToken(token);
+    const companyToken = await this.companiesTokenRepository.findByToken(token);
 
     if (!companyToken) {
       throw new AppError('No register found.');
     }
 
-    const company = await this.companyRepository.findById(companyToken.company_id);
+    const company = await this.companiesRepository.findById(companyToken.company_id);
 
     if (!company) {
       throw new AppError('No register found.');
@@ -46,7 +46,7 @@ class ResetCompanyPasswordService {
 
     company.password = await this.hashProvider.generateHash(password);
 
-    await this.companyRepository.save(company);
+    await this.companiesRepository.save(company);
   }
 }
 

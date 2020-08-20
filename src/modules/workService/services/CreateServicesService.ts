@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import User from '@modules/users/infra/typeorm/entities/User';
 import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import Services from '../infra/typeorm/entities/Services';

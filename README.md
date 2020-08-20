@@ -32,6 +32,6 @@
 - O link enviado por e-mail pro usuário deve ter duração de 2h;
 
 
-
-
 # Arrumar os cointainers.resolve EM TODOS OS CONTROLLERS
+
+# passar na live do pokemaobr

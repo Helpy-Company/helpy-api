@@ -1,6 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
+import ICompaniesRepository from '@modules/companies/repositories/ICompaniesRepository';
+import path from 'path';
 import Services from '../infra/typeorm/entities/Services';
 import IServiceRepository from '../repositories/IServiceRepository';
 
@@ -18,8 +21,14 @@ class CreateServicesService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
+    @inject('CompaniesRepository')
+    private companiesRepository: ICompaniesRepository,
+
     @inject('ServiceRepository')
     private serviceRepository: IServiceRepository,
+
+    @inject('MailProvider')
+    private mailProvider: IMailProvider,
   ) { }
 
   public async execute({
@@ -41,6 +50,34 @@ class CreateServicesService {
       filters,
       title,
       service_category,
+    });
+
+    const companies = await this.companiesRepository.index();
+
+    const forgotPasswordTemplate = path.resolve(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'shared',
+      'views',
+      'service_creation_notify.hbs',
+    );
+
+    const companiesEmails = companies.map((company) => company.email);
+
+    await this.mailProvider.sendMail({
+      to: {
+        email: companiesEmails[0],
+      },
+      subject: '[FindService] Novo serviço disponível!',
+      templateData: {
+        file: forgotPasswordTemplate,
+        variables: {
+          link: `${process.env.APP_WEB_URL}`,
+        },
+      },
+
     });
 
     return service;

@@ -6,4 +6,5 @@ export default interface ICompaniesRepository {
   findByEmail(id: string): Promise<Company | undefined>;
   create(data: ICreateCompaniesDTO): Promise<Company>;
   save(company: Company): Promise<Company>;
-};
+  index(): Promise<Company[]>
+}

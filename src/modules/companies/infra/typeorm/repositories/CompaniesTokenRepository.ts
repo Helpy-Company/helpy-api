@@ -11,13 +11,13 @@ class CompaniesTokenRepository implements ICompanyTokensRepository {
     this.ormRepository = getRepository(CompanyToken);
   }
 
-  public async findByToken(token: string): Promise<CompanyToken> {
+  public async findByToken(token: string): Promise<CompanyToken | undefined> {
     const companyToken = await this.ormRepository.findOne({ where: { token } });
 
     return companyToken;
   }
 
-  public async generate(company_id: string): Promise<CompanyToken | undefined> {
+  public async generate(company_id: string): Promise<CompanyToken> {
     const companyToken = this.ormRepository.create({ company_id });
 
     await this.ormRepository.save(companyToken);

@@ -13,8 +13,8 @@ export default {
 
   default: {
     from: {
-      email: 'contact@findservice.com',
-      name: 'Equipe FindService',
+      email: 'team@helpy.com.br',
+      name: 'Equipe Helpy',
     },
   },
 } as IMailConfig;

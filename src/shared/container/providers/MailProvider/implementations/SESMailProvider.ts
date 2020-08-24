@@ -36,7 +36,7 @@ export default class SESMailProvider implements IMailProvider {
         address: from?.email || email,
       },
       to: {
-        name: to.name,
+        name: to.name || '',
         address: to.email,
       },
       subject,

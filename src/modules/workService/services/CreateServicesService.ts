@@ -54,7 +54,7 @@ class CreateServicesService {
 
     const companies = await this.companiesRepository.index();
 
-    const forgotPasswordTemplate = path.resolve(
+    const newServiceTemplate = path.resolve(
       __dirname,
       '..',
       '..',
@@ -65,19 +65,21 @@ class CreateServicesService {
     );
 
     const companiesEmails = companies.map((company) => company.email);
+    const parsedCompaniesEmails = companiesEmails.join(', ');
+
+    // TODO resolver problema de envio de emails multiplos
 
     await this.mailProvider.sendMail({
       to: {
-        email: companiesEmails[0],
+        email: parsedCompaniesEmails,
       },
-      subject: '[FindService] Novo serviço disponível!',
+      subject: '[Helpy] Novo serviço disponível!',
       templateData: {
-        file: forgotPasswordTemplate,
+        file: newServiceTemplate,
         variables: {
           link: `${process.env.APP_WEB_URL}`,
         },
       },
-
     });
 
     return service;

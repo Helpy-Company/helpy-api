@@ -14,12 +14,11 @@ export default class EtherealMailProvider implements IMailProvider {
   ) {
     nodemailer.createTestAccount().then((account) => {
       const transporter = nodemailer.createTransport({
-        host: account.smtp.host,
-        port: account.smtp.port,
-        secure: account.smtp.secure,
+        host: 'smtp.mailtrap.io',
+        port: 2525,
         auth: {
-          user: account.user,
-          pass: account.pass,
+          user: '06f7562b988f63',
+          pass: '10488b28be82f8',
         },
       });
       this.client = transporter;
@@ -38,14 +37,14 @@ export default class EtherealMailProvider implements IMailProvider {
         address: from?.email || 'equipe@findservice.com.br',
       },
       to: {
-        name: to.name,
+        name: to.name || '',
         address: to.email,
       },
       subject,
       html: await this.mailTemplateProvider.parse(templateData),
     });
 
-    console.log('Message sent: %s', message.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
+    // console.log('Message sent: %s', message.messageId);
+    // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
   }
 }

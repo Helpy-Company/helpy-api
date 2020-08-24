@@ -46,7 +46,7 @@ class SendForgotUserPasswordEmailService {
         name: user.name,
         email: user.email,
       },
-      subject: '[FindService] Recuperação de senha',
+      subject: '[Helpy] Recuperação de senha',
       templateData: {
         file: forgotPasswordTemplate,
         variables: {

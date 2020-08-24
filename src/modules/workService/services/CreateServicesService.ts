@@ -67,8 +67,6 @@ class CreateServicesService {
     const companiesEmails = companies.map((company) => company.email);
     const parsedCompaniesEmails = companiesEmails.join(', ');
 
-    // TODO resolver problema de envio de emails multiplos
-
     await this.mailProvider.sendMail({
       to: {
         email: parsedCompaniesEmails,

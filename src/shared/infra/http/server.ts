@@ -6,7 +6,7 @@ import '../typeorm/index';
 import AppError from '../../errors/AppError';
 
 import routes from './routes/index';
-import '../../container/index';
+import '@shared/container';
 
 const app = express();
 app.use(express.json());

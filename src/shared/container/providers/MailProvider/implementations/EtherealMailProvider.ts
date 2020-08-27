@@ -40,7 +40,7 @@ class EtherealMailProvider implements IMailProvider {
     const message = await this.transporter.sendMail({
       from: {
         name: from?.name || 'Equipe Helpy',
-        address: from?.email || 'ehtereal.team@helpy.com.br',
+        address: from?.email || 'equipe@helpy.com.br',
       },
       to: {
         name: to.name || '',

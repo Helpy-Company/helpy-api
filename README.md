@@ -31,7 +31,10 @@
 
 - O link enviado por e-mail pro usuário deve ter duração de 2h;
 
+# Todo
 
-# Arrumar os cointainers.resolve EM TODOS OS CONTROLLERS
+- Adicionar CEP promise para validação de CEP
+- Adicionar class transformer
 
+# Notas das empresas
 

@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Exclude } from 'class-transformer';
+
 @Entity('company')
 class Company {
   @PrimaryGeneratedColumn('uuid')
@@ -30,6 +32,7 @@ class Company {
   CEP: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @CreateDateColumn()

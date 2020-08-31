@@ -2,6 +2,7 @@ import { container } from 'tsyringe';
 import { Request, Response } from 'express';
 import CreateUserService from '@modules/users/services/CreateUserServices';
 import ListUserServices from '@modules/users/services/ListUserServices';
+import { classToClass } from 'class-transformer';
 
 class UsersControllers {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -15,9 +16,7 @@ class UsersControllers {
       name, email, phone, password,
     });
 
-    delete user.password;
-
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 
   public async index(request: Request, response: Response): Promise<Response> {

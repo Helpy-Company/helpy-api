@@ -45,6 +45,7 @@
     "bcrypt": "^5.0.0",
     "brazilian-values": "^0.7.5",
     "cep-promise": "^3.0.9",
+    "class-transformer": "^0.3.1",
     "cors": "^2.8.5",
     "date-fns": "^2.15.0",
     "dotenv": "^8.2.0",

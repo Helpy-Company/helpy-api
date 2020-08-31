@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 import CreateCompanyService from '../../../services/CreateCompanyService';
 
 class CompanyController {
@@ -26,9 +27,7 @@ class CompanyController {
       phone,
     });
 
-    delete company.password;
-
-    return response.json(company);
+    return response.json(classToClass(company));
   }
 }
 

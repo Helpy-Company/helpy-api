@@ -5,7 +5,10 @@ import ServiceController from '../controllers/ServicesController';
 const serviceRouter = Router();
 const serviceController = new ServiceController();
 
-serviceRouter.post('/', ensureAuthenticated, serviceController.create);
+serviceRouter.use(ensureAuthenticated);
+
+serviceRouter.post('/', serviceController.create);
 serviceRouter.get('/', serviceController.index);
+serviceRouter.delete('/', serviceController.delete);
 
 export default serviceRouter;

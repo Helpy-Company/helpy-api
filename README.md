@@ -31,10 +31,15 @@
 
 - O link enviado por e-mail pro usuário deve ter duração de 2h;
 
-# Todo
 
-- Adicionar CEP promise para validação de CEP
-- Adicionar class transformer
 
 # Notas das empresas
 
+**RF**
+
+- O usuário deve poder avaliar á empresa
+
+**RNF**
+
+
+**RN**

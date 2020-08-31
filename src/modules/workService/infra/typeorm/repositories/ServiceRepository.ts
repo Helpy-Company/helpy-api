@@ -24,7 +24,7 @@ class ServiceRepository implements IServiceRepository {
     return service;
   }
 
-  public async list(user_id: string): Promise<Service[]> {
+  public async listUserService(user_id: string): Promise<Service[]> {
     const services = await this.ormRepository.find({ where: { user_id } });
 
     return services;
@@ -34,6 +34,10 @@ class ServiceRepository implements IServiceRepository {
     const services = await this.ormRepository.find();
 
     return services;
+  }
+
+  public async deleteService(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
   }
 }
 

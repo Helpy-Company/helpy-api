@@ -1,5 +1,7 @@
 import './MailTemplateProvider';
 import './MailProvider';
+import './CacheProvider';
+
 import { container } from 'tsyringe';
 
 import IHashProvider from './HashProvider/models/IHashProvider';

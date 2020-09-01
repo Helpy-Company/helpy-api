@@ -65,7 +65,7 @@ class CreateServicesService {
     );
 
     const companiesEmails = companies.map((company) => company.email);
-    const parsedCompaniesEmails = companiesEmails.join(', ');
+    const parsedCompaniesEmails = companiesEmails.join(',');
 
     await this.mailProvider.sendMail({
       to: {

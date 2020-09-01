@@ -8,6 +8,7 @@ class CreateServicesService {
 
     @inject('ServiceRepository')
     private serviceRepository: IServiceRepository,
+
   ) { }
 
   public async execute(): Promise<Services[]> {

@@ -4,9 +4,13 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
+import ServiceCategory from '@modules/workService/infra/typeorm/entities/ServiceCategory';
 
 @Entity('company')
 class Company {
@@ -24,6 +28,13 @@ class Company {
 
   @Column()
   phone: string;
+
+  @OneToOne(() => ServiceCategory, (category) => category.title)
+  @JoinColumn({ name: 'company_category' })
+  category: ServiceCategory;
+
+  @Column()
+  company_category: string;
 
   @Column()
   email: string;

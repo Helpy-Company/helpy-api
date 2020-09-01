@@ -19,7 +19,7 @@ class CompaniesRepository implements ICompaniesRepository {
   }
 
   public async create({
-    name, email, password, documentNumber, fantasyName, CEP, phone,
+    name, email, password, company_category, documentNumber, fantasyName, CEP, phone,
   }: ICreateCompanyDTO): Promise<Company> {
     const company = this.ormRepository.create({
       name, CEP, documentNumber, email, fantasyName, password, phone,

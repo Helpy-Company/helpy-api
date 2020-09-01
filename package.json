@@ -46,6 +46,7 @@
     "aws-sdk": "^2.732.0",
     "bcrypt": "^5.0.0",
     "brazilian-values": "^0.7.5",
+    "celebrate": "^12.2.0",
     "cep-promise": "^3.0.9",
     "class-transformer": "^0.3.1",
     "cors": "^2.8.5",

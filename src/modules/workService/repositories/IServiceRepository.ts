@@ -5,5 +5,6 @@ export default interface IServiceRepository {
   create(data: ICreateServiceDTO): Promise<Service>;
   listUserService(user_id: string): Promise<Service[]>;
   show(): Promise<Service[]>;
-  deleteService(id: string): Promise<void>
+  deleteService(id: string): Promise<void>;
+  findServiceByCategory(category: string): Promise<Service[]>
 };

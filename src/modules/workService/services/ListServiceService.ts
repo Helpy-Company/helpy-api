@@ -5,10 +5,8 @@ import IServiceRepository from '../repositories/IServiceRepository';
 @injectable()
 class CreateServicesService {
   constructor(
-
     @inject('ServiceRepository')
     private serviceRepository: IServiceRepository,
-
   ) { }
 
   public async execute(): Promise<Services[]> {

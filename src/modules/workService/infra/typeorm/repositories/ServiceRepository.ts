@@ -39,6 +39,12 @@ class ServiceRepository implements IServiceRepository {
   public async deleteService(id: string): Promise<void> {
     await this.ormRepository.delete(id);
   }
+
+  public async findServiceByCategory(category: string): Promise<Service[]> {
+    const services = await this.ormRepository.find({ where: { service_category: category } });
+
+    return services;
+  }
 }
 
 export default ServiceRepository;

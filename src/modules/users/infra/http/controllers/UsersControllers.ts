@@ -19,6 +19,8 @@ class UsersControllers {
     return response.json(classToClass(user));
   }
 
+  // TODO change this method to another controller UsersServicesControllers.ts
+
   public async index(request: Request, response: Response): Promise<Response> {
     const { id } = request.user;
 

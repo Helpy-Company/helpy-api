@@ -39,6 +39,10 @@ class AuthenticateCompanyService {
       throw new AppError('Incorrect email/password combination', 401);
     }
 
+    if (!company.verified_email) {
+      throw new AppError('E-mail was not verified.', 401);
+    }
+
     const { expiresIn, secret } = auth.jwt;
 
     const token = sign({}, secret, {

@@ -46,6 +46,9 @@ class Company {
   @Exclude()
   password: string;
 
+  @Column()
+  verified_email: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

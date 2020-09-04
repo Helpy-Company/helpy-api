@@ -1,9 +1,11 @@
 import { inject, injectable } from 'tsyringe';
+import path from 'path';
 import {
-  formatToCPFOrCNPJ, isCPF, isCNPJ, isCEP,
+  formatToCPFOrCNPJ, isCNPJ, isCEP,
 } from 'brazilian-values';
 import AppError from '@shared/errors/AppError';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
+import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import Company from '../infra/typeorm/entities/Company';
 import CompaniesRepository from '../infra/typeorm/repositories/CompaniesRepository';
 
@@ -22,6 +24,9 @@ class CompanyService {
   constructor(
     @inject('CompaniesRepository')
     private companiesRepository: CompaniesRepository,
+
+    @inject('MailProvider')
+    private mailProvider: IMailProvider,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
@@ -44,11 +49,10 @@ class CompanyService {
 
     const formattedDocumentNumber = formatToCPFOrCNPJ(documentNumber);
 
-    const isCPFValid = isCPF(formattedDocumentNumber);
     const isCNPJValid = isCNPJ(formattedDocumentNumber);
 
-    if (!isCPFValid && !isCNPJValid) {
-      throw new AppError('Wrong CPF/CNPJ.');
+    if (!isCNPJValid) {
+      throw new AppError('Wrong CNPJ.');
     }
 
     const isCep = isCEP(CEP);
@@ -67,6 +71,29 @@ class CompanyService {
       documentNumber: formattedDocumentNumber,
       CEP,
       fantasyName,
+    });
+
+    const verifyEmailTemplate = path.resolve(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'shared',
+      'views',
+      'email_verification.hbs',
+    );
+
+    await this.mailProvider.sendMail({
+      to: {
+        email: company.email,
+      },
+      subject: '[Helpy] Verificação de e-mail!',
+      templateData: {
+        file: verifyEmailTemplate,
+        variables: {
+          link: `${process.env.APP_WEB_URL}/email-verification`,
+        },
+      },
     });
 
     return company;

@@ -45,6 +45,12 @@ class CompaniesRepository implements ICompaniesRepository {
 
     return companies;
   }
+
+  public async emailVerification(id: string): Promise<boolean | undefined> {
+    const company = await this.ormRepository.findOne(id);
+
+    return company?.verified_email;
+  }
 }
 
 export default CompaniesRepository;

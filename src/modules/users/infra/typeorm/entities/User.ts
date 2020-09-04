@@ -23,6 +23,9 @@ class User {
   phone: string;
 
   @Column()
+  verified_email: boolean;
+
+  @Column()
   @Exclude()
   password: string;
 

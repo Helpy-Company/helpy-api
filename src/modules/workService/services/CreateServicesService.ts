@@ -70,21 +70,21 @@ class CreateServicesService {
       'service_creation_notify.hbs',
     );
 
-    // const companiesEmails = companies.map((company) => company.email);
-    // const parsedCompaniesEmails = companiesEmails.join(',');
+    const companiesEmails = companies.map((company) => company.email);
+    const parsedCompaniesEmails = companiesEmails.join(',');
 
-    // await this.mailProvider.sendMail({
-    //   to: {
-    //     email: parsedCompaniesEmails,
-    //   },
-    //   subject: '[Helpy] Novo serviço disponível!',
-    //   templateData: {
-    //     file: newServiceTemplate,
-    //     variables: {
-    //       link: `${process.env.APP_WEB_URL}`,
-    //     },
-    //   },
-    // });
+    await this.mailProvider.sendMail({
+      to: {
+        email: parsedCompaniesEmails,
+      },
+      subject: '[Helpy] Novo serviço disponível!',
+      templateData: {
+        file: newServiceTemplate,
+        variables: {
+          link: `${process.env.APP_WEB_URL}`,
+        },
+      },
+    });
 
     return service;
   }

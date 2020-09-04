@@ -7,4 +7,5 @@ export default interface ICompaniesRepository {
   create(data: ICreateCompaniesDTO): Promise<Company>;
   save(company: Company): Promise<Company>;
   index(): Promise<Company[]>;
+  emailVerification(id: string): Promise<boolean | undefined>
 }

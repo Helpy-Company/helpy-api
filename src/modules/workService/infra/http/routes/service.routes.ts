@@ -9,6 +9,6 @@ serviceRouter.use(ensureAuthenticated);
 
 serviceRouter.post('/', serviceController.create);
 serviceRouter.get('/', serviceController.index);
-serviceRouter.delete('/', serviceController.delete);
+serviceRouter.delete('/:id', serviceController.delete);
 
 export default serviceRouter;

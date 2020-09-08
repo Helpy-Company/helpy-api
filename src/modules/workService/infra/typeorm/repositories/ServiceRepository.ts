@@ -4,6 +4,7 @@ import IServiceRepository from '@modules/workService/repositories/IServiceReposi
 import ICreateServiceDTO from '@modules/workService/dtos/ICreateServiceDTO';
 
 import Service from '@modules/workService/infra/typeorm/entities/Services';
+import IDeleteServiceDTO from '@modules/workService/dtos/IDeleteServiceDTO';
 
 class ServiceRepository implements IServiceRepository {
   private ormRepository: Repository<Service>
@@ -13,10 +14,24 @@ class ServiceRepository implements IServiceRepository {
   }
 
   public async create({
-    user_id, title, filters, description, service_category,
+    address,
+    urgency,
+    title,
+    service_category,
+    intention,
+    user_id,
+    description,
+    CEP,
   }: ICreateServiceDTO): Promise<Service> {
     const service = this.ormRepository.create({
-      user_id, title, filters, description, service_category,
+      address,
+      urgency,
+      title,
+      service_category,
+      intention,
+      user_id,
+      description,
+      CEP,
     });
 
     await this.ormRepository.save(service);
@@ -36,8 +51,8 @@ class ServiceRepository implements IServiceRepository {
     return services;
   }
 
-  public async deleteService(id: string): Promise<void> {
-    await this.ormRepository.delete(id);
+  public async deleteService({ service_id, user_id }: IDeleteServiceDTO): Promise<void> {
+    await this.ormRepository.delete(service_id);
   }
 
   public async findServiceByCategory(category: string): Promise<Service[]> {

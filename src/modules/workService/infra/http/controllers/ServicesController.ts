@@ -7,20 +7,26 @@ import DeleteServiceServices from '@modules/workService/services/DeleteServiceSe
 class ServicesController {
   public async create(request: Request, response: Response): Promise<Response> {
     const {
-      filters,
-      description,
+      address,
+      urgency,
       title,
       service_category,
+      intention,
+      description,
+      CEP,
     } = request.body;
 
     const createService = container.resolve(CreateServicesService);
 
     const service = await createService.execute({
       user_id: request.user.id,
-      filters,
-      description,
+      address,
+      urgency,
       title,
       service_category,
+      intention,
+      description,
+      CEP,
     });
 
     return response.json(service);
@@ -35,11 +41,14 @@ class ServicesController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.body;
+    const { id } = request.params;
 
     const deleteService = container.resolve(DeleteServiceServices);
 
-    await deleteService.execute(id);
+    await deleteService.execute({
+      service_id: id,
+      user_id: request.user.id,
+    });
 
     return response.status(200).send();
   }

@@ -19,7 +19,16 @@ class Services {
   title: string;
 
   @Column()
-  filters: string;
+  address: string;
+
+  @Column()
+  intention: string;
+
+  @Column()
+  urgency: string;
+
+  @Column()
+  CEP: string;
 
   @Column()
   description: string;

@@ -22,6 +22,7 @@ class ServiceRepository implements IServiceRepository {
     user_id,
     description,
     CEP,
+    area,
   }: ICreateServiceDTO): Promise<Service> {
     const service = this.ormRepository.create({
       address,
@@ -32,6 +33,7 @@ class ServiceRepository implements IServiceRepository {
       user_id,
       description,
       CEP,
+      area,
     });
 
     await this.ormRepository.save(service);

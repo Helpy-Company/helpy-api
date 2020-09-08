@@ -31,6 +31,9 @@ class Services {
   CEP: string;
 
   @Column()
+  area: string;
+
+  @Column()
   description: string;
 
   @ManyToOne((_type) => User)

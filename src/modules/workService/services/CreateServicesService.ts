@@ -5,7 +5,7 @@ import IMailProvider from '@shared/container/providers/MailProvider/models/IMail
 import ICompaniesRepository from '@modules/companies/repositories/ICompaniesRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import {
-  isCEP, formatToCEP,
+  isCEP,
 } from 'brazilian-values';
 import Services from '../infra/typeorm/entities/Services';
 import IServiceRepository from '../repositories/IServiceRepository';
@@ -19,6 +19,7 @@ interface IRequestDTO {
   intention: string;
   description: string;
   CEP?: string;
+  area: string;
 }
 
 @injectable()
@@ -49,6 +50,7 @@ class CreateServicesService {
     intention,
     description,
     CEP,
+    area,
   }: IRequestDTO): Promise<Services> {
     const userExists = await this.usersRepository.findById(user_id);
 
@@ -73,6 +75,7 @@ class CreateServicesService {
       intention,
       description,
       CEP,
+      area,
     });
 
     await this.cacheProvider.invalidate(`services-list:${userExists.id}`);

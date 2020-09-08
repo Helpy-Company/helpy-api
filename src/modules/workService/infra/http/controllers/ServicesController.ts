@@ -13,6 +13,7 @@ class ServicesController {
       service_category,
       intention,
       description,
+      area,
       CEP,
     } = request.body;
 
@@ -26,6 +27,7 @@ class ServicesController {
       service_category,
       intention,
       description,
+      area,
       CEP,
     });
 

@@ -16,7 +16,7 @@ interface IRequest {
   documentNumber?: string;
   old_password?: string;
   password?: string;
-  company_category?: string
+  bio?: string
 }
 
 @injectable()
@@ -39,7 +39,7 @@ class UpdateCompanyProfileService {
     documentNumber,
     old_password,
     password,
-    company_category,
+    bio,
   }: IRequest): Promise<Company> {
     const company = await this.companiesRepository.findById(company_id);
 
@@ -61,7 +61,7 @@ class UpdateCompanyProfileService {
     company.documentNumber = documentNumber || company.documentNumber;
     company.phone = phone || company.phone;
     company.fantasyName = fantasyName || company.fantasyName;
-    company.company_category = company_category || company.company_category;
+    company.bio = bio || company.bio;
 
     if (password && !old_password) {
       throw new AppError(

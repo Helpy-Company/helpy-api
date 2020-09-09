@@ -42,7 +42,7 @@ class CompanyController {
       documentNumber,
       old_password,
       phone,
-      company_category,
+      bio,
     } = request.body;
 
     const updateProfile = container.resolve(UpdateCompanyProfileService);
@@ -57,7 +57,7 @@ class CompanyController {
       old_password,
       documentNumber,
       phone,
-      company_category,
+      bio,
     });
 
     return response.json(classToClass(company));

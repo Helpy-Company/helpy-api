@@ -3,8 +3,8 @@ export default interface ICreateCompaniesDTO {
   fantasyName: string;
   email: string;
   password: string;
-  company_category?: string;
+  bio?: string;
   CEP: string
   documentNumber: string;
   phone: string
-};
+}

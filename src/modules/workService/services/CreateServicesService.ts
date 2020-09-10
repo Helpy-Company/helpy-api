@@ -91,6 +91,11 @@ class CreateServicesService {
       'service_creation_notify.hbs',
     );
 
+    // const companies = await this.companiesRepository.index();
+
+    // const companiesEmails = companies.map((company) => company.email);
+    // const parsedEmails = companiesEmails.join(',');
+
     await this.mailProvider.sendMail({
       to: {
         email: 'helpycompany@gmail.com',

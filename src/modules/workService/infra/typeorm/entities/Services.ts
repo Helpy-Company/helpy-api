@@ -6,8 +6,10 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 import User from '@modules/users/infra/typeorm/entities/User';
+import { Expose } from 'class-transformer';
 import ServiceCategory from './ServiceCategory';
 
 @Entity('services')
@@ -36,7 +38,7 @@ class Services {
   @Column()
   description: string;
 
-  @ManyToOne((_type) => User)
+  @OneToOne((_type) => User, { eager: true, cascade: true })
   @JoinColumn({ name: 'user_id' })
   user: User;
 

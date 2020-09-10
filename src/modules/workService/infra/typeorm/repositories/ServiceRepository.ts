@@ -42,7 +42,9 @@ class ServiceRepository implements IServiceRepository {
   }
 
   public async listUserService(user_id: string): Promise<Service[]> {
-    const services = await this.ormRepository.find({ where: { user_id } });
+    const services = await this.ormRepository.find({
+      where: { user_id },
+    });
 
     return services;
   }

@@ -26,33 +26,3 @@ class BullProvider implements IQueueProvider {
 }
 
 export default BullProvider;
-
-// import Queue, { Queue as IQueue, QueueOptions } from 'bull';
-
-// import * as jobs from '../jobs';
-
-// const queues = Object.values(jobs).map((job) => ({
-//   bull: new Queue('sendEmails', {
-//     redis: {
-//       host: String(process.env.REDIS_HOST),
-//       port: Number(process.env.REDIS_PORT),
-//       password: String(process.env.REDIS_PASS),
-//     },
-//   }),
-//   name: job.key,
-//   handle: job.handle,
-// }));
-
-// export default {
-//   queues,
-//   add(name: string, data: string[]): IQueue<string[]> {
-//     const queue = this.queues.find((queueInside) => queueInside.name === name);
-
-//     return queue.bull.add(data);
-//   },
-//   process(): void {
-//     return this.queues.forEach((queue) => {
-//       queue.bull.process(queue.handle);
-//     });
-//   },
-// };

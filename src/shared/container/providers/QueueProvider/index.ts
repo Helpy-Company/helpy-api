@@ -12,6 +12,7 @@ container.registerInstance<IQueueProvider>(
       port: Number(process.env.REDIS_PORT),
       password: process.env.REDIS_PASS,
       db: 2,
+
     },
   }),
 );

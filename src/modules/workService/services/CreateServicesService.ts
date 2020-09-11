@@ -8,6 +8,8 @@ import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICa
 import {
   isCEP,
 } from 'brazilian-values';
+import IQueueProvider from '@shared/container/providers/QueueProvider/models/IQueueProvider';
+import queue from '@config/queue';
 import Services from '../infra/typeorm/entities/Services';
 import IServiceRepository from '../repositories/IServiceRepository';
 
@@ -40,6 +42,9 @@ class CreateServicesService {
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
+
+    @inject('QueueProvider')
+    private queueProvider: IQueueProvider,
   ) { }
 
   public async execute({
@@ -91,14 +96,11 @@ class CreateServicesService {
       'service_creation_notify.hbs',
     );
 
-    // const companies = await this.companiesRepository.index();
+    const companies = await this.companiesRepository.index();
 
-    // const companiesEmails = companies.map((company) => company.email);
-    // const parsedEmails = companiesEmails.join(',');
-
-    await this.mailProvider.sendMail({
+    const companiesEmails = companies.map((company) => ({
       to: {
-        email: 'helpycompany@gmail.com',
+        email: company.email,
       },
       subject: '[Helpy] Novo serviço disponível!',
       templateData: {
@@ -107,7 +109,11 @@ class CreateServicesService {
           link: `${process.env.APP_WEB_URL}`,
         },
       },
-    });
+    }));
+
+    this.queueProvider.add(companiesEmails);
+
+    this.queueProvider.process(async (job) => this.mailProvider.sendMail(job.data));
 
     return service;
   }

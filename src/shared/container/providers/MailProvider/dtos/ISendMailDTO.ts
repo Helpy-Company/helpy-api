@@ -2,7 +2,7 @@ import IParseMailTemplateDTO from '../../MailTemplateProvider/dtos/IParseMailTem
 
 interface IMailContact {
   name?: string;
-  email: string;
+  email: string | string[];
 }
 
 export default interface ISendMailDTO {

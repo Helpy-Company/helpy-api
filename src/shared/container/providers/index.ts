@@ -1,6 +1,7 @@
 import './MailTemplateProvider';
 import './MailProvider';
 import './CacheProvider';
+import './QueueProvider';
 
 import { container } from 'tsyringe';
 

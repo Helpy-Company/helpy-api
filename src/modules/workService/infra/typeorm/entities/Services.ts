@@ -4,12 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
   JoinColumn,
   OneToOne,
 } from 'typeorm';
 import User from '@modules/users/infra/typeorm/entities/User';
-import { Expose } from 'class-transformer';
 import ServiceCategory from './ServiceCategory';
 
 @Entity('services')

@@ -111,7 +111,7 @@ class CreateServicesService {
     //   },
     // }));
 
-    // this.queueProvider.add(companiesEmails);
+    // await this.queueProvider.add(companiesEmails);
 
     // this.queueProvider.process(async (job) => this.mailProvider.sendMail(job.data));
 

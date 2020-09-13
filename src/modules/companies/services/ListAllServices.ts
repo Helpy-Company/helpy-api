@@ -16,22 +16,11 @@ class ListAllServices {
   ) { }
 
   public async execute(company_id: string): Promise<Services[]> {
-    let allServices = await this.cacheProvider.recover<Services[]>(
-      `services-list:${company_id}`,
-    );
-
-    if (!allServices) {
-      allServices = await this.serviceRepository.show();
-    }
+    const allServices = await this.serviceRepository.show();
 
     if (!allServices) {
       throw new AppError('There is no services available.');
     }
-
-    await this.cacheProvider.save({
-      key: `services-list:${company_id}`,
-      value: classToClass(allServices),
-    });
 
     return allServices;
   }

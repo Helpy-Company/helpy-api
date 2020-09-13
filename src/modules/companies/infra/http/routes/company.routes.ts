@@ -3,12 +3,12 @@ import { celebrate, Segments, Joi } from 'celebrate';
 import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
 import CompanyController from '../controllers/CompanyController';
 import CompanyServicesController from '../controllers/CompanyServicesController';
-import ListServiceByController from '../controllers/ListServiceByController';
+import ListServiceByCategoryController from '../controllers/ListServiceByCategoryController';
 
 const companyRouter = Router();
 const companyController = new CompanyController();
 const companyServicesController = new CompanyServicesController();
-const listServiceByController = new ListServiceByController();
+const listServiceByCategoryController = new ListServiceByCategoryController();
 
 companyRouter.post('/', companyController.create);
 companyRouter.post('/', companyController.create);
@@ -29,6 +29,6 @@ companyRouter.put('/', celebrate({
 
 companyRouter.get('/services', ensureAuthenticated, companyServicesController.index);
 
-companyRouter.get('/services-category', ensureAuthenticated, listServiceByController.index);
+companyRouter.get('/services-category', ensureAuthenticated, listServiceByCategoryController.index);
 
 export default companyRouter;

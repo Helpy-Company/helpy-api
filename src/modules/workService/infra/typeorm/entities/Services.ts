@@ -45,7 +45,7 @@ class Services {
   @Column()
   user_id: string;
 
-  @ManyToOne((_type) => ServiceCategory)
+  @OneToOne((_type) => ServiceCategory)
   @JoinColumn({ name: 'service_category' })
   category: ServiceCategory;
 

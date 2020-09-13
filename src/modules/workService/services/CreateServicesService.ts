@@ -119,7 +119,7 @@ class CreateServicesService {
       to: {
         email: 'helpycompany@gmail.com',
       },
-      subject: '[Helpy] Novo serviço disponível!',
+      subject: '[helpy] Novo serviço disponível!',
       templateData: {
         file: newServiceTemplate,
         variables: {

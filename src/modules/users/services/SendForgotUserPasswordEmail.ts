@@ -46,13 +46,13 @@ class SendForgotUserPasswordEmailService {
         name: user.name,
         email: user.email,
       },
-      subject: '[Helpy] Recuperação de senha',
+      subject: '[helpy] Recuperação de senha',
       templateData: {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
           token,
-          link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
+          link: `${process.env.APP_WEB_URL}/user-reset-password?token=${token}`,
         },
       },
     });

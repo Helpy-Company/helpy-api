@@ -46,13 +46,13 @@ class SendForgotCompanyPasswordEmailService {
         name: company.name,
         email: company.email,
       },
-      subject: '[FindService] Recuperação de senha',
+      subject: '[helpy] Recuperação de senha',
       templateData: {
         file: forgotPasswordTemplate,
         variables: {
           name: company.name,
           token,
-          link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
+          link: `${process.env.APP_WEB_URL}/company-reset-password?token=${token}`,
         },
       },
     });

@@ -60,7 +60,7 @@ class CreateUserService {
       to: {
         email: user.email,
       },
-      subject: '[Helpy] Verificação de e-mail!',
+      subject: '[helpy] Verificação de e-mail!',
       templateData: {
         file: verifyEmailTemplate,
         variables: {

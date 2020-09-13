@@ -96,28 +96,11 @@ class CreateServicesService {
       'service_creation_notify.hbs',
     );
 
-    // const companies = await this.companiesRepository.index();
+    const companies = await this.companiesRepository.index();
 
-    // const companiesEmails = companies.map((company) => ({
-    //   to: {
-    //     email: company.email,
-    //   },
-    //   subject: '[Helpy] Novo serviço disponível!',
-    //   templateData: {
-    //     file: newServiceTemplate,
-    //     variables: {
-    //       link: `${process.env.APP_WEB_URL}`,
-    //     },
-    //   },
-    // }));
-
-    // await this.queueProvider.add(companiesEmails);
-
-    // this.queueProvider.process(async (job) => this.mailProvider.sendMail(job.data));
-
-    await this.mailProvider.sendMail({
+    const companiesEmails = companies.map((company) => ({
       to: {
-        email: 'helpycompany@gmail.com',
+        email: company.email,
       },
       subject: '[Helpy] Novo serviço disponível!',
       templateData: {
@@ -126,7 +109,11 @@ class CreateServicesService {
           link: `${process.env.APP_WEB_URL}`,
         },
       },
-    });
+    }));
+
+    this.queueProvider.add(companiesEmails);
+
+    this.queueProvider.process(async (job) => this.mailProvider.sendMail(job.data));
 
     return service;
   }

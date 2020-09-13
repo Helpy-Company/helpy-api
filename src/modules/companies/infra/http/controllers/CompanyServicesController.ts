@@ -1,7 +1,6 @@
 import { container } from 'tsyringe';
 import { Request, Response } from 'express';
 import ListAllServices from '@modules/companies/services/ListAllServices';
-import { classToClass } from 'class-transformer';
 
 class CompanyServiceController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -11,7 +10,7 @@ class CompanyServiceController {
 
     const services = await listServices.execute(id);
 
-    return response.json(classToClass(services));
+    return response.json(services);
   }
 }
 

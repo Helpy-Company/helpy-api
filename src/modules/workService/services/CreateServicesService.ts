@@ -9,7 +9,6 @@ import {
   isCEP,
 } from 'brazilian-values';
 import IQueueProvider from '@shared/container/providers/QueueProvider/models/IQueueProvider';
-import queue from '@config/queue';
 import Services from '../infra/typeorm/entities/Services';
 import IServiceRepository from '../repositories/IServiceRepository';
 

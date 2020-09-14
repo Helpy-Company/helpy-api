@@ -3,7 +3,7 @@ import AppError from '@shared/errors/AppError';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IServiceRepository from '../repositories/IServiceRepository';
 
-interface IResquest {
+interface IRequest {
   service_id: string;
   user_id: string
 }
@@ -18,7 +18,7 @@ class DeleteServiceService {
     private cacheProvider: ICacheProvider,
   ) { }
 
-  public async execute({ service_id, user_id }: IResquest): Promise<void> {
+  public async execute({ service_id, user_id }: IRequest): Promise<void> {
     const services = await this.serviceRepository.show();
 
     const deletedService = services.find((service) => service.id === service_id);

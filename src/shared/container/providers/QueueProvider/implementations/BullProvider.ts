@@ -24,7 +24,7 @@ class BullProvider implements IQueueProvider {
     }
 
     await this.queue.add(data);
-    this.queue.clean(0, 'delayed');
+    this.queue.clean(0, 'completed');
   }
 
   process(processFunction: ProcessPromiseFunction<object>): void {

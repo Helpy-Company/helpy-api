@@ -1,22 +1,30 @@
-import Bull, { Queue, QueueOptions, ProcessPromiseFunction } from 'bull';
+import Bull, { Queue, ProcessPromiseFunction } from 'bull';
+import mailConfig from '@config/mail';
 import IQueueProvider from '../models/IQueueProvider';
 
 class BullProvider implements IQueueProvider {
   private queue: Queue;
 
-  constructor(queueConfig: QueueOptions) {
-    this.queue = new Bull('mail-queue', queueConfig);
-  }
-
   async add(data: object | object[]): Promise<void> {
+    this.queue = new Bull('mail-queue', {
+      ...mailConfig.queue,
+      redis: {
+        host: String(process.env.REDIS_HOST),
+        port: Number(process.env.REDIS_PORT),
+        password: process.env.REDIS_PASS,
+        db: 2,
+      },
+    });
     if (Array.isArray(data)) {
       const parsedJobs = data.map((jobData) => ({ data: jobData }));
+
       await this.queue.addBulk(parsedJobs);
 
       return;
     }
 
     await this.queue.add(data);
+    this.queue.clean(0, 'delayed');
   }
 
   process(processFunction: ProcessPromiseFunction<object>): void {

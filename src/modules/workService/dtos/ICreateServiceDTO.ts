@@ -8,4 +8,4 @@ export default interface ICreateServiceDTO {
   description: string;
   CEP?: string;
   area: string
-}
+};

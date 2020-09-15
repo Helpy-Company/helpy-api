@@ -13,7 +13,9 @@ class ListAllServices {
 
   public async execute(category: string): Promise<Services[]> {
     const services = await this.serviceRepository.findServiceByCategory(category);
-
+    if (!services) {
+      throw new AppError('There is no services available.');
+    }
     return services;
   }
 }

@@ -11,6 +11,9 @@ import UsersTokensRepository from '@modules/users/infra/typeorm/repositories/Use
 import IServiceRepository from '@modules/workService/repositories/IServiceRepository';
 import ServiceRepository from '@modules/workService/infra/typeorm/repositories/ServiceRepository';
 
+import ICategoryRepository from '@modules/workService/repositories/ICategoryRepository';
+import CategoryRepository from '@modules/workService/infra/typeorm/repositories/CategoryRepository';
+
 import ICompaniesRepository from '@modules/companies/repositories/ICompaniesRepository';
 import CompaniesRepository from '@modules/companies/infra/typeorm/repositories/CompaniesRepository';
 
@@ -40,4 +43,9 @@ container.registerSingleton<ICompanyTokenRepository>(
 container.registerSingleton<IServiceRepository>(
   'ServiceRepository',
   ServiceRepository,
+);
+
+container.registerSingleton<ICategoryRepository>(
+  'CategoryRepository',
+  CategoryRepository,
 );

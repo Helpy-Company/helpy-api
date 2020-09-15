@@ -1,4 +1,6 @@
-import { MigrationInterface, QueryRunner, Table, TableColumn } from 'typeorm';
+import {
+  MigrationInterface, QueryRunner, Table, TableColumn,
+} from 'typeorm';
 
 export default class CreateServiceCategory1595712047457
   implements MigrationInterface {
@@ -19,8 +21,18 @@ export default class CreateServiceCategory1595712047457
             type: 'varchar',
             isUnique: true,
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
-      })
+      }),
     );
 
     await queryRunner.addColumn(
@@ -28,8 +40,7 @@ export default class CreateServiceCategory1595712047457
       new TableColumn({
         name: 'service_category',
         type: 'varchar',
-        isNullable: true,
-      })
+      }),
     );
   }
 

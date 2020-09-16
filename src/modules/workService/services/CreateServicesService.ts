@@ -123,6 +123,8 @@ class CreateServicesService {
         file: newServiceTemplate,
         variables: {
           link: `${process.env.APP_WEB_URL}`,
+          category: service.service_category,
+          title: service.title,
         },
       },
     });

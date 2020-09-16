@@ -6,3 +6,4 @@ auth.js
 tmp/*
 !tmp/.gitkeep
 coverage
+.ormconfig.json

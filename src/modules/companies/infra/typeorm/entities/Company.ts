@@ -4,7 +4,6 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';

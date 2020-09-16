@@ -8,6 +8,7 @@ import IHashProvider from '@shared/container/providers/HashProvider/models/IHash
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import Company from '../infra/typeorm/entities/Company';
 import CompaniesRepository from '../infra/typeorm/repositories/CompaniesRepository';
+import ICompanyTokensRepository from '../repositories/ICompanyTokensRepository';
 
 interface IRequestDTO {
   name: string;
@@ -30,6 +31,9 @@ class CompanyService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
+
+    @inject('CompaniesTokenRepository')
+    private companiesTokenRepository: ICompanyTokensRepository,
   ) { }
 
   public async execute({
@@ -82,6 +86,7 @@ class CompanyService {
       'views',
       'email_verification.hbs',
     );
+    const { token } = await this.companiesTokenRepository.generate(company.id);
 
     await this.mailProvider.sendMail({
       to: {
@@ -91,7 +96,8 @@ class CompanyService {
       templateData: {
         file: verifyEmailTemplate,
         variables: {
-          link: `${process.env.APP_WEB_URL}/email-verification`,
+          token,
+          link: `${process.env.APP_WEB_URL}/email-company-verification?token=${token}`,
         },
       },
     });

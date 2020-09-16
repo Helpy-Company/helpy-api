@@ -71,7 +71,7 @@ class CreateUserService {
         file: verifyEmailTemplate,
         variables: {
           token,
-          link: `${process.env.APP_WEB_URL}/email-verification?token=${token}`,
+          link: `${process.env.APP_WEB_URL}/email-user-verification?token=${token}`,
         },
       },
     });

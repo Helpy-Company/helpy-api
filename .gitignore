@@ -1,9 +1,10 @@
-
-node_modules
-dist
-.env
-auth.js
+node_modules/
+dist/
+.idea/
+.vscode/
+temp/
 tmp/*
 !tmp/.gitkeep
+.env
+ormconfig.json
 coverage
-.ormconfig.json

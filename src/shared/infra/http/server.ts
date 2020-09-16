@@ -10,7 +10,7 @@ import routes from './routes/index';
 import '@shared/container';
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: 'www.helpy.com.br' }));
 app.use(express.json());
 app.use(routes);
 

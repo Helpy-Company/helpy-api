@@ -5,6 +5,7 @@ import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
+import IUserTokensRepository from '../repositories/IUserTokensRepository';
 
 interface IRequest {
   name: string;
@@ -24,6 +25,9 @@ class CreateUserService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
+
+    @inject('UsersTokensRepository')
+    private usersTokensRepository: IUserTokensRepository,
   ) { }
 
   public async execute({
@@ -55,16 +59,19 @@ class CreateUserService {
       'views',
       'email_verification.hbs',
     );
+    const { token } = await this.usersTokensRepository.generate(user.id);
 
     await this.mailProvider.sendMail({
       to: {
+        name: user.name,
         email: user.email,
       },
       subject: '[helpy] Verificação de e-mail!',
       templateData: {
         file: verifyEmailTemplate,
         variables: {
-          link: `${process.env.APP_WEB_URL}/email-verification`,
+          token,
+          link: `${process.env.APP_WEB_URL}/email-user-verification?token=${token}`,
         },
       },
     });

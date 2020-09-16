@@ -4,10 +4,12 @@ import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthentica
 import CompanyController from '../controllers/CompanyController';
 import CompanyServicesController from '../controllers/CompanyServicesController';
 import ListServiceByController from '../controllers/ListServiceByController';
+import VerifyCompanyEmailController from '../controllers/VerifyCompanyEmailController';
 
 const companyRouter = Router();
 const companyController = new CompanyController();
 const companyServicesController = new CompanyServicesController();
+const emailVerificationController = new VerifyCompanyEmailController();
 const listServiceByController = new ListServiceByController();
 
 companyRouter.post('/', companyController.create);
@@ -28,6 +30,7 @@ companyRouter.put('/', celebrate({
 }), ensureAuthenticated, companyController.update);
 
 companyRouter.get('/services', ensureAuthenticated, companyServicesController.index);
+companyRouter.post('/email-verification', emailVerificationController.update);
 
 companyRouter.get('/services-category', ensureAuthenticated, listServiceByController.index);
 

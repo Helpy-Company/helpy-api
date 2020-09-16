@@ -44,7 +44,6 @@ container.registerSingleton<IServiceRepository>(
   'ServiceRepository',
   ServiceRepository,
 );
-
 container.registerSingleton<ICategoryRepository>(
   'CategoryRepository',
   CategoryRepository,

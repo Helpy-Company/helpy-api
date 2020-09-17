@@ -53,7 +53,7 @@ export default class CreateCompany1595425898047 implements MigrationInterface {
             default: 'now()',
           },
         ],
-      })
+      }),
     );
   }
 

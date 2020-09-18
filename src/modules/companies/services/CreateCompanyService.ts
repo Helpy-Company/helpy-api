@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import path from 'path';
 import {
-  formatToCPFOrCNPJ, isCNPJ, isCEP,
+  formatToCPFOrCNPJ, isCNPJ, isCEP, isCPF,
 } from 'brazilian-values';
 import AppError from '@shared/errors/AppError';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
@@ -54,9 +54,10 @@ class CompanyService {
     const formattedDocumentNumber = formatToCPFOrCNPJ(documentNumber);
 
     const isCNPJValid = isCNPJ(formattedDocumentNumber);
+    const isCPFValid = isCPF(formattedDocumentNumber);
 
-    if (!isCNPJValid) {
-      throw new AppError('Wrong CNPJ.');
+    if (!isCNPJValid && !isCPFValid) {
+      throw new AppError('Wrong CNPJ/CPF.');
     }
 
     const isCep = isCEP(CEP);

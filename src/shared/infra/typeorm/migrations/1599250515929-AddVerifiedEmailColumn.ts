@@ -8,7 +8,7 @@ export default class AddVerifiedEmailColumn1599250515929 implements MigrationInt
       default: false,
     }));
 
-    await queryRunner.addColumn('company', new TableColumn({
+    await queryRunner.addColumn('providers', new TableColumn({
       name: 'verified_email',
       type: 'boolean',
       default: false,
@@ -17,6 +17,6 @@ export default class AddVerifiedEmailColumn1599250515929 implements MigrationInt
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropColumn('users', 'verified_email');
-    await queryRunner.dropColumn('company', 'verified_email');
+    await queryRunner.dropColumn('providers', 'verified_email');
   }
 }

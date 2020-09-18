@@ -3,7 +3,7 @@ import AppError from '@shared/errors/AppError';
 import path from 'path';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
-import ICompaniesRepository from '@modules/companies/repositories/ICompaniesRepository';
+import IProviderRepository from '@modules/workProviders/repositories/IProviderRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import {
   isCEP,
@@ -30,8 +30,8 @@ class CreateServicesService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('CompaniesRepository')
-    private companiesRepository: ICompaniesRepository,
+    @inject('ProvidersRepository')
+    private providersRepository: IProviderRepository,
 
     @inject('ServiceRepository')
     private serviceRepository: IServiceRepository,

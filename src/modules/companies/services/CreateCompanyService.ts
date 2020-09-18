@@ -85,7 +85,7 @@ class CompanyService {
       '..',
       'shared',
       'views',
-      'email_verification.hbs',
+      'email_company_verification.hbs',
     );
     const { token } = await this.companiesTokenRepository.generate(company.id);
 

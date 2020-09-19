@@ -1,15 +1,10 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateServices1595601523150 implements MigrationInterface {
+export default class CreateProvider1595425898047 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'services',
+        name: 'providers',
         columns: [
           {
             name: 'id',
@@ -19,19 +14,33 @@ export default class CreateServices1595601523150 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'title',
+            name: 'name',
             type: 'varchar',
           },
           {
-            name: 'filters',
+            name: 'fantasyName',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'documentNumber',
             type: 'varchar',
           },
           {
-            name: 'contractor_id',
-            type: 'uuid',
+            name: 'phone',
+            type: 'varchar',
           },
           {
-            name: 'description',
+            name: 'CEP',
+            type: 'varchar',
+          },
+          {
+            name: 'email',
+            type: 'varchar',
+            isUnique: true,
+          },
+          {
+            name: 'password',
             type: 'varchar',
           },
           {
@@ -47,22 +56,9 @@ export default class CreateServices1595601523150 implements MigrationInterface {
         ],
       }),
     );
-    await queryRunner.createForeignKey(
-      'services',
-      new TableForeignKey({
-        name: 'ContractorsServices',
-        columnNames: ['contractor_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'contractors',
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE',
-      }),
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('services', 'ContractorsServices');
-
-    await queryRunner.dropTable('services');
+    await queryRunner.dropTable('providers');
   }
 }

@@ -5,7 +5,7 @@ import IServiceRepository from '../repositories/IServiceRepository';
 
 interface IRequest {
   service_id: string;
-  user_id: string
+  contractor_id: string
 }
 
 @injectable()
@@ -18,7 +18,7 @@ class DeleteServiceService {
     private cacheProvider: ICacheProvider,
   ) { }
 
-  public async execute({ service_id, user_id }: IRequest): Promise<void> {
+  public async execute({ service_id, contractor_id }: IRequest): Promise<void> {
     const services = await this.serviceRepository.show();
 
     const deletedService = services.find((service) => service.id === service_id);
@@ -27,9 +27,9 @@ class DeleteServiceService {
       throw new AppError('Service does not existis');
     }
 
-    await this.cacheProvider.invalidate(`services-list:${user_id}`);
+    await this.cacheProvider.invalidate(`services-list:${contractor_id}`);
 
-    await this.serviceRepository.deleteService({ service_id, user_id });
+    await this.serviceRepository.deleteService({ service_id, contractor_id });
   }
 }
 

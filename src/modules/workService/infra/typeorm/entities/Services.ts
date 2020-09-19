@@ -7,7 +7,7 @@ import {
   JoinColumn,
   OneToOne,
 } from 'typeorm';
-import User from '@modules/users/infra/typeorm/entities/User';
+import Contractor from '@modules/contractors/infra/typeorm/entities/Contractor';
 import ServiceCategory from './ServiceCategory';
 
 @Entity('services')
@@ -36,12 +36,12 @@ class Services {
   @Column()
   description: string;
 
-  @OneToOne((_type) => User, { eager: true, cascade: true })
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+  @OneToOne((_type) => Contractor, { eager: true, cascade: true })
+  @JoinColumn({ name: 'contractor_id' })
+  contractor: Contractor;
 
   @Column()
-  user_id: string;
+  contractor_id: string;
 
   @OneToOne((_type) => ServiceCategory)
   @JoinColumn({ name: 'service_category' })

@@ -8,10 +8,10 @@ import { addHours, isAfter } from 'date-fns';
 @injectable()
 class VerifyProviderEmailService {
   constructor(
-    @inject('ProviderRepository')
+    @inject('ProvidersRepository')
     private providerRepository: IProviderRepository,
 
-    @inject('ProviderTokensRepository')
+    @inject('ProvidersTokenRepository')
     private providerTokenRepository: IProviderTokensRepository,
 
   ) { }

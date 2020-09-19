@@ -12,13 +12,13 @@ interface IRequestDTO {
 @injectable()
 class SendForgotProviderPasswordEmailService {
   constructor(
-    @inject('ProviderRepository')
+    @inject('ProvidersRepository')
     private providerRepository: IProviderRepository,
 
     @inject('MailProvider')
     private mailProvider: IMailProvider,
 
-    @inject('ProviderTokensRepository')
+    @inject('ProvidersTokenRepository')
     private providerTokensRepository: IProviderTokensRepository,
   ) { }
 

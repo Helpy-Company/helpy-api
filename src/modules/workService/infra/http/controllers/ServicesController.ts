@@ -20,7 +20,7 @@ class ServicesController {
     const createService = container.resolve(CreateServicesService);
 
     const service = await createService.execute({
-      user_id: request.user.id,
+      contractor_id: request.user.id,
       address,
       urgency,
       title,
@@ -49,7 +49,7 @@ class ServicesController {
 
     await deleteService.execute({
       service_id: id,
-      user_id: request.user.id,
+      contractor_id: request.user.id,
     });
 
     return response.status(200).send();

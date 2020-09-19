@@ -2,11 +2,11 @@ import { container } from 'tsyringe';
 
 import './providers';
 
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRespository';
+import IContractorsRepository from '@modules/contractors/repositories/IContractorsRepository';
+import ContractorsRepository from '@modules/contractors/infra/typeorm/repositories/ContractorsRespository';
 
-import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
-import UsersTokensRepository from '@modules/users/infra/typeorm/repositories/UsersTokensRepository';
+import IContractorsTokensRepository from '@modules/contractors/repositories/IContractorsTokensRepository';
+import ContractorsTokensRepository from '@modules/contractors/infra/typeorm/repositories/ContractorsTokensRepository';
 
 import IServiceRepository from '@modules/workService/repositories/IServiceRepository';
 import ServiceRepository from '@modules/workService/infra/typeorm/repositories/ServiceRepository';
@@ -20,9 +20,9 @@ import ProvidersRepository from '@modules/workProviders/infra/typeorm/repositori
 import IProviderTokensRepository from '@modules/workProviders/repositories/IProviderTokensRepository';
 import ProvidersTokenRepository from '@modules/workProviders/infra/typeorm/repositories/ProvidersTokenRepository';
 
-container.registerSingleton<IUsersRepository>(
-  'UsersRepository',
-  UsersRepository,
+container.registerSingleton<IContractorsRepository>(
+  'ContractorsRepository',
+  ContractorsRepository,
 );
 
 container.registerSingleton<IProviderRepository>(
@@ -30,9 +30,9 @@ container.registerSingleton<IProviderRepository>(
   ProvidersRepository,
 );
 
-container.registerSingleton<IUserTokensRepository>(
-  'UsersTokensRepository',
-  UsersTokensRepository,
+container.registerSingleton<IContractorsTokensRepository>(
+  'ContractorsTokensRepository',
+  ContractorsTokensRepository,
 );
 
 container.registerSingleton<IProviderTokensRepository>(

@@ -1,12 +1,10 @@
-import {
-  MigrationInterface, QueryRunner, Table, TableColumn,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateServiceCategory1595712047457 implements MigrationInterface {
+export default class CreateContractors1595100347648 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'services_categories',
+        name: 'contractors',
         columns: [
           {
             name: 'id',
@@ -16,9 +14,21 @@ export default class CreateServiceCategory1595712047457 implements MigrationInte
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'title',
+            name: 'name',
+            type: 'varchar',
+          },
+          {
+            name: 'email',
             type: 'varchar',
             isUnique: true,
+          },
+          {
+            name: 'phone',
+            type: 'varchar',
+          },
+          {
+            name: 'password',
+            type: 'varchar',
           },
           {
             name: 'created_at',
@@ -33,19 +43,9 @@ export default class CreateServiceCategory1595712047457 implements MigrationInte
         ],
       }),
     );
-
-    await queryRunner.addColumn(
-      'services',
-      new TableColumn({
-        name: 'service_category',
-        type: 'varchar',
-      }),
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropColumn('services', 'service_category');
-
-    await queryRunner.dropTable('services_categories');
+    await queryRunner.dropTable('contractors');
   }
 }

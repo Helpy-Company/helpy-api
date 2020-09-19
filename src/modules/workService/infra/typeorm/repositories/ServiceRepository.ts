@@ -19,7 +19,7 @@ class ServiceRepository implements IServiceRepository {
     title,
     service_category,
     intention,
-    user_id,
+    contractor_id,
     description,
     CEP,
     area,
@@ -30,7 +30,7 @@ class ServiceRepository implements IServiceRepository {
       title,
       service_category,
       intention,
-      user_id,
+      contractor_id,
       description,
       CEP,
       area,
@@ -41,9 +41,9 @@ class ServiceRepository implements IServiceRepository {
     return service;
   }
 
-  public async listUserService(user_id: string): Promise<Service[]> {
+  public async listContractorService(contractor_id: string): Promise<Service[]> {
     const services = await this.ormRepository.find({
-      where: { user_id },
+      where: { contractor_id },
     });
 
     return services;
@@ -55,7 +55,7 @@ class ServiceRepository implements IServiceRepository {
     return services;
   }
 
-  public async deleteService({ service_id, user_id }: IDeleteServiceDTO): Promise<void> {
+  public async deleteService({ service_id, contractor_id }: IDeleteServiceDTO): Promise<void> {
     await this.ormRepository.delete(service_id);
   }
 

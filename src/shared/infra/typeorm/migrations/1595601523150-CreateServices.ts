@@ -27,7 +27,7 @@ export default class CreateServices1595601523150 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'user_id',
+            name: 'contractor_id',
             type: 'uuid',
           },
           {
@@ -45,23 +45,23 @@ export default class CreateServices1595601523150 implements MigrationInterface {
             default: 'now()',
           },
         ],
-      })
+      }),
     );
     await queryRunner.createForeignKey(
       'services',
       new TableForeignKey({
-        name: 'UsersServices',
-        columnNames: ['user_id'],
+        name: 'ContractorsServices',
+        columnNames: ['contractor_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'users',
+        referencedTableName: 'contractors',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
-      })
+      }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('services', 'UsersServices');
+    await queryRunner.dropForeignKey('services', 'ContractorsServices');
 
     await queryRunner.dropTable('services');
   }

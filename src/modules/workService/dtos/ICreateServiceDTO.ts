@@ -1,5 +1,5 @@
 export default interface ICreateServiceDTO {
-  user_id: string;
+  contractor_id: string;
   title: string;
   intention: string;
   address: string;
@@ -8,4 +8,4 @@ export default interface ICreateServiceDTO {
   description: string;
   CEP?: string;
   area: string
-};
+}

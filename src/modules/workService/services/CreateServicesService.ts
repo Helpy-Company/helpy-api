@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import path from 'path';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IContractorsRepository from '@modules/contractors/repositories/IContractorsRepository';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import IProviderRepository from '@modules/workProviders/repositories/IProviderRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
@@ -13,7 +13,7 @@ import Services from '../infra/typeorm/entities/Services';
 import IServiceRepository from '../repositories/IServiceRepository';
 
 interface IRequestDTO {
-  user_id: string;
+  contractor_id: string;
   address: string;
   urgency: string;
   title: string;
@@ -27,8 +27,8 @@ interface IRequestDTO {
 @injectable()
 class CreateServicesService {
   constructor(
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
+    @inject('ContractorsRepository')
+    private contractorsRepository: IContractorsRepository,
 
     @inject('ProvidersRepository')
     private providersRepository: IProviderRepository,
@@ -47,7 +47,7 @@ class CreateServicesService {
   ) { }
 
   public async execute({
-    user_id,
+    contractor_id,
     address,
     urgency,
     title,
@@ -57,10 +57,10 @@ class CreateServicesService {
     CEP,
     area,
   }: IRequestDTO): Promise<Services> {
-    const userExists = await this.usersRepository.findById(user_id);
+    const contractorExists = await this.contractorsRepository.findById(contractor_id);
 
-    if (!userExists) {
-      throw new AppError('User does not exist.');
+    if (!contractorExists) {
+      throw new AppError('Contractor does not exist.');
     }
 
     if (CEP) {
@@ -72,7 +72,7 @@ class CreateServicesService {
     }
 
     const service = await this.serviceRepository.create({
-      user_id: userExists.id,
+      contractor_id: contractorExists.id,
       address,
       urgency,
       title,
@@ -83,7 +83,7 @@ class CreateServicesService {
       area,
     });
 
-    await this.cacheProvider.invalidate(`services-list:${userExists.id}`);
+    await this.cacheProvider.invalidate(`services-list:${contractorExists.id}`);
 
     const newServiceTemplate = path.resolve(
       __dirname,

@@ -52,7 +52,7 @@ class SendForgotProviderPasswordEmailService {
         variables: {
           name: provider.name,
           token,
-          link: `${process.env.APP_WEB_URL}/company-reset-password?token=${token}`,
+          link: `${process.env.APP_WEB_URL}/provider-reset-password?token=${token}`,
         },
       },
     });

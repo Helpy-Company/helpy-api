@@ -98,7 +98,7 @@ class CreateProviderService {
         file: verifyEmailTemplate,
         variables: {
           token,
-          link: `${process.env.APP_WEB_URL}/email-company-verification?token=${token}`,
+          link: `${process.env.APP_WEB_URL}/email-provider-verification?token=${token}`,
         },
       },
     });

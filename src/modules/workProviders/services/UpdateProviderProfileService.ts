@@ -22,7 +22,7 @@ interface IRequest {
 @injectable()
 class UpdateProviderProfileService {
   constructor(
-    @inject('ProviderRepository')
+    @inject('ProvidersRepository')
     private providerRepository: IProviderRepository,
 
     @inject('HashProvider')

@@ -71,12 +71,7 @@ class CreateContractorService {
         file: verifyEmailTemplate,
         variables: {
           token,
-<<<<<<< HEAD:src/modules/users/services/CreateUserServices.ts
-          name: user.name,
-          link: `${process.env.APP_WEB_URL}/email-user-verification?token=${token}`,
-=======
           link: `${process.env.APP_WEB_URL}/email-contractor-verification?token=${token}`,
->>>>>>> dev:src/modules/contractors/services/CreateContractorService.ts
         },
       },
     });

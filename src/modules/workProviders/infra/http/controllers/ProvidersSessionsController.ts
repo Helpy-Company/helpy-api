@@ -8,7 +8,7 @@ class ProviderSessionsController {
     const { email, password } = request.body;
     const authenticateProvider = container.resolve(AuthenticateProviderService);
 
-    const { porvider, token } = await authenticateProvider.execute({
+    const { provider, token } = await authenticateProvider.execute({
       email,
       password,
     });

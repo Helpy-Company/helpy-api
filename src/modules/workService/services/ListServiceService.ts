@@ -1,19 +1,19 @@
 import { inject, injectable } from 'tsyringe';
-import Services from '../infra/typeorm/entities/Services';
+import Service from '../infra/typeorm/entities/Service';
 import IServiceRepository from '../repositories/IServiceRepository';
 
 @injectable()
-class CreateServicesService {
+class CreateServiceService {
   constructor(
     @inject('ServiceRepository')
-    private serviceRepository: IServiceRepository,
+    private serviceRepository: IServiceRepository
   ) { }
 
-  public async execute(): Promise<Services[]> {
+  public async execute(): Promise<Service[]> {
     const services = await this.serviceRepository.show();
 
     return services;
   }
 }
 
-export default CreateServicesService;
+export default CreateServiceService;

@@ -21,17 +21,21 @@ class ResetContractorPasswordService {
     private contractorsTokensRepository: IContractorsTokensRepository,
 
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    private hashProvider: IHashProvider
   ) { }
 
   public async execute({ password, token }: IRequestDTO): Promise<void> {
-    const contractorToken = await this.contractorsTokensRepository.findByToken(token);
+    const contractorToken = await this.contractorsTokensRepository.findByToken(
+      token
+    );
 
     if (!contractorToken) {
       throw new AppError('Contractors does not exists');
     }
 
-    const contractor = await this.contractorsRepository.findById(contractorToken.contractor_id);
+    const contractor = await this.contractorsRepository.findById(
+      contractorToken.contractor_id
+    );
 
     if (!contractor) {
       throw new AppError('Contractors does not exists');

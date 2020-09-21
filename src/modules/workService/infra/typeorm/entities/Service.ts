@@ -11,7 +11,7 @@ import Contractor from '@modules/contractors/infra/typeorm/entities/Contractor';
 import ServiceCategory from './ServiceCategory';
 
 @Entity('services')
-class Services {
+class Service {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -36,14 +36,14 @@ class Services {
   @Column()
   description: string;
 
-  @OneToOne((_type) => Contractor, { eager: true, cascade: true })
+  @OneToOne(_type => Contractor, { eager: true, cascade: true })
   @JoinColumn({ name: 'contractor_id' })
   contractor: Contractor;
 
   @Column()
   contractor_id: string;
 
-  @OneToOne((_type) => ServiceCategory)
+  @OneToOne(_type => ServiceCategory)
   @JoinColumn({ name: 'service_category' })
   category: ServiceCategory;
 
@@ -57,4 +57,4 @@ class Services {
   updated_at: Date;
 }
 
-export default Services;
+export default Service;

@@ -12,18 +12,21 @@ class VerifyContractorEmailService {
     private contractorsRepository: IContractorsRepository,
 
     @inject('ContractorsTokensRepository')
-    private contractorsTokensRepository: IContractorsTokensRepository,
-
+    private contractorsTokensRepository: IContractorsTokensRepository
   ) { }
 
   public async execute(token: string): Promise<void> {
-    const contractorToken = await this.contractorsTokensRepository.findByToken(token);
+    const contractorToken = await this.contractorsTokensRepository.findByToken(
+      token
+    );
 
     if (!contractorToken) {
       throw new AppError('Contractor does not exists');
     }
 
-    const contractor = await this.contractorsRepository.findById(contractorToken.contractor_id);
+    const contractor = await this.contractorsRepository.findById(
+      contractorToken.contractor_id
+    );
 
     if (!contractor) {
       throw new AppError('Contractor does not exists');

@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import Services from '@modules/workService/infra/typeorm/entities/Services';
+import Service from '@modules/workService/infra/typeorm/entities/Service';
 import ServiceRepository from '@modules/workService/repositories/IServiceRepository';
 import AppError from '@shared/errors/AppError';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
@@ -12,28 +12,26 @@ class ListContractorService {
     private serviceRepository: ServiceRepository,
 
     @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
+    private cacheProvider: ICacheProvider
   ) { }
 
-  public async execute(contractor_id: string): Promise<Services[]> {
-    let contractorServices = await this.cacheProvider.recover<Services[]>(
-      `services-list:${contractor_id}`,
+  public async execute(contractor_id: string): Promise<Service[]> {
+    let contractorService = await this.cacheProvider.recover<Service[]>(
+      `services-list:${contractor_id}`
     );
 
-    if (!contractorServices) {
-      contractorServices = await this.serviceRepository.listContractorService(contractor_id);
-    }
-
-    if (!contractorServices) {
-      throw new AppError('This contractor does not have any service.');
+    if (!contractorService) {
+      contractorService = await this.serviceRepository.listContractorService(
+        contractor_id
+      );
     }
 
     await this.cacheProvider.save({
       key: `services-list:${contractor_id}`,
-      value: classToClass(contractorServices),
+      value: classToClass(contractorService),
     });
 
-    return contractorServices;
+    return contractorService;
   }
 }
 

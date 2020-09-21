@@ -7,5 +7,5 @@ export default interface ICreateServiceDTO {
   service_category: string;
   description: string;
   CEP?: string;
-  area: string
+  area: string;
 }

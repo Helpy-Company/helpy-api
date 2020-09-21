@@ -5,7 +5,9 @@ import SendForgotContractorPasswordEmail from '@modules/contractors/services/Sen
 class ForgotContractorsPasswordController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { email } = request.body;
-    const sendForgotPasswordService = container.resolve(SendForgotContractorPasswordEmail);
+    const sendForgotPasswordService = container.resolve(
+      SendForgotContractorPasswordEmail
+    );
 
     await sendForgotPasswordService.execute({ email });
 

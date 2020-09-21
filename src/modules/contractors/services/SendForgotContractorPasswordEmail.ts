@@ -19,7 +19,7 @@ class SendForgotContractorPasswordEmailService {
     private mailProvider: IMailProvider,
 
     @inject('ContractorsTokensRepository')
-    private contractorsTokensRepository: IContractorsTokensRepository,
+    private contractorsTokensRepository: IContractorsTokensRepository
   ) { }
 
   public async execute({ email }: IRequestDTO): Promise<void> {
@@ -29,7 +29,9 @@ class SendForgotContractorPasswordEmailService {
       throw new AppError('Contractors does not exists.');
     }
 
-    const { token } = await this.contractorsTokensRepository.generate(contractor.id);
+    const { token } = await this.contractorsTokensRepository.generate(
+      contractor.id
+    );
 
     const forgotPasswordTemplate = path.resolve(
       __dirname,
@@ -38,7 +40,7 @@ class SendForgotContractorPasswordEmailService {
       '..',
       'shared',
       'views',
-      'forgot_password.hbs',
+      'forgot_password.hbs'
     );
 
     await this.mailProvider.sendMail({

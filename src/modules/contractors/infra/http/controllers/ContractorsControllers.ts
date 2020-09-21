@@ -6,14 +6,15 @@ import { classToClass } from 'class-transformer';
 
 class ContractorsControllers {
   public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      name, email, phone, password,
-    } = request.body;
+    const { name, email, phone, password } = request.body;
 
     const createContractor = container.resolve(CreateContractorServices);
 
     const contractor = await createContractor.execute({
-      name, email, phone, password,
+      name,
+      email,
+      phone,
+      password,
     });
 
     return response.json(classToClass(contractor));

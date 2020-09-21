@@ -6,7 +6,9 @@ class ResetContractorsPasswordController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { password, token } = request.body;
 
-    const resetContractorPasswordService = container.resolve(ResetContractorPasswordService);
+    const resetContractorPasswordService = container.resolve(
+      ResetContractorPasswordService
+    );
 
     await resetContractorPasswordService.execute({ password, token });
 

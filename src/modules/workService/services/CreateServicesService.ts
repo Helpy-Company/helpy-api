@@ -5,11 +5,9 @@ import IContractorsRepository from '@modules/contractors/repositories/IContracto
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import IProviderRepository from '@modules/workProviders/repositories/IProviderRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import {
-  isCEP,
-} from 'brazilian-values';
+import { isCEP } from 'brazilian-values';
 import IQueueProvider from '@shared/container/providers/QueueProvider/models/IQueueProvider';
-import Services from '../infra/typeorm/entities/Services';
+import Service from '../infra/typeorm/entities/Service';
 import IServiceRepository from '../repositories/IServiceRepository';
 
 interface IRequestDTO {
@@ -43,7 +41,7 @@ class CreateServicesService {
     private cacheProvider: ICacheProvider,
 
     @inject('QueueProvider')
-    private queueProvider: IQueueProvider,
+    private queueProvider: IQueueProvider
   ) { }
 
   public async execute({
@@ -56,8 +54,10 @@ class CreateServicesService {
     description,
     CEP,
     area,
-  }: IRequestDTO): Promise<Services> {
-    const contractorExists = await this.contractorsRepository.findById(contractor_id);
+  }: IRequestDTO): Promise<Service> {
+    const contractorExists = await this.contractorsRepository.findById(
+      contractor_id
+    );
 
     if (!contractorExists) {
       throw new AppError('Contractor does not exist.');
@@ -92,7 +92,7 @@ class CreateServicesService {
       '..',
       'shared',
       'views',
-      'service_creation_notify.hbs',
+      'service_creation_notify.hbs'
     );
 
     // const companies = await this.companiesRepository.index();
@@ -122,7 +122,6 @@ class CreateServicesService {
       templateData: {
         file: newServiceTemplate,
         variables: {
-
           link: `${process.env.APP_WEB_URL}`,
           category: service.service_category,
           title: service.title,

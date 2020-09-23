@@ -12,8 +12,7 @@ class VerifyProviderEmailService {
     private providerRepository: IProviderRepository,
 
     @inject('ProvidersTokenRepository')
-    private providerTokenRepository: IProviderTokensRepository,
-
+    private providerTokenRepository: IProviderTokensRepository
   ) { }
 
   public async execute(token: string): Promise<void> {
@@ -23,7 +22,9 @@ class VerifyProviderEmailService {
       throw new AppError('Provider does not exists');
     }
 
-    const provider = await this.providerRepository.findById(providerToken.provider_id);
+    const provider = await this.providerRepository.findById(
+      providerToken.provider_id
+    );
 
     if (!provider) {
       throw new AppError('Provider does not exists');

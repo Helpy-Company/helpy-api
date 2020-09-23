@@ -21,8 +21,12 @@ class FakeContractorsTokenRepository implements IContractorsTokensRepository {
     return contractorToken;
   }
 
-  public async findByToken(token: string): Promise<ContractorToken | undefined> {
-    const contractorToken = this.contractorsTokens.find((findToken) => findToken.token === token);
+  public async findByToken(
+    token: string
+  ): Promise<ContractorToken | undefined> {
+    const contractorToken = this.contractorsTokens.find(
+      findToken => findToken.token === token
+    );
 
     return contractorToken;
   }

@@ -13,7 +13,7 @@ describe('AuthenticateContractor', () => {
     fakeHashProvider = new FakeHashProvider();
     authenticateContractorService = new AuthenticateContractorService(
       fakeContractorsRepository,
-      fakeHashProvider,
+      fakeHashProvider
     );
   });
 
@@ -39,10 +39,12 @@ describe('AuthenticateContractor', () => {
   });
 
   it('should not be able to authenticate with non existing users.', async () => {
-    await expect(authenticateContractorService.execute({
-      email: 'johndoe@gmail.com',
-      password: '123456',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      authenticateContractorService.execute({
+        email: 'johndoe@gmail.com',
+        password: '123456',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should not be able to authenticate with wrong password.', async () => {
@@ -57,10 +59,12 @@ describe('AuthenticateContractor', () => {
       verified_email: true,
     });
 
-    expect(authenticateContractorService.execute({
-      email: 'johndoe@teste.com',
-      password: '12345',
-    })).rejects.toBeInstanceOf(AppError);
+    expect(
+      authenticateContractorService.execute({
+        email: 'johndoe@teste.com',
+        password: '12345',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should not be able to authenticate with a non verified email.', async () => {
@@ -71,9 +75,11 @@ describe('AuthenticateContractor', () => {
       password: '1234',
     });
 
-    expect(authenticateContractorService.execute({
-      email: 'johndoe@teste.com',
-      password: '1234',
-    })).rejects.toBeInstanceOf(AppError);
-  })
+    expect(
+      authenticateContractorService.execute({
+        email: 'johndoe@teste.com',
+        password: '1234',
+      })
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });

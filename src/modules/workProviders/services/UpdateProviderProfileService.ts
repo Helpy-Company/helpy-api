@@ -16,7 +16,7 @@ interface IRequest {
   documentNumber?: string;
   old_password?: string;
   password?: string;
-  bio?: string
+  bio?: string;
 }
 
 @injectable()
@@ -26,7 +26,7 @@ class UpdateProviderProfileService {
     private providerRepository: IProviderRepository,
 
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    private hashProvider: IHashProvider
   ) { }
 
   public async execute({
@@ -47,9 +47,14 @@ class UpdateProviderProfileService {
       throw new AppError('Provider not found.');
     }
 
-    const providerWithUpdatedEmail = await this.providerRepository.findByEmail(email);
+    const providerWithUpdatedEmail = await this.providerRepository.findByEmail(
+      email
+    );
 
-    if (providerWithUpdatedEmail && providerWithUpdatedEmail.id !== provider_id) {
+    if (
+      providerWithUpdatedEmail &&
+      providerWithUpdatedEmail.id !== provider_id
+    ) {
       throw new AppError('E-mail already in use.');
     }
     // atualiza email e nome
@@ -65,14 +70,14 @@ class UpdateProviderProfileService {
 
     if (password && !old_password) {
       throw new AppError(
-        'You need to inform the old password to set a new password',
+        'You need to inform the old password to set a new password'
       );
     }
 
     if (password && old_password) {
       const checkOldPassword = await this.hashProvider.compareHash(
         old_password,
-        provider.password,
+        provider.password
       );
 
       if (!checkOldPassword) {

@@ -1,8 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import path from 'path';
-import {
-  formatToCPFOrCNPJ, isCNPJ, isCEP, isCPF,
-} from 'brazilian-values';
+import { formatToCPFOrCNPJ, isCNPJ, isCEP, isCPF } from 'brazilian-values';
 import AppError from '@shared/errors/AppError';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
@@ -33,7 +31,7 @@ class CreateProviderService {
     private hashProvider: IHashProvider,
 
     @inject('ProvidersTokenRepository')
-    private providersTokenRepository: IProviderTokensRepository,
+    private providersTokenRepository: IProviderTokensRepository
   ) { }
 
   public async execute({
@@ -85,7 +83,7 @@ class CreateProviderService {
       '..',
       'shared',
       'views',
-      'email_provider_verification.hbs',
+      'email_provider_verification.hbs'
     );
     const { token } = await this.providersTokenRepository.generate(provider.id);
 

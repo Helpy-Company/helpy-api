@@ -36,7 +36,6 @@ describe('ListContractor', () => {
       fakeHashProvider,
       fakeContractorTokenRepository
     );
-
   });
 
   it('should be able to list services.', async () => {
@@ -48,20 +47,20 @@ describe('ListContractor', () => {
     });
 
     await fakeServiceRepository.create({
-      address: "Rua 15, Av-Nada a ver",
-      description: "Quero reformar o barraco e deixar ele gigante para fazer uma festa la no meu barraco gigante",
-      urgency: "Urgente",
-      intention: "Quero negoviar o serviço com os profissionais",
-      title: "Reforma do barraco 2",
-      service_category: "CHAVEIRO",
-      area: "Sobrado",
-      CEP: "74230010",
-      contractor_id: contractor.id
-    })
+      address: 'Rua 15, Av-Nada a ver',
+      description:
+        'Quero reformar o barraco e deixar ele gigante para fazer uma festa la no meu barraco gigante',
+      urgency: 'Urgente',
+      intention: 'Quero negoviar o serviço com os profissionais',
+      title: 'Reforma do barraco 2',
+      service_category: 'CHAVEIRO',
+      area: 'Sobrado',
+      CEP: '74230010',
+      contractor_id: contractor.id,
+    });
 
+    const response = await listContractorsServices.execute(contractor.id);
 
-    const response = await listContractorsServices.execute(contractor.id)
-
-    expect(response[0]).toBeInstanceOf(Service)
+    expect(response[0]).toBeInstanceOf(Service);
   });
 });

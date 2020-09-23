@@ -1,4 +1,6 @@
 import AppError from '@shared/errors/AppError';
+import { uuid } from 'uuidv4';
+import ContractorToken from '../infra/typeorm/entities/ContractorToken';
 import FakeContractorRepository from '../repositories/fakes/FakeContractorsRepository';
 import FakeContractorsTokensRepository from '../repositories/fakes/FakeContractorsTokensRepository';
 import VerifyContractorEmailService from './VerifyContractorEmailService';

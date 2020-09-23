@@ -3,7 +3,7 @@ import Service from '../infra/typeorm/entities/Service';
 import IServiceRepository from '../repositories/IServiceRepository';
 
 @injectable()
-class CreateServiceService {
+class ListServicesService {
   constructor(
     @inject('ServiceRepository')
     private serviceRepository: IServiceRepository
@@ -16,4 +16,4 @@ class CreateServiceService {
   }
 }
 
-export default CreateServiceService;
+export default ListServicesService;

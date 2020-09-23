@@ -1,46 +1,49 @@
 import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/FakeHashProvider';
 import AppError from '@shared/errors/AppError';
-import FakeContractorsRepository from '../repositories/fakes/FakeContractorsRepository';
-import AuthenticateContractorService from './AuthenticateContractorService';
+import FakeProvidersRepository from '../repositories/fakes/FakeProvidersRepository';
+import AuthenticateProviderService from './AuthenticateProviderService';
 
-let fakeContractorsRepository: FakeContractorsRepository;
-let authenticateContractorService: AuthenticateContractorService;
+let fakeProvidersRepository: FakeProvidersRepository;
+let authenticateProviderService: AuthenticateProviderService;
 let fakeHashProvider: FakeHashProvider;
 
-describe('AuthenticateContractor', () => {
+describe('AuthenticateProvider', () => {
   beforeEach(() => {
-    fakeContractorsRepository = new FakeContractorsRepository();
+    fakeProvidersRepository = new FakeProvidersRepository();
     fakeHashProvider = new FakeHashProvider();
-    authenticateContractorService = new AuthenticateContractorService(
-      fakeContractorsRepository,
+    authenticateProviderService = new AuthenticateProviderService(
+      fakeProvidersRepository,
       fakeHashProvider
     );
   });
 
   it('should be able to authenticate.', async () => {
-    const contractor = await fakeContractorsRepository.create({
+    const provider = await fakeProvidersRepository.create({
       name: 'John Doe',
+      CEP: '74230010',
+      documentNumber: '07178349131',
+      fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
     });
 
-    Object.assign(contractor, {
+    Object.assign(provider, {
       verified_email: true,
     });
 
-    const response = await authenticateContractorService.execute({
+    const response = await authenticateProviderService.execute({
       email: 'johndoe@teste.com',
       password: '1234',
     });
 
     expect(response).toHaveProperty('token');
-    expect(response.contractor).toEqual(contractor);
+    expect(response.provider).toEqual(provider);
   });
 
   it('should not be able to authenticate with non existing users.', async () => {
     await expect(
-      authenticateContractorService.execute({
+      authenticateProviderService.execute({
         email: 'johndoe@gmail.com',
         password: '123456',
       })
@@ -48,19 +51,22 @@ describe('AuthenticateContractor', () => {
   });
 
   it('should not be able to authenticate with wrong password.', async () => {
-    const contractor = await fakeContractorsRepository.create({
+    const provider = await fakeProvidersRepository.create({
       name: 'John Doe',
+      CEP: '74230010',
+      documentNumber: '07178349131',
+      fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
     });
 
-    Object.assign(contractor, {
+    Object.assign(provider, {
       verified_email: true,
     });
 
     expect(
-      authenticateContractorService.execute({
+      authenticateProviderService.execute({
         email: 'johndoe@teste.com',
         password: '12345',
       })
@@ -68,15 +74,18 @@ describe('AuthenticateContractor', () => {
   });
 
   it('should not be able to authenticate with a non verified email.', async () => {
-    await fakeContractorsRepository.create({
+    await fakeProvidersRepository.create({
       name: 'John Doe',
+      CEP: '74230010',
+      documentNumber: '07178349131',
+      fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
     });
 
     expect(
-      authenticateContractorService.execute({
+      authenticateProviderService.execute({
         email: 'johndoe@teste.com',
         password: '1234',
       })

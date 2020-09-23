@@ -1,4 +1,4 @@
-import FakeHashProvider from '@shared/container/providers/HashProvider/FakeHashProvider';
+import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/FakeHashProvider';
 import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
 import AppError from '@shared/errors/AppError';
 import FakeContractorsRepository from '../repositories/fakes/FakeContractorsRepository';

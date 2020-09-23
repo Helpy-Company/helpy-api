@@ -2,49 +2,48 @@ import 'reflect-metadata';
 import AppError from '@shared/errors/AppError';
 
 import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/FakeHashProvider';
-import ResetPasswordService from './ResetContractorPasswordService';
-import FakeContractorsRepository from '../repositories/fakes/FakeContractorsRepository';
-import FakeContractorsTokensRepository from '../repositories/fakes/FakeContractorsTokensRepository';
+import ResetPasswordService from './ResetProviderPasswordService';
+import FakeProvidersRepository from '../repositories/fakes/FakeProvidersRepository';
+import FakeProvidersTokensRepository from '../repositories/fakes/FakeProvidersTokensRepository';
 
 let fakeHashProvider: FakeHashProvider;
 let resetPasswordService: ResetPasswordService;
-let fakeContractorsRepository: FakeContractorsRepository;
-let fakeContractorsTokensRepository: FakeContractorsTokensRepository;
+let fakeProvidersRepository: FakeProvidersRepository;
+let fakeProvidersTokensRepository: FakeProvidersTokensRepository;
 
 describe('ResetPassword', () => {
   beforeEach(() => {
     fakeHashProvider = new FakeHashProvider();
-    fakeContractorsTokensRepository = new FakeContractorsTokensRepository();
-    fakeContractorsRepository = new FakeContractorsRepository();
+    fakeProvidersTokensRepository = new FakeProvidersTokensRepository();
+    fakeProvidersRepository = new FakeProvidersRepository();
     resetPasswordService = new ResetPasswordService(
-      fakeContractorsRepository,
-      fakeContractorsTokensRepository,
-      fakeHashProvider
+      fakeHashProvider,
+      fakeProvidersRepository,
+      fakeProvidersTokensRepository
     );
   });
 
   it('should be able to reset password.', async () => {
-    const contractor = await fakeContractorsRepository.create({
+    const provider = await fakeProvidersRepository.create({
       name: 'John Doe',
+      CEP: '74230010',
+      documentNumber: '07178349131',
+      fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
     });
 
-    const { token } = await fakeContractorsTokensRepository.generate(
-      contractor.id
-    );
+    const { token } = await fakeProvidersTokensRepository.generate(provider.id);
 
     const generateHash = await jest.spyOn(fakeHashProvider, 'generateHash');
 
     await resetPasswordService.execute({ password: '12341234', token });
 
-    const updateContractor = await fakeContractorsRepository.findById(
-      contractor.id
-    );
+    const updateProvider = await fakeProvidersRepository.findById(provider.id);
 
     expect(generateHash).toHaveBeenCalledWith('12341234');
-    expect(updateContractor?.password).toBe('12341234');
+    expect(updateProvider?.password).toBe('12341234');
   });
 
   it('should be able to reset the password with non existing token.', async () => {
@@ -56,9 +55,9 @@ describe('ResetPassword', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('should not be able to reset the password with non existing contractor.', async () => {
-    const { token } = await fakeContractorsTokensRepository.generate(
-      'non-existing-contractor-id'
+  it('should not be able to reset the password with non existing provider.', async () => {
+    const { token } = await fakeProvidersTokensRepository.generate(
+      'non-existing-provider-id'
     );
 
     await expect(
@@ -70,16 +69,17 @@ describe('ResetPassword', () => {
   });
 
   it('should not be able to reset password if passed more than two hours.', async () => {
-    const contractor = await fakeContractorsRepository.create({
+    const provider = await fakeProvidersRepository.create({
       name: 'John Doe',
+      CEP: '74230010',
+      documentNumber: '07178349131',
+      fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
     });
 
-    const { token } = await fakeContractorsTokensRepository.generate(
-      contractor.id
-    );
+    const { token } = await fakeProvidersTokensRepository.generate(provider.id);
 
     jest.spyOn(Date, 'now').mockImplementationOnce(() => {
       const customDate = new Date();

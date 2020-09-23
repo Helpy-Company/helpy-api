@@ -3,7 +3,6 @@ import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import IProviderRepository from '@modules/workProviders/repositories/IProviderRepository';
 import IProviderTokensRepository from '@modules/workProviders/repositories/IProviderTokensRepository';
-import { addHours, isAfter } from 'date-fns';
 
 @injectable()
 class VerifyProviderEmailService {
@@ -32,12 +31,6 @@ class VerifyProviderEmailService {
 
     if (!(providerToken.provider_id === provider.id)) {
       throw new AppError('Invalid token');
-    }
-    const tokenCreateAt = providerToken.created_at;
-    const compareDate = addHours(tokenCreateAt, 5);
-
-    if (isAfter(Date.now(), compareDate)) {
-      throw new AppError('token expired');
     }
 
     provider.verified_email = true;

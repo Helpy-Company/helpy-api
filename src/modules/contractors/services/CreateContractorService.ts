@@ -27,7 +27,7 @@ class CreateContractorService {
     private hashProvider: IHashProvider,
 
     @inject('ContractorsTokensRepository')
-    private contractorsTokensRepository: IContractorsTokensRepository,
+    private contractorsTokensRepository: IContractorsTokensRepository
   ) { }
 
   public async execute({
@@ -36,7 +36,9 @@ class CreateContractorService {
     phone,
     password,
   }: IRequest): Promise<Contractor> {
-    const checkEmailExists = await this.contractorsRepository.findByEmail(email);
+    const checkEmailExists = await this.contractorsRepository.findByEmail(
+      email
+    );
 
     if (checkEmailExists) {
       throw new AppError('Contractor already exists');
@@ -57,9 +59,11 @@ class CreateContractorService {
       '..',
       'shared',
       'views',
-      'email_verification.hbs',
+      'email_verification.hbs'
     );
-    const { token } = await this.contractorsTokensRepository.generate(contractor.id);
+    const { token } = await this.contractorsTokensRepository.generate(
+      contractor.id
+    );
 
     await this.mailProvider.sendMail({
       to: {

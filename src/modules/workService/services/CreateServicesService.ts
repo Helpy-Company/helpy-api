@@ -6,7 +6,7 @@ import IMailProvider from '@shared/container/providers/MailProvider/models/IMail
 import IProviderRepository from '@modules/workProviders/repositories/IProviderRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { isCEP } from 'brazilian-values';
-import IQueueProvider from '@shared/container/providers/QueueProvider/models/IQueueProvider';
+// import IQueueProvider from '@shared/container/providers/QueueProvider/models/IQueueProvider';
 import Service from '../infra/typeorm/entities/Service';
 import IServiceRepository from '../repositories/IServiceRepository';
 
@@ -38,10 +38,7 @@ class CreateServicesService {
     private mailProvider: IMailProvider,
 
     @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
-
-    @inject('QueueProvider')
-    private queueProvider: IQueueProvider
+    private cacheProvider: ICacheProvider // @inject('QueueProvider') // private queueProvider: IQueueProvider
   ) { }
 
   public async execute({

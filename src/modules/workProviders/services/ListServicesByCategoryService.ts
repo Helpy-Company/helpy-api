@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import Services from '@modules/workService/infra/typeorm/entities/Services';
+import Service from '@modules/workService/infra/typeorm/entities/Service';
 import ServiceRepository from '@modules/workService/repositories/IServiceRepository';
 import AppError from '@shared/errors/AppError';
 
@@ -7,12 +7,13 @@ import AppError from '@shared/errors/AppError';
 class ListAllServices {
   constructor(
     @inject('ServiceRepository')
-    private serviceRepository: ServiceRepository,
-
+    private serviceRepository: ServiceRepository
   ) { }
 
-  public async execute(category: string): Promise<Services[]> {
-    const services = await this.serviceRepository.findServiceByCategory(category);
+  public async execute(category: string): Promise<Service[]> {
+    const services = await this.serviceRepository.findServiceByCategory(
+      category
+    );
     if (!services) {
       throw new AppError('There is no services available.');
     }

@@ -1,7 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import Service from '@modules/workService/infra/typeorm/entities/Service';
 import ServiceRepository from '@modules/workService/repositories/IServiceRepository';
-import AppError from '@shared/errors/AppError';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { classToClass } from 'class-transformer';
 

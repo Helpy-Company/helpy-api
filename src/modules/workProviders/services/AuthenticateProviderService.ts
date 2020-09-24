@@ -23,17 +23,23 @@ class AuthenticateProviderService {
     private providersRepository: IProviderRepository,
 
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    private hashProvider: IHashProvider
   ) { }
 
-  public async execute({ email, password }: IRequestDTO): Promise<IResponseDTO> {
+  public async execute({
+    email,
+    password,
+  }: IRequestDTO): Promise<IResponseDTO> {
     const provider = await this.providersRepository.findByEmail(email);
 
     if (!provider) {
       throw new AppError('Incorrect email/password combination', 401);
     }
 
-    const passwordMatched = await this.hashProvider.compareHash(password, provider.password);
+    const passwordMatched = await this.hashProvider.compareHash(
+      password,
+      provider.password
+    );
 
     if (!passwordMatched) {
       throw new AppError('Incorrect email/password combination', 401);

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateServicesService from '@modules/workService/services/CreateServicesService';
 import ListServiceService from '@modules/workService/services/ListServiceService';
-import DeleteServiceServices from '@modules/workService/services/DeleteServiceServices';
+import DeleteServicesService from '@modules/workService/services/DeleteServicesService';
 
 class ServicesController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -45,7 +45,7 @@ class ServicesController {
   public async delete(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const deleteService = container.resolve(DeleteServiceServices);
+    const deleteService = container.resolve(DeleteServicesService);
 
     await deleteService.execute({
       service_id: id,

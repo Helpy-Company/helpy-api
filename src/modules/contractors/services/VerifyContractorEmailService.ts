@@ -21,7 +21,7 @@ class VerifyContractorEmailService {
     );
 
     if (!contractorToken) {
-      throw new AppError('Contractor does not exists');
+      throw new AppError('Contractor token does not exists');
     }
 
     const contractor = await this.contractorsRepository.findById(
@@ -34,12 +34,6 @@ class VerifyContractorEmailService {
 
     if (!(contractorToken.contractor_id === contractor.id)) {
       throw new AppError('Invalid token');
-    }
-    const tokenCreateAt = contractorToken.created_at;
-    const compareDate = addHours(tokenCreateAt, 5);
-
-    if (isAfter(Date.now(), compareDate)) {
-      throw new AppError('token expired');
     }
 
     contractor.verified_email = true;

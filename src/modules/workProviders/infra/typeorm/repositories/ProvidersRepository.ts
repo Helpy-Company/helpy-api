@@ -19,10 +19,24 @@ class CompaniesRepository implements IProviderRepository {
   }
 
   public async create({
-    name, email, password, bio, documentNumber, fantasyName, CEP, phone,
+    name,
+    email,
+    password,
+    bio,
+    documentNumber,
+    fantasyName,
+    CEP,
+    phone,
   }: ICreateProviderDTO): Promise<Provider> {
     const provider = this.ormRepository.create({
-      name, CEP, documentNumber, email, fantasyName, password, phone,
+      name,
+      CEP,
+      documentNumber,
+      email,
+      bio,
+      fantasyName,
+      password,
+      phone,
     });
 
     await this.ormRepository.save(provider);
@@ -44,12 +58,6 @@ class CompaniesRepository implements IProviderRepository {
     const providers = this.ormRepository.find();
 
     return providers;
-  }
-
-  public async emailVerification(id: string): Promise<boolean | undefined> {
-    const provider = await this.ormRepository.findOne(id);
-
-    return provider?.verified_email;
   }
 }
 

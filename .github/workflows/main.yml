@@ -26,8 +26,6 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install dependencies
         run: yarn
-      - name: Run tests
-        run: yarn test
 
     #Executar a build
       - name: Run build

@@ -14,21 +14,25 @@ jobs:
         with:
           node-version: 12.x
     #Instalar as dependencias NPM/YARN
-      - name: Install dependencies
-        id: yarn-cache-dir-path
+      - name: Yarn cache directory
+        id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - name: Yarn cache
+        uses: actions/cache@v1
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          path: ${{ steps.yarn-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-  
-   #Executar a build
+      - name: Install dependencies
+        run: yarn
+      - name: Run tests
+        run: yarn test
+
+    #Executar a build
       - name: Run build
         run: yarn build
-   #Copiar codigo para dentro da Digital Ocean
+     #Copiar codigo para dentro da Digital Ocean
       - name: Copy dist to digital ocean
         uses: appleboy/scp-action@master
         with:

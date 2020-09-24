@@ -1,15 +1,13 @@
 name: CI
-on: push
+
+on:
+  push:
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install modules
-        run: yarn
-      - name: Run tests
-        run: yarn test
-  
      #Setup Node.js 
       - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.3
@@ -23,11 +21,15 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-    #Executar a build
+      
+    #Run Tests
+      - name: Run tests
+        run: yarn test
+  
+   #Executar a build
       - name: Run build
         run: yarn build
-     #Copiar codigo para dentro da Digital Ocean
+   #Copiar codigo para dentro da Digital Ocean
       - name: Copy dist to digital ocean
         uses: appleboy/scp-action@master
         with:

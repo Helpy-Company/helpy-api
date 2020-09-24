@@ -1,13 +1,15 @@
 name: CI
-
-on:
-  push:
-    branches: [ master ]
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Run tests
+        run: yarn test
+  
      #Setup Node.js 
       - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.3
@@ -15,7 +17,15 @@ jobs:
           node-version: 12.x
     #Instalar as dependencias NPM/YARN
       - name: Install dependencies
-        run: yarn
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
     #Executar a build
       - name: Run build

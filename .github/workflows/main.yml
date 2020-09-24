@@ -1,13 +1,15 @@
 name: CI
-
-on:
-  push:
-    branches: [ master ]
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Run tests
+        run: yarn test
+  
      #Setup Node.js 
       - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.3
@@ -43,7 +45,6 @@ jobs:
             cd ~/app/helpy-api
             yarn
     
-          
     #Executar as migrations do TypeORM      
       - name: Run TypeORM migratons on Digital ocean
         uses: appleboy/ssh-action@master

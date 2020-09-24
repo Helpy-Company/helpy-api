@@ -21,7 +21,7 @@ describe('AuthenticateProvider', () => {
     const provider = await fakeProvidersRepository.create({
       name: 'John Doe',
       CEP: '74230010',
-      documentNumber: '07178349131',
+      documentNumber: '418.472.130-30',
       fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
@@ -54,7 +54,7 @@ describe('AuthenticateProvider', () => {
     const provider = await fakeProvidersRepository.create({
       name: 'John Doe',
       CEP: '74230010',
-      documentNumber: '07178349131',
+      documentNumber: '418.472.130-30',
       fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
@@ -77,7 +77,7 @@ describe('AuthenticateProvider', () => {
     await fakeProvidersRepository.create({
       name: 'John Doe',
       CEP: '74230010',
-      documentNumber: '07178349131',
+      documentNumber: '418.472.130-30',
       fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',

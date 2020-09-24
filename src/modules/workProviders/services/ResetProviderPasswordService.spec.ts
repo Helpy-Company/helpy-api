@@ -27,7 +27,7 @@ describe('ResetPassword', () => {
     const provider = await fakeProvidersRepository.create({
       name: 'John Doe',
       CEP: '74230010',
-      documentNumber: '07178349131',
+      documentNumber: '418.472.130-30',
       fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
@@ -72,7 +72,7 @@ describe('ResetPassword', () => {
     const provider = await fakeProvidersRepository.create({
       name: 'John Doe',
       CEP: '74230010',
-      documentNumber: '07178349131',
+      documentNumber: '418.472.130-30',
       fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',

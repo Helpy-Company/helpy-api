@@ -57,11 +57,11 @@ class UpdateProviderProfileService {
     ) {
       throw new AppError('E-mail already in use.');
     }
-    // atualiza email e nome
+    // atualiza nome e email
     provider.name = name;
     provider.email = email;
 
-    // atualiza cep, documentNumber, phone, fantasyName
+    // atualiza cep, documentNumber, phone, fantasyName, bio
     provider.CEP = CEP || provider.CEP;
     provider.documentNumber = documentNumber || provider.documentNumber;
     provider.phone = phone || provider.phone;

@@ -21,11 +21,6 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      
-    #Run Tests
-      - uses: actions/checkout@v2
-      - name: Run tests
-        run: yarn test
   
    #Executar a build
       - name: Run build

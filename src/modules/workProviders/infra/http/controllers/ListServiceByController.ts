@@ -6,7 +6,9 @@ class ListServiceByCategoryController {
   public async index(request: Request, response: Response): Promise<Response> {
     const { category } = request.query;
 
-    const listServicesByCategory = container.resolve(ListServicesByCategoryService);
+    const listServicesByCategory = container.resolve(
+      ListServicesByCategoryService
+    );
 
     const services = await listServicesByCategory.execute(String(category));
 

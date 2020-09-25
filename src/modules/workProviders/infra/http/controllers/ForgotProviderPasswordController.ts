@@ -5,7 +5,9 @@ import SendForgotProviderPasswordEmail from '@modules/workProviders/services/Sen
 class ForgotProviderPasswordController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { email } = request.body;
-    const sendForgotPasswordService = container.resolve(SendForgotProviderPasswordEmail);
+    const sendForgotPasswordService = container.resolve(
+      SendForgotProviderPasswordEmail
+    );
 
     await sendForgotPasswordService.execute({ email });
 

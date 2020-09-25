@@ -27,6 +27,20 @@ describe('UpdateProviderProfile', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      service_categories: [
+        {
+          id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
+          title: 'ARQUITETO',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          id: 'ddc2f7cc-2210-45eb-8fb8-c8a215b3aa9c',
+          title: 'DECORADOR',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      ],
     });
 
     const updatedProvider = await updateProviderProfileService.execute({
@@ -70,6 +84,20 @@ describe('UpdateProviderProfile', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      service_categories: [
+        {
+          id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
+          title: 'ARQUITETO',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          id: 'ddc2f7cc-2210-45eb-8fb8-c8a215b3aa9c',
+          title: 'DECORADOR',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      ],
     });
 
     const provider = await fakeProviderRepository.create({
@@ -80,6 +108,20 @@ describe('UpdateProviderProfile', () => {
       email: 'johntre@teste.com',
       phone: '99999999',
       password: '1234',
+      service_categories: [
+        {
+          id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
+          title: 'ARQUITETO',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          id: 'ddc2f7cc-2210-45eb-8fb8-c8a215b3aa9c',
+          title: 'DECORADOR',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      ],
     });
 
     await expect(
@@ -99,6 +141,20 @@ describe('UpdateProviderProfile', () => {
       fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
+      service_categories: [
+        {
+          id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
+          title: 'ARQUITETO',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          id: 'ddc2f7cc-2210-45eb-8fb8-c8a215b3aa9c',
+          title: 'DECORADOR',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      ],
       password: '1234',
     });
 
@@ -126,6 +182,20 @@ describe('UpdateProviderProfile', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      service_categories: [
+        {
+          id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
+          title: 'ARQUITETO',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          id: 'ddc2f7cc-2210-45eb-8fb8-c8a215b3aa9c',
+          title: 'DECORADOR',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      ],
     });
 
     await expect(

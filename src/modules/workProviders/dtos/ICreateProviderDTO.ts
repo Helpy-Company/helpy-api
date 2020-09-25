@@ -9,5 +9,5 @@ export default interface ICreateCompaniesDTO {
   CEP: string;
   documentNumber: string;
   phone: string;
-  service_categories: ServiceCategory[];
+  service_categories?: ServiceCategory[];
 }

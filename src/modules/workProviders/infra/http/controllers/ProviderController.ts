@@ -14,7 +14,6 @@ class ProviderController {
       CEP,
       documentNumber,
       phone,
-      service_categories_ids,
     } = request.body;
 
     const createProvider = container.resolve(CreateProviderService);
@@ -27,7 +26,6 @@ class ProviderController {
       password,
       documentNumber,
       phone,
-      service_categories_ids,
     });
 
     return response.json(classToClass(provider));
@@ -45,6 +43,7 @@ class ProviderController {
       old_password,
       phone,
       bio,
+      service_categories,
     } = request.body;
 
     const updateProfile = container.resolve(UpdateProviderProfileService);
@@ -60,6 +59,7 @@ class ProviderController {
       documentNumber,
       phone,
       bio,
+      service_categories,
     });
 
     return response.json(classToClass(provider));

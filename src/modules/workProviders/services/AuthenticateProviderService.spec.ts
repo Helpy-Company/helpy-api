@@ -11,6 +11,7 @@ describe('AuthenticateProvider', () => {
   beforeEach(() => {
     fakeProvidersRepository = new FakeProvidersRepository();
     fakeHashProvider = new FakeHashProvider();
+
     authenticateProviderService = new AuthenticateProviderService(
       fakeProvidersRepository,
       fakeHashProvider
@@ -26,6 +27,20 @@ describe('AuthenticateProvider', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      service_categories: [
+        {
+          id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
+          title: 'ARQUITETO',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          id: 'ddc2f7cc-2210-45eb-8fb8-c8a215b3aa9c',
+          title: 'DECORADOR',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      ],
     });
 
     Object.assign(provider, {
@@ -59,6 +74,20 @@ describe('AuthenticateProvider', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      service_categories: [
+        {
+          id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
+          title: 'ARQUITETO',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          id: 'ddc2f7cc-2210-45eb-8fb8-c8a215b3aa9c',
+          title: 'DECORADOR',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      ],
     });
 
     Object.assign(provider, {
@@ -82,6 +111,20 @@ describe('AuthenticateProvider', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      service_categories: [
+        {
+          id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
+          title: 'ARQUITETO',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          id: 'ddc2f7cc-2210-45eb-8fb8-c8a215b3aa9c',
+          title: 'DECORADOR',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      ],
     });
 
     expect(

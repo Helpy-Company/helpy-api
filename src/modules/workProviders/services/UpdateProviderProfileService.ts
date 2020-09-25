@@ -4,6 +4,7 @@ import AppError from '@shared/errors/AppError';
 
 import Provider from '@modules/workProviders/infra/typeorm/entities/Provider';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
+import ServiceCategory from '@modules/workService/infra/typeorm/entities/ServiceCategory';
 import IProviderRepository from '../repositories/IProviderRepository';
 
 interface IRequest {
@@ -17,6 +18,7 @@ interface IRequest {
   old_password?: string;
   password?: string;
   bio?: string;
+  service_categories?: ServiceCategory[];
 }
 
 @injectable()
@@ -40,6 +42,7 @@ class UpdateProviderProfileService {
     old_password,
     password,
     bio,
+    service_categories,
   }: IRequest): Promise<Provider> {
     const provider = await this.providerRepository.findById(provider_id);
 
@@ -67,6 +70,8 @@ class UpdateProviderProfileService {
     provider.phone = phone || provider.phone;
     provider.fantasyName = fantasyName || provider.fantasyName;
     provider.bio = bio || provider.bio;
+    provider.service_categories =
+      service_categories || provider.service_categories;
 
     if (password && !old_password) {
       throw new AppError(

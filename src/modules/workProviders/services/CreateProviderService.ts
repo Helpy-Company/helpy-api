@@ -4,7 +4,6 @@ import { formatToCPFOrCNPJ, isCNPJ, isCEP, isCPF } from 'brazilian-values';
 import AppError from '@shared/errors/AppError';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
-import ICategoryRepository from '@modules/workService/repositories/ICategoryRepository';
 import Provider from '../infra/typeorm/entities/Provider';
 import IProviderRepository from '../repositories/IProviderRepository';
 import IProviderTokensRepository from '../repositories/IProviderTokensRepository';
@@ -17,7 +16,6 @@ interface IRequestDTO {
   phone: string;
   email: string;
   password: string;
-  service_categories_ids: string[];
 }
 
 @injectable()
@@ -33,10 +31,7 @@ class CreateProviderService {
     private hashProvider: IHashProvider,
 
     @inject('ProvidersTokenRepository')
-    private providersTokenRepository: IProviderTokensRepository,
-
-    @inject('CategoryRepository')
-    private categoryRepository: ICategoryRepository
+    private providersTokenRepository: IProviderTokensRepository
   ) { }
 
   public async execute({
@@ -47,7 +42,6 @@ class CreateProviderService {
     email,
     password,
     CEP,
-    service_categories_ids,
   }: IRequestDTO): Promise<Provider> {
     const providerExists = await this.providersRepository.findByEmail(email);
 
@@ -72,10 +66,6 @@ class CreateProviderService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    const categories = await this.categoryRepository.findAllById(
-      service_categories_ids
-    );
-
     const provider = await this.providersRepository.create({
       name,
       email,
@@ -84,7 +74,6 @@ class CreateProviderService {
       documentNumber: formattedDocumentNumber,
       CEP,
       fantasyName,
-      service_categories: categories,
     });
 
     const verifyEmailTemplate = path.resolve(

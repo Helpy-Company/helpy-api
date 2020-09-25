@@ -14,6 +14,7 @@ class ProviderController {
       CEP,
       documentNumber,
       phone,
+      service_categories_ids,
     } = request.body;
 
     const createProvider = container.resolve(CreateProviderService);
@@ -26,6 +27,7 @@ class ProviderController {
       password,
       documentNumber,
       phone,
+      service_categories_ids,
     });
 
     return response.json(classToClass(provider));

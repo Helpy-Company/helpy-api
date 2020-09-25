@@ -4,9 +4,12 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
+import ServiceCategory from '@modules/workService/infra/typeorm/entities/ServiceCategory';
 
 @Entity('providers')
 class Provider {
@@ -46,6 +49,14 @@ class Provider {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @ManyToMany(() => ServiceCategory)
+  @JoinTable({
+    name: 'providers_services_categories',
+    joinColumns: [{ name: 'provider_id' }],
+    inverseJoinColumns: [{ name: 'service_category_id' }],
+  })
+  service_categories: ServiceCategory[];
 }
 
 export default Provider;

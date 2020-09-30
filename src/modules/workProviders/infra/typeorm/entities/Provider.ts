@@ -50,7 +50,7 @@ class Provider {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToMany(() => ServiceCategory)
+  @ManyToMany(() => ServiceCategory, { eager: true, cascade: true })
   @JoinTable({
     name: 'providers_services_categories',
     joinColumns: [{ name: 'provider_id' }],

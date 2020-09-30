@@ -13,7 +13,9 @@ class CompaniesRepository implements IProviderRepository {
   }
 
   public async findByEmail(email: string): Promise<Provider | undefined> {
-    const provider = await this.ormRepository.findOne({ where: { email } });
+    const provider = await this.ormRepository.findOne({
+      where: { email },
+    });
 
     return provider;
   }

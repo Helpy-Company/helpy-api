@@ -51,4 +51,19 @@ export default class FakeServiceRepository implements IServiceRepository {
   public async show(): Promise<Service[]> {
     return this.services;
   }
+
+  public async findById(id: string): Promise<Service | undefined> {
+    const service = this.services.find(s => s.id === id);
+
+    return service;
+  }
+
+  public async save(service: Service): Promise<Service> {
+    const findIndex = this.services.findIndex(
+      serviceUpdate => serviceUpdate.id === service.id
+    );
+    this.services[findIndex] = service;
+
+    return service;
+  }
 }

@@ -3,6 +3,8 @@ import { container } from 'tsyringe';
 import CreateServicesService from '@modules/workService/services/CreateServicesService';
 import ListServiceService from '@modules/workService/services/ListServiceService';
 import DeleteServicesService from '@modules/workService/services/DeleteServicesService';
+import UpdateServicesService from '@modules/workService/services/UpdateServicesService';
+import { classToClass, serialize } from 'class-transformer';
 
 class ServicesController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -53,6 +55,38 @@ class ServicesController {
     });
 
     return response.status(200).send();
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const {
+      address,
+      urgency,
+      title,
+      service_category,
+      intention,
+      description,
+      area,
+      CEP,
+      service_id,
+    } = request.body;
+
+    const updateService = container.resolve(UpdateServicesService);
+
+    const service = await updateService.execute({
+      contractor_id: request.user.id,
+      address,
+      urgency,
+      title,
+      service_category,
+      intention,
+      description,
+      area,
+      CEP,
+      service_id,
+    });
+    return response.json(
+      classToClass(service, { excludePrefixes: ['contractor'] })
+    );
   }
 }
 

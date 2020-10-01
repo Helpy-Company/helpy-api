@@ -1,6 +1,6 @@
 import Service from '@modules/workService/infra/typeorm/entities/Service';
 import FakeServiceRepository from '@modules/workService/repositories/fakes/FakeServiceRepository';
-import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheRepository';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/FakeHashProvider';
 import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
 import FakeContractorsRepository from '../repositories/fakes/FakeContractorsRepository';

@@ -11,4 +11,6 @@ export default interface IServiceRepository {
     contractor_id,
   }: IDeleteServiceDTO): Promise<void>;
   findServiceByCategory(category: string): Promise<Service[]>;
+  save(service: Service): Promise<Service>;
+  findById(id: string): Promise<Service | undefined>;
 }

@@ -1,5 +1,5 @@
 import FakeContractorsRepository from '@modules/contractors/repositories/fakes/FakeContractorsRepository';
-import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheRepository';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 import FakeServiceRepository from '../repositories/fakes/FakeServiceRepository';
 import DeleteServicesService from './DeleteServicesService';

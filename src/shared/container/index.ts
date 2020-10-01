@@ -22,29 +22,29 @@ import ProvidersTokenRepository from '@modules/workProviders/infra/typeorm/repos
 
 container.registerSingleton<IContractorsRepository>(
   'ContractorsRepository',
-  ContractorsRepository,
+  ContractorsRepository
 );
 
 container.registerSingleton<IProviderRepository>(
   'ProvidersRepository',
-  ProvidersRepository,
+  ProvidersRepository
 );
 
 container.registerSingleton<IContractorsTokensRepository>(
   'ContractorsTokensRepository',
-  ContractorsTokensRepository,
+  ContractorsTokensRepository
 );
 
 container.registerSingleton<IProviderTokensRepository>(
   'ProvidersTokenRepository',
-  ProvidersTokenRepository,
+  ProvidersTokenRepository
 );
 
 container.registerSingleton<IServiceRepository>(
   'ServiceRepository',
-  ServiceRepository,
+  ServiceRepository
 );
 container.registerSingleton<ICategoryRepository>(
   'CategoryRepository',
-  CategoryRepository,
+  CategoryRepository
 );

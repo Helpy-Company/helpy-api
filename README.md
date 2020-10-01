@@ -1,17 +1,31 @@
 ## Contractor
 
-[ ] Editar serviço
+[x] Editar serviço
+[] Write tests
 
 ## Provider
 
-[ ] Tirar o envio de e-mail da criação de serviços
+[] Tirar o envio de e-mail da criação de serviços
+[] Write tests
 
 
 ## Suplier
 
-[ ] Cadastro
-[ ] Redefinir senha
-[ ] Editar Perfil
-[ ] Ver listas criadas pelos providers
-[ ] Receber notificações de novas listas
-[ ] Exportar listas excel
+[] Cadastro
+[] Write tests
+
+[] Redefinir senha
+[] Write tests
+
+[] Editar Perfil
+[] Write tests
+
+[] Ver listas criadas pelos providers
+[] Write tests
+
+[] Receber notificações de novas listas
+[] Write tests
+
+[] Exportar listas excel
+[] Write tests
+

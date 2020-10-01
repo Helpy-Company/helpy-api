@@ -1,6 +1,6 @@
 import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
 import FakeContractorsRepository from '@modules/contractors/repositories/fakes/FakeContractorsRepository';
-import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheRepository';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeProvidersRepository from '@modules/workProviders/repositories/fakes/FakeProvidersRepository';
 import AppError from '@shared/errors/AppError';
 import FakeServiceRepository from '../repositories/fakes/FakeServiceRepository';

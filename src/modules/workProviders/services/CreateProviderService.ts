@@ -16,6 +16,7 @@ interface IRequestDTO {
   phone: string;
   email: string;
   password: string;
+  accept_terms: boolean;
 }
 
 @injectable()
@@ -32,7 +33,7 @@ class CreateProviderService {
 
     @inject('ProvidersTokenRepository')
     private providersTokenRepository: IProviderTokensRepository
-  ) { }
+  ) {}
 
   public async execute({
     name,
@@ -42,6 +43,7 @@ class CreateProviderService {
     email,
     password,
     CEP,
+    accept_terms,
   }: IRequestDTO): Promise<Provider> {
     const providerExists = await this.providersRepository.findByEmail(email);
 
@@ -66,6 +68,12 @@ class CreateProviderService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
+    if (!accept_terms) {
+      throw new AppError(
+        'Can not create account if dont agree with the applications terms of use'
+      );
+    }
+
     const provider = await this.providersRepository.create({
       name,
       email,
@@ -74,6 +82,7 @@ class CreateProviderService {
       documentNumber: formattedDocumentNumber,
       CEP,
       fantasyName,
+      accept_terms,
     });
 
     const verifyEmailTemplate = path.resolve(

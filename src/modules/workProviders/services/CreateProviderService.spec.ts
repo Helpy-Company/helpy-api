@@ -34,6 +34,7 @@ describe('CreateProvider', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     expect(provider).toHaveProperty('id');
@@ -48,6 +49,7 @@ describe('CreateProvider', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     await expect(
@@ -59,6 +61,7 @@ describe('CreateProvider', () => {
         email: 'johndoe@teste.com',
         phone: '99999999',
         password: '1234',
+        accept_terms: true,
       })
     ).rejects.toBeInstanceOf(AppError);
   });
@@ -73,6 +76,7 @@ describe('CreateProvider', () => {
         email: 'johndoe@teste.com',
         phone: '99999999',
         password: '1234',
+        accept_terms: true,
       })
     ).rejects.toBeInstanceOf(AppError);
   });
@@ -87,6 +91,22 @@ describe('CreateProvider', () => {
         email: 'johndoe@teste.com',
         phone: '99999999',
         password: '1234',
+        accept_terms: true,
+      })
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a provider without accept the terms of use', async () => {
+    await expect(
+      createProvider.execute({
+        name: 'John Doe',
+        CEP: '74230010',
+        documentNumber: '07178349131',
+        fantasyName: 'Doe Inc.',
+        email: 'johndoe@teste.com',
+        phone: '99999999',
+        password: '1234',
+        accept_terms: false,
       })
     ).rejects.toBeInstanceOf(AppError);
   });

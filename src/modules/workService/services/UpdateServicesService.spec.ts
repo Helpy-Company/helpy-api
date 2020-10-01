@@ -26,6 +26,7 @@ describe('Update Service', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     const service = await fakeServiceRepository.create({

@@ -35,6 +35,7 @@ describe('CreateService', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     const service = await createServiceRepository.execute({
@@ -51,31 +52,6 @@ describe('CreateService', () => {
     });
 
     expect(service).toHaveProperty('id');
-  });
-
-  it('should send a notification email when service is created', async () => {
-    const contractor = await fakeContractorsRepository.create({
-      name: 'John Doe',
-      email: 'johndoe@teste.com',
-      phone: '99999999',
-      password: '1234',
-    });
-    const sendMail = jest.spyOn(fakeMailProvider, 'sendMail');
-
-    await createServiceRepository.execute({
-      contractor_id: contractor.id,
-      address: 'Rua 15, Av-Nada a ver',
-      description:
-        'Quero reformar o barraco e deixar ele gigante para fazer uma festa la no meu barraco gigante',
-      urgency: 'Urgente',
-      intention: 'Quero negoviar o serviço com os profissionais',
-      title: 'Reforma do barraco 2',
-      service_category: 'CHAVEIRO',
-      area: 'Sobrado',
-      CEP: '74230010',
-    });
-
-    expect(sendMail).toHaveBeenCalled();
   });
 
   it('should not be able to create a service with non existent contractor', async () => {

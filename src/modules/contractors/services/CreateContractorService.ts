@@ -12,8 +12,8 @@ interface IRequest {
   email: string;
   password: string;
   phone: string;
+  accept_terms: boolean;
 }
-
 @injectable()
 class CreateContractorService {
   constructor(
@@ -28,13 +28,14 @@ class CreateContractorService {
 
     @inject('ContractorsTokensRepository')
     private contractorsTokensRepository: IContractorsTokensRepository
-  ) { }
+  ) {}
 
   public async execute({
     name,
     email,
     phone,
     password,
+    accept_terms,
   }: IRequest): Promise<Contractor> {
     const checkEmailExists = await this.contractorsRepository.findByEmail(
       email
@@ -46,11 +47,18 @@ class CreateContractorService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
+    if (!accept_terms) {
+      throw new AppError(
+        'Can not create account if dont agree with the applications terms of use'
+      );
+    }
+
     const contractor = await this.contractorsRepository.create({
       name,
       email,
       phone,
       password: hashedPassword,
+      accept_terms,
     });
     const verifyEmailTemplate = path.resolve(
       __dirname,

@@ -6,5 +6,5 @@ export default interface IContractorsRepository {
   findByEmail(id: string): Promise<Contractor | undefined>;
   create(data: ICreateContractorsDTO): Promise<Contractor>;
   save(contractors: Contractor): Promise<Contractor>;
-
+  delete(id: string): Promise<void>;
 }

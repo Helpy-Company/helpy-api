@@ -44,6 +44,9 @@ class Provider {
   @Column()
   verified_email: boolean;
 
+  @Column()
+  accept_terms: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

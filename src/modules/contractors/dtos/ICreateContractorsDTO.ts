@@ -3,4 +3,5 @@ export default interface ICreateContractorsDTO {
   email: string;
   password: string;
   phone: string;
+  accept_terms: boolean;
 }

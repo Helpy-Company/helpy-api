@@ -26,6 +26,7 @@ describe('VerifyProviderEmailService', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
       service_categories: [
         {
           id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
@@ -58,6 +59,7 @@ describe('VerifyProviderEmailService', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     const { token } = await fakeProvidersTokensRepository.generate(

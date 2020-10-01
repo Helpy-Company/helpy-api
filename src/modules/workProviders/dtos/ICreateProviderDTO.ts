@@ -10,4 +10,5 @@ export default interface ICreateCompaniesDTO {
   documentNumber: string;
   phone: string;
   service_categories?: ServiceCategory[];
+  accept_terms: boolean;
 }

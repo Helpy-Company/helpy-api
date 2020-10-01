@@ -43,6 +43,14 @@ class FakeContractorsRepository implements IContractorRepository {
 
     return contractor;
   }
+
+  public async delete(id: string): Promise<void> {
+    const findIndex = this.contractors.findIndex(
+      findContractor => findContractor.id === id
+    );
+
+    this.contractors.splice(0, findIndex);
+  }
 }
 
 export default FakeContractorsRepository;

@@ -29,12 +29,14 @@ class ContractorsRepository implements IContractorsRepository {
     email,
     password,
     phone,
+    accept_terms,
   }: ICreateContractorsDTO): Promise<Contractor> {
     const contractor = this.ormRepository.create({
       name,
       email,
       password,
       phone,
+      accept_terms,
     });
     await this.ormRepository.save(contractor);
 
@@ -43,6 +45,10 @@ class ContractorsRepository implements IContractorsRepository {
 
   public async save(contractor: Contractor): Promise<Contractor> {
     return this.ormRepository.save(contractor);
+  }
+
+  public async delete(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
   }
 }
 

@@ -39,7 +39,7 @@ class CreateServicesService {
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider // @inject('QueueProvider') // private queueProvider: IQueueProvider
-  ) { }
+  ) {}
 
   public async execute({
     contractor_id,
@@ -81,50 +81,6 @@ class CreateServicesService {
     });
 
     await this.cacheProvider.invalidate(`services-list:${contractorExists.id}`);
-
-    const newServiceTemplate = path.resolve(
-      __dirname,
-      '..',
-      '..',
-      '..',
-      'shared',
-      'views',
-      'service_creation_notify.hbs'
-    );
-
-    // const companies = await this.companiesRepository.index();
-
-    // const companiesEmails = companies.map((company) => ({
-    //   to: {
-    //     email: company.email,
-    //   },
-    //   subject: '[Helpy] Novo serviço disponível!',
-    //   templateData: {
-    //     file: newServiceTemplate,
-    //     variables: {
-    //       link: `${process.env.APP_WEB_URL}`,
-    //     },
-    //   },
-    // }));
-
-    // await this.queueProvider.add(companiesEmails);
-
-    // this.queueProvider.process(async (job) => this.mailProvider.sendMail(job.data));
-
-    await this.mailProvider.sendMail({
-      to: {
-        email: 'helpycompany@gmail.com',
-      },
-      subject: '[helpy] Novo serviço disponível!',
-      templateData: {
-        file: newServiceTemplate,
-        variables: {
-          link: `${process.env.APP_WEB_URL}`,
-          category: service.service_category,
-          title: service.title,
-        },
-      },
-    });
 
     return service;
   }

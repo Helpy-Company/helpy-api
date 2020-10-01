@@ -44,6 +44,7 @@ describe('ListContractor', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     await fakeServiceRepository.create({

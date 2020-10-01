@@ -29,6 +29,7 @@ class CompaniesRepository implements IProviderRepository {
     fantasyName,
     CEP,
     phone,
+    accept_terms,
   }: ICreateProviderDTO): Promise<Provider> {
     const provider = this.ormRepository.create({
       name,
@@ -39,6 +40,7 @@ class CompaniesRepository implements IProviderRepository {
       fantasyName,
       password,
       phone,
+      accept_terms,
     });
 
     await this.ormRepository.save(provider);

@@ -8,7 +8,15 @@ const contractorController = new ContractorsControllers();
 const emailVerificationController = new VerifyContractorsEmailController();
 
 contractorRouter.post('/', contractorController.create);
-contractorRouter.get('/services/me', ensureAuthenticated, contractorController.index);
-contractorRouter.post('/email-verification', emailVerificationController.update);
+contractorRouter.get(
+  '/services/me',
+  ensureAuthenticated,
+  contractorController.index
+);
+contractorRouter.delete('/', ensureAuthenticated, contractorController.delete);
+contractorRouter.post(
+  '/email-verification',
+  emailVerificationController.update
+);
 
 export default contractorRouter;

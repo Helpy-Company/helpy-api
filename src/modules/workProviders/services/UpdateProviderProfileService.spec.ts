@@ -27,6 +27,7 @@ describe('UpdateProviderProfile', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
       service_categories: [
         {
           id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
@@ -84,6 +85,7 @@ describe('UpdateProviderProfile', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
       service_categories: [
         {
           id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
@@ -108,6 +110,7 @@ describe('UpdateProviderProfile', () => {
       email: 'johntre@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
       service_categories: [
         {
           id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
@@ -141,6 +144,7 @@ describe('UpdateProviderProfile', () => {
       fantasyName: 'Doe Inc.',
       email: 'johndoe@teste.com',
       phone: '99999999',
+      accept_terms: true,
       service_categories: [
         {
           id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',
@@ -182,6 +186,7 @@ describe('UpdateProviderProfile', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
       service_categories: [
         {
           id: 'ea8e3662-e53f-4156-a518-e3402bd948eb',

@@ -31,6 +31,7 @@ describe('CreateContractor', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     expect(contractor).toHaveProperty('id');
@@ -42,6 +43,7 @@ describe('CreateContractor', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     await expect(
@@ -50,6 +52,19 @@ describe('CreateContractor', () => {
         email: 'johndoe@teste.com',
         phone: '99999999',
         password: '1234',
+        accept_terms: true,
+      })
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a new contractor without accept the terms of conditions.', async () => {
+    await expect(
+      createContractor.execute({
+        name: 'John Doe',
+        email: 'johndoe@teste.com',
+        phone: '99999999',
+        password: '1234',
+        accept_terms: false,
       })
     ).rejects.toBeInstanceOf(AppError);
   });

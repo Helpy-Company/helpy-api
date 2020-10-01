@@ -2,16 +2,22 @@
 
 [x] Editar serviço
 [x] Write tests
+[x] Delete account
+[x] Concordo com os termos de uso da plataforma.
 
 ## Provider
 
-[] Tirar o envio de e-mail da criação de serviços
+[x] Tirar o envio de e-mail da criação de serviços
+[] Delete account
+[] Concordo com os termos de uso da plataforma.
 [] Write tests
 
 
 ## Suplier
 
 [] Cadastro
+[] Concordo com os termos de uso da plataforma.
+[] Delete account
 [] Write tests
 
 [] Redefinir senha

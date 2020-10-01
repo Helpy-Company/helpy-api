@@ -29,6 +29,7 @@ describe('SendForgotProviderPasswordEmail', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     const sendMail = jest.spyOn(fakeMailProvider, 'sendMail');
@@ -51,6 +52,7 @@ describe('SendForgotProviderPasswordEmail', () => {
       email: 'johndoe@teste.com',
       phone: '99999999',
       password: '1234',
+      accept_terms: true,
     });
 
     await sendForgotProviderPasswordEmailService.execute({

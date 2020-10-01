@@ -9,8 +9,8 @@
 
 [x] Tirar o envio de e-mail da criação de serviços
 [] Delete account
-[] Concordo com os termos de uso da plataforma.
-[] Write tests
+[x] Concordo com os termos de uso da plataforma.
+[x] Write tests
 
 
 ## Suplier

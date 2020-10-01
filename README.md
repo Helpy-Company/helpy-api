@@ -1,7 +1,7 @@
 ## Contractor
 
 [x] Editar serviço
-[] Write tests
+[x] Write tests
 
 ## Provider
 

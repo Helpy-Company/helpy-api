@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
-import ICreateProviderDTO from '@modules/workProviders/dtos/ICreateProviderDTO';
-import IProviderRepository from '@modules/workProviders/repositories/IProviderRepository';
+import ICreateProviderDTO from '@modules/workProviders/domain/dtos/ICreateProviderDTO';
+import IProviderRepository from '@modules/workProviders/domain/repositories/IProviderRepository';
 
 import Provider from '../entities/Provider';
 
@@ -62,6 +62,10 @@ class CompaniesRepository implements IProviderRepository {
     const providers = this.ormRepository.find();
 
     return providers;
+  }
+
+  public async delete(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
   }
 }
 

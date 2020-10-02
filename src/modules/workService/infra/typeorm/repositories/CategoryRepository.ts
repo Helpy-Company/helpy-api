@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 
-import ICategoryRepository from '@modules/workService/repositories/ICategoryRepository';
+import ICategoryRepository from '@modules/workService/domain/repositories/ICategoryRepository';
 
 import ServiceCategory from '@modules/workService/infra/typeorm/entities/ServiceCategory';
 

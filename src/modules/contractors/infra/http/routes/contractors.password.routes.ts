@@ -6,7 +6,13 @@ const contractorPasswordRouter = Router();
 const forgotPasswordController = new ForgotContractorsPasswordController();
 const resetPasswordController = new ResetContractorsPasswordController();
 
-contractorPasswordRouter.post('/contractors-forgot', forgotPasswordController.create);
-contractorPasswordRouter.post('/contractors-reset', resetPasswordController.create);
+contractorPasswordRouter.post(
+  '/contractors-forgot',
+  forgotPasswordController.create
+);
+contractorPasswordRouter.post(
+  '/contractors-reset',
+  resetPasswordController.create
+);
 
 export default contractorPasswordRouter;

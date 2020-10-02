@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import VerifyContractorEmailService from '@modules/contractors/services/VerifyContractorEmailService';
+import VerifyContractorEmailService from '@modules/contractors/domain/services/VerifyContractorEmailService';
 import { container } from 'tsyringe';
 
 class VerifyContractorsEmailController {

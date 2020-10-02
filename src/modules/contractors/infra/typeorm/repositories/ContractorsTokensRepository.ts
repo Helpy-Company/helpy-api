@@ -4,7 +4,7 @@ import IContractorTokensRepository from '@modules/contractors/repositories/ICont
 
 import ContractorToken from '../entities/ContractorToken';
 
-class UsersTokensRepository implements IContractorTokensRepository {
+class ContractorsTokensRepository implements IContractorTokensRepository {
   private ormRepository: Repository<ContractorToken>;
 
   constructor() {
@@ -30,4 +30,4 @@ class UsersTokensRepository implements IContractorTokensRepository {
   }
 }
 
-export default UsersTokensRepository;
+export default ContractorsTokensRepository;

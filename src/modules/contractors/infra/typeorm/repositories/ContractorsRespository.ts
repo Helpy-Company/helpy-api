@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
-import IContractorsRepository from '@modules/contractors/repositories/IContractorsRepository';
-import ICreateContractorsDTO from '@modules/contractors/dtos/ICreateContractorsDTO';
+import IContractorsRepository from '@modules/contractors/domain/repositories/IContractorsRepository';
+import ICreateContractorsDTO from '@modules/contractors/domain/dtos/ICreateContractorsDTO';
 
 import Contractor from '../entities/Contractor';
 

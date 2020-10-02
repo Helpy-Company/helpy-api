@@ -1,9 +1,9 @@
 import { container } from 'tsyringe';
 import { Request, Response } from 'express';
-import CreateContractorServices from '@modules/contractors/services/CreateContractorService';
-import ListContractorServices from '@modules/contractors/services/ListContractorServices';
+import CreateContractorServices from '@modules/contractors/domain/services/CreateContractorService';
+import ListContractorServices from '@modules/contractors/domain/services/ListContractorServices';
 import { classToClass } from 'class-transformer';
-import DeleteContractorService from '@modules/contractors/services/DeleteContractorService';
+import DeleteContractorService from '@modules/contractors/domain/services/DeleteContractorService';
 
 class ContractorsControllers {
   public async create(request: Request, response: Response): Promise<Response> {

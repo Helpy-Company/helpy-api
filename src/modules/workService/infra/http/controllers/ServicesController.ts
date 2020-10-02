@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import CreateServicesService from '@modules/workService/services/CreateServicesService';
-import ListServiceService from '@modules/workService/services/ListServiceService';
-import DeleteServicesService from '@modules/workService/services/DeleteServicesService';
-import UpdateServicesService from '@modules/workService/services/UpdateServicesService';
-import { classToClass, serialize } from 'class-transformer';
+import CreateServicesService from '@modules/workService/domain/services/CreateServicesService';
+import ListServiceService from '@modules/workService/domain/services/ListServiceService';
+import DeleteServicesService from '@modules/workService/domain/services/DeleteServicesService';
+import UpdateServicesService from '@modules/workService/domain/services/UpdateServicesService';
+import { classToClass } from 'class-transformer';
 
 class ServicesController {
   public async create(request: Request, response: Response): Promise<Response> {

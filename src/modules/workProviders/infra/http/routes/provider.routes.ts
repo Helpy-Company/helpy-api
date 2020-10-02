@@ -48,4 +48,6 @@ providerRouter.get(
   listServiceByController.index
 );
 
+providerRouter.delete('/', ensureAuthenticated, providerController.delete);
+
 export default providerRouter;

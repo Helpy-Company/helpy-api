@@ -8,16 +8,18 @@
 ## Provider
 
 [x] Tirar o envio de e-mail da criação de serviços
-[] Delete account
+[x] Delete account
 [x] Concordo com os termos de uso da plataforma.
 [x] Write tests
 
 
 ## Suplier
 
-[] Cadastro
-[] Concordo com os termos de uso da plataforma.
-[] Delete account
+[x] Cadastro
+[x] Concordo com os termos de uso da plataforma.
+[] Write tests
+[x] Delete account
+[] Create session
 [] Write tests
 
 [] Redefinir senha

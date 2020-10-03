@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
+import { formatToCPFOrCNPJ, isCEP, isCNPJ } from 'brazilian-values';
 import path from 'path';
 import Supplier from '../../infra/typeorm/entities/Supplier';
 import ICreateSupplierDTO from '../dtos/ICreateSuppliersDTO';
@@ -33,10 +34,31 @@ class CreateSupplierService {
     accept_terms,
     CEP,
   }: ICreateSupplierDTO): Promise<Supplier> {
-    const checkEmailExists = await this.suppliersRepository.findByEmail(email);
+    const emailExists = await this.suppliersRepository.findByEmail(email);
 
-    if (checkEmailExists) {
-      throw new AppError('Supplier already exists');
+    if (emailExists) {
+      throw new AppError('E-mail already in use');
+    }
+
+    const documentNumberExists = await this.suppliersRepository.findByDocumentNumber(
+      documentNumber
+    );
+
+    if (documentNumberExists) {
+      throw new AppError('Document number already in use');
+    }
+    const formattedDocumentNumber = formatToCPFOrCNPJ(documentNumber);
+
+    const isCNPJValid = isCNPJ(formattedDocumentNumber);
+
+    if (!isCNPJValid) {
+      throw new AppError('Wrong CNPJ.');
+    }
+
+    const isCep = isCEP(CEP);
+
+    if (!isCep) {
+      throw new AppError('CEP não encontrado.');
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);
@@ -59,6 +81,7 @@ class CreateSupplierService {
 
     const verifyEmailTemplate = path.resolve(
       __dirname,
+      '..',
       '..',
       '..',
       '..',

@@ -47,6 +47,16 @@ class FakeSuppliersRepository implements ISupplierRepository {
 
     this.suppliers.splice(0, findIndex);
   }
+
+  public async findByDocumentNumber(
+    documentNumber: string
+  ): Promise<Supplier | undefined> {
+    const findSupplier = this.suppliers.find(
+      supplier => supplier.documentNumber === documentNumber
+    );
+
+    return findSupplier;
+  }
 }
 
 export default FakeSuppliersRepository;

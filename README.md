@@ -17,9 +17,9 @@
 
 [x] Cadastro
 [x] Concordo com os termos de uso da plataforma.
-[] Write tests
+[x] Write tests
 [x] Delete account
-[] Create session
+[x] Create session
 [] Write tests
 
 [] Redefinir senha

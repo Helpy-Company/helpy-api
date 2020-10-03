@@ -54,6 +54,16 @@ class SuppliersRepository implements ISuppliersRepository {
   public async delete(id: string): Promise<void> {
     await this.ormRepository.delete(id);
   }
+
+  public async findByDocumentNumber(
+    documentNumber: string
+  ): Promise<Supplier | undefined> {
+    const supplier = await this.ormRepository.findOne({
+      where: { documentNumber },
+    });
+
+    return supplier;
+  }
 }
 
 export default SuppliersRepository;

@@ -36,6 +36,7 @@ class SendForgotProviderPasswordEmailService {
       '..',
       '..',
       '..',
+      '..',
       'shared',
       'views',
       'forgot_password.hbs'

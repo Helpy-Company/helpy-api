@@ -90,6 +90,7 @@ class CreateProviderService {
       '..',
       '..',
       '..',
+      '..',
       'shared',
       'views',
       'email_provider_verification.hbs'

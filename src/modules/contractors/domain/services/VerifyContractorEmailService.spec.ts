@@ -17,7 +17,7 @@ describe('VerifyContractorEmailService', () => {
     );
   });
 
-  it('should not be able to verify an email.', async () => {
+  it('should be able to verify an email.', async () => {
     const contractor = await fakeContractorsRepository.create({
       name: 'John Doe',
       email: 'johndoe@teste.com',

@@ -65,6 +65,7 @@ class CreateContractorService {
       '..',
       '..',
       '..',
+      '..',
       'shared',
       'views',
       'email_verification.hbs'

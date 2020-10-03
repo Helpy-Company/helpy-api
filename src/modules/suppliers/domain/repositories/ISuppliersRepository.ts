@@ -7,4 +7,5 @@ export default interface ISuppliersRepository {
   findByEmail(id: string): Promise<Supplier | undefined>;
   save(supplierrs: Supplier): Promise<Supplier>;
   delete(id: string): Promise<void>;
+  findByDocumentNumber(documentNumber: string): Promise<Supplier | undefined>;
 }

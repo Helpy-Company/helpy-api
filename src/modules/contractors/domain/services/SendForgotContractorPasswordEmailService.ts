@@ -38,6 +38,7 @@ class SendForgotContractorPasswordEmailService {
       '..',
       '..',
       '..',
+      '..',
       'shared',
       'views',
       'forgot_password.hbs'

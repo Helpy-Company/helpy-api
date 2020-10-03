@@ -2,25 +2,37 @@
 
 [x] Editar serviço
 [x] Write tests
+
 [x] Delete account
+
 [x] Concordo com os termos de uso da plataforma.
 
 ## Provider
 
 [x] Tirar o envio de e-mail da criação de serviços
+
 [x] Delete account
+
 [x] Concordo com os termos de uso da plataforma.
 [x] Write tests
+
+[x] Migration das listas
+[] Criar listas -> status complete or no-complete
+[] Deletar listas
 
 
 ## Suplier
 
 [x] Cadastro
+[x] Write tests
+
 [x] Concordo com os termos de uso da plataforma.
 [x] Write tests
+
 [x] Delete account
+
 [x] Create session
-[] Write tests
+[x] Write tests
 
 [] Redefinir senha
 [] Write tests

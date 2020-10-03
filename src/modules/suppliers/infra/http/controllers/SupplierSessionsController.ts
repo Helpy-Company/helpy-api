@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import AuthenticateSupplierService from '@modules/suppliers/domain/services/AuthenticateSupplierSerivce';
+import AuthenticateSupplierService from '@modules/suppliers/domain/services/AuthenticateSupplierService';
 import { classToClass } from 'class-transformer';
 
 class SuppliersSessionsControllers {

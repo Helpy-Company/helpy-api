@@ -17,9 +17,12 @@
 [x] Write tests
 
 [x] Migration das listas
-[] Criar listas -> status complete or no-complete
+[] Criar listas -> status concluded or pending
 [] Deletar listas
 
+[] Create Material
+[] Realation many to many with material list
+[] Delete material
 
 ## Suplier
 

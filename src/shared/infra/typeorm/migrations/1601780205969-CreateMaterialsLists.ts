@@ -5,12 +5,12 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class CreateProvidersMaterialList1601700387867
+export default class CreateMaterialsLists1601780205969
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'providers_material_list',
+        name: 'materials_lists',
         columns: [
           {
             name: 'id',
@@ -22,15 +22,10 @@ export default class CreateProvidersMaterialList1601700387867
           {
             name: 'provider_id',
             type: 'uuid',
-            isUnique: true,
           },
           {
-            name: 'material',
-            type: 'varchar',
-          },
-          {
-            name: 'quantity',
-            type: 'int',
+            name: 'material_id',
+            type: 'uuid',
           },
           {
             name: 'created_at',
@@ -47,21 +42,38 @@ export default class CreateProvidersMaterialList1601700387867
     );
 
     await queryRunner.createForeignKey(
-      'providers_material_list',
+      'materials_lists',
       new TableForeignKey({
-        name: 'fk_providers_material_list',
+        name: 'fk_providers_material_lists',
         columnNames: ['provider_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'providers',
         onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
+        onUpdate: 'SET NULL',
+      })
+    );
+
+    await queryRunner.createForeignKey(
+      'materials_lists',
+      new TableForeignKey({
+        name: 'fk_material_lists_id',
+        columnNames: ['material_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'materials',
+        onDelete: 'CASCADE',
+        onUpdate: 'SET NULL',
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('providers', 'fk_providers_material_list');
+    await queryRunner.dropForeignKey('materials', 'fk_material_lists_id');
 
-    await queryRunner.dropTable('providers_material_list');
+    await queryRunner.dropForeignKey(
+      'materials_lists',
+      'fk_providers_material_lists'
+    );
+
+    await queryRunner.dropTable('materials_lists');
   }
 }

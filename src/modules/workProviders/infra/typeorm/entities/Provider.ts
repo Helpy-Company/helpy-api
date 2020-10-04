@@ -6,10 +6,12 @@ import {
   UpdateDateColumn,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
 import ServiceCategory from '@modules/workService/infra/typeorm/entities/ServiceCategory';
+import MaterialList from '@modules/materialLists/infra/typeorm/entities/MaterialList';
 
 @Entity('providers')
 class Provider {
@@ -52,6 +54,9 @@ class Provider {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => MaterialList, materialLists => materialLists.provider)
+  materials_lists: MaterialList[];
 
   @ManyToMany(() => ServiceCategory, { eager: true, cascade: true })
   @JoinTable({

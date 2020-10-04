@@ -26,6 +26,12 @@ import SuppliersRepository from '@modules/suppliers/infra/typeorm/repositories/S
 import ISupplierTokensRepository from '@modules/suppliers/domain/repositories/ISuppliersTokensRepository';
 import SuppliersTokensRepository from '@modules/suppliers/infra/typeorm/repositories/SuppliersTokensRepository';
 
+import IMaterailListsRepository from '@modules/materialLists/domain/repositories/IMaterialListsRepository';
+import MaterailListsRepository from '@modules/materialLists/infra/typeorm/repositories/MaterialListsRepository';
+
+import IMaterialRepository from '@modules/materialLists/domain/repositories/IMaterialRepository';
+import MaterialRepository from '@modules/materialLists/infra/typeorm/repositories/MaterialRepository';
+
 container.registerSingleton<IContractorsRepository>(
   'ContractorsRepository',
   ContractorsRepository
@@ -64,4 +70,14 @@ container.registerSingleton<ISuppliersRepository>(
 container.registerSingleton<ISupplierTokensRepository>(
   'SuppliersTokensRepository',
   SuppliersTokensRepository
+);
+
+container.registerSingleton<IMaterailListsRepository>(
+  'MaterailListsRepository',
+  MaterailListsRepository
+);
+
+container.registerSingleton<IMaterialRepository>(
+  'MaterialRepository',
+  MaterialRepository
 );

@@ -11,7 +11,7 @@ import {
 
 import { Exclude } from 'class-transformer';
 import ServiceCategory from '@modules/workService/infra/typeorm/entities/ServiceCategory';
-import MaterialList from '@modules/materialLists/infra/typeorm/entities/MaterialList';
+import List from '@modules/lists/infra/typeorm/entities/List';
 
 @Entity('providers')
 class Provider {
@@ -55,8 +55,8 @@ class Provider {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => MaterialList, materialLists => materialLists.provider)
-  materials_lists: MaterialList[];
+  @OneToMany(() => List, list => list.provider)
+  lists: List[];
 
   @ManyToMany(() => ServiceCategory, { eager: true, cascade: true })
   @JoinTable({

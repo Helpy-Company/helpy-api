@@ -6,8 +6,8 @@ import providerPasswordRouter from '@modules/workProviders/infra/http/routes/pro
 import contractorsPasswordRouter from '@modules/contractors/infra/http/routes/contractors.password.routes';
 import categoryRouter from '@modules/workService/infra/http/routes/category.routes';
 import supplierRouter from '@modules/suppliers/infra/http/routes/suppliers.routes';
-import materialRouter from '@modules/materialLists/infra/routes/material.routes';
-import materialListRouter from '@modules/materialLists/infra/routes/materialLists.routes';
+import materialRouter from '@modules/materials/infra/routes/material.routes';
+import listsRouter from '@modules/lists/infra/http/routes/lists.routes';
 import sessionsRouter from './sessions.routes';
 
 const routes = Router();
@@ -18,7 +18,7 @@ routes.use('/password', contractorsPasswordRouter);
 routes.use('/providers', providerRouter);
 routes.use('/password', providerPasswordRouter);
 routes.use('/materials', materialRouter);
-routes.use('/materials-list', materialListRouter);
+routes.use('/lists', listsRouter);
 
 routes.use('/sessions', sessionsRouter);
 

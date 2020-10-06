@@ -26,6 +26,9 @@ class Contractor {
   verified_email: boolean;
 
   @Column()
+  accept_terms: boolean;
+
+  @Column()
   @Exclude()
   password: string;
 

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import ListCategoriesService from '@modules/workService/services/ListCategoriesService';
+import ListCategoriesService from '@modules/workService/domain/services/ListCategoriesService';
 
 class ServicesController {
   public async index(request: Request, response: Response): Promise<Response> {

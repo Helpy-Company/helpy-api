@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import ResetContractorPasswordService from '@modules/contractors/services/ResetContractorPasswordService';
+import ResetContractorPasswordService from '@modules/contractors/domain/services/ResetContractorPasswordService';
 
 class ResetContractorsPasswordController {
   public async create(request: Request, response: Response): Promise<Response> {

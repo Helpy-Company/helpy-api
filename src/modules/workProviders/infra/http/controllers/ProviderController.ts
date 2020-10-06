@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
-import UpdateProviderProfileService from '@modules/workProviders/services/UpdateProviderProfileService';
-import CreateProviderService from '../../../services/CreateProviderService';
+import UpdateProviderProfileService from '@modules/workProviders/domain/services/UpdateProviderProfileService';
+import DeleteProviderService from '@modules/workProviders/domain/services/DeleteProviderServide';
+import CreateProviderService from '../../../domain/services/CreateProviderService';
 
 class ProviderController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -14,6 +15,7 @@ class ProviderController {
       CEP,
       documentNumber,
       phone,
+      accept_terms,
     } = request.body;
 
     const createProvider = container.resolve(CreateProviderService);
@@ -26,6 +28,7 @@ class ProviderController {
       password,
       documentNumber,
       phone,
+      accept_terms,
     });
 
     return response.json(classToClass(provider));
@@ -43,6 +46,7 @@ class ProviderController {
       old_password,
       phone,
       bio,
+      service_categories,
     } = request.body;
 
     const updateProfile = container.resolve(UpdateProviderProfileService);
@@ -58,9 +62,20 @@ class ProviderController {
       documentNumber,
       phone,
       bio,
+      service_categories,
     });
 
     return response.json(classToClass(provider));
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.user;
+
+    const deleteProvider = container.resolve(DeleteProviderService);
+
+    await deleteProvider.execute(id);
+
+    return response.status(200).send();
   }
 }
 

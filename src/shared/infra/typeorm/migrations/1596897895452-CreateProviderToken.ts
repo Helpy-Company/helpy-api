@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateCompanyToken1596897895452 implements MigrationInterface {
+export default class CreateCompanyToken1596897895452
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -44,7 +45,7 @@ export default class CreateCompanyToken1596897895452 implements MigrationInterfa
             onUpdate: 'CASCADE',
           },
         ],
-      }),
+      })
     );
   }
 

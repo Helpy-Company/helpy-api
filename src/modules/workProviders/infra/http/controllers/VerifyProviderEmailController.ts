@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import VerifyProviderEmailService from '@modules/workProviders/services/VerifyProviderEmailService';
+import VerifyProviderEmailService from '@modules/workProviders/domain/services/VerifyProviderEmailService';
 import { container } from 'tsyringe';
 
 class VerifyProviderEmailController {

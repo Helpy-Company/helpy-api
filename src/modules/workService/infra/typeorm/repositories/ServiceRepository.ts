@@ -1,10 +1,10 @@
 import { getRepository, Repository } from 'typeorm';
 
-import IServiceRepository from '@modules/workService/repositories/IServiceRepository';
-import ICreateServiceDTO from '@modules/workService/dtos/ICreateServiceDTO';
+import IServiceRepository from '@modules/workService/domain/repositories/IServiceRepository';
+import ICreateServiceDTO from '@modules/workService/domain/dtos/ICreateServiceDTO';
 
 import Service from '@modules/workService/infra/typeorm/entities/Service';
-import IDeleteServiceDTO from '@modules/workService/dtos/IDeleteServiceDTO';
+import IDeleteServiceDTO from '@modules/workService/domain/dtos/IDeleteServiceDTO';
 
 class ServiceRepository implements IServiceRepository {
   private ormRepository: Repository<Service>;
@@ -70,6 +70,16 @@ class ServiceRepository implements IServiceRepository {
     });
 
     return services;
+  }
+
+  public async save(service: Service): Promise<Service> {
+    return this.ormRepository.save(service);
+  }
+
+  public async findById(id: string): Promise<Service | undefined> {
+    const service = await this.ormRepository.findOne(id);
+
+    return service;
   }
 }
 

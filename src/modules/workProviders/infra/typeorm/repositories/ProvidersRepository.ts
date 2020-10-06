@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
-import ICreateProviderDTO from '@modules/workProviders/dtos/ICreateProviderDTO';
-import IProviderRepository from '@modules/workProviders/repositories/IProviderRepository';
+import ICreateProviderDTO from '@modules/workProviders/domain/dtos/ICreateProviderDTO';
+import IProviderRepository from '@modules/workProviders/domain/repositories/IProviderRepository';
 
 import Provider from '../entities/Provider';
 
@@ -13,7 +13,9 @@ class CompaniesRepository implements IProviderRepository {
   }
 
   public async findByEmail(email: string): Promise<Provider | undefined> {
-    const provider = await this.ormRepository.findOne({ where: { email } });
+    const provider = await this.ormRepository.findOne({
+      where: { email },
+    });
 
     return provider;
   }
@@ -27,6 +29,7 @@ class CompaniesRepository implements IProviderRepository {
     fantasyName,
     CEP,
     phone,
+    accept_terms,
   }: ICreateProviderDTO): Promise<Provider> {
     const provider = this.ormRepository.create({
       name,
@@ -37,6 +40,7 @@ class CompaniesRepository implements IProviderRepository {
       fantasyName,
       password,
       phone,
+      accept_terms,
     });
 
     await this.ormRepository.save(provider);
@@ -58,6 +62,10 @@ class CompaniesRepository implements IProviderRepository {
     const providers = this.ormRepository.find();
 
     return providers;
+  }
+
+  public async delete(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
   }
 }
 

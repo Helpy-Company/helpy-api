@@ -10,5 +10,5 @@ const providers = {
 
 container.registerSingleton<IMailTemplateProvider>(
   'MailTemplateProvider',
-  providers.handlebars,
+  providers.handlebars
 );

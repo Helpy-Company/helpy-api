@@ -1,11 +1,11 @@
 import { getRepository, Repository } from 'typeorm';
 
-import IProviderTokensRepository from '@modules/workProviders/repositories/IProviderTokensRepository';
+import IProviderTokensRepository from '@modules/workProviders/domain/repositories/IProviderTokensRepository';
 
 import ProviderToken from '../entities/ProviderToken';
 
 class CompaniesTokenRepository implements IProviderTokensRepository {
-  private ormRepository: Repository<ProviderToken>
+  private ormRepository: Repository<ProviderToken>;
 
   constructor() {
     this.ormRepository = getRepository(ProviderToken);

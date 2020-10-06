@@ -45,7 +45,7 @@ export default class CreateServices1595601523150 implements MigrationInterface {
             default: 'now()',
           },
         ],
-      }),
+      })
     );
     await queryRunner.createForeignKey(
       'services',
@@ -56,7 +56,7 @@ export default class CreateServices1595601523150 implements MigrationInterface {
         referencedTableName: 'contractors',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
-      }),
+      })
     );
   }
 

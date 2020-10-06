@@ -24,10 +24,17 @@ class MaterailListsRepository implements IMaterialRepository {
     return material;
   }
 
-  public async findByIds(ids: string[]): Promise<Material[]> {
-    const material = await this.ormRepository.findByIds(ids);
-
+  public async findById(id: string): Promise<Material | undefined> {
+    const material = await this.ormRepository.findOne({ where: { id } });
     return material;
+  }
+
+  public async save(material: Material): Promise<Material> {
+    return this.ormRepository.save(material);
+  }
+
+  public async delete(material: Material): Promise<void> {
+    await this.ormRepository.delete(material.id);
   }
 }
 

@@ -17,12 +17,15 @@
 [x] Write tests
 
 [x] Migration das listas
-[] Criar listas -> status concluded or pending
-[] Deletar listas
+[x] Criar listas -> status concluded or pending
+[x] Deletar listas
 
-[] Create Material
-[] Realation many to many with material list
-[] Delete material
+[x] Create Material
+[x] Update material
+[x] Delete material
+[x] Test all this 3 above
+
+[] Test ListServiceByCategory
 
 ## Suplier
 
@@ -37,7 +40,7 @@
 [x] Create session
 [x] Write tests
 
-[] Redefinir senha
+[x] Redefinir senha
 [] Write tests
 
 [] Editar Perfil

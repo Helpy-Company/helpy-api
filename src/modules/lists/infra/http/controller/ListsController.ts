@@ -2,6 +2,7 @@ import { container } from 'tsyringe';
 import { Request, Response } from 'express';
 import ListListsService from '@modules/lists/domain/services/ListListsService';
 import CreateListsService from '@modules/lists/domain/services/CreateListsService';
+import DeleteListsService from '@modules/lists/domain/services/DeleteListsService';
 import { classToClass } from 'class-transformer';
 
 class ListsController {
@@ -26,11 +27,22 @@ class ListsController {
 
     const indexLists = container.resolve(ListListsService);
 
-    const list = await indexLists.execute({
+    const lists = await indexLists.execute({
       provider_id,
     });
 
-    return response.json(classToClass(list));
+    return response.json(classToClass({ lists }));
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { list_id } = request.body;
+    const provider_id = request.user.id;
+
+    const deleteList = container.resolve(DeleteListsService);
+
+    await deleteList.execute({ provider_id, list_id });
+
+    return response.status(200).send();
   }
 }
 

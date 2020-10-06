@@ -3,5 +3,7 @@ import ICreateMaterialDTO from '../dtos/ICreateMaterialDTO';
 
 export default interface IMaterialRepository {
   create(data: ICreateMaterialDTO): Promise<Material>;
-  findByIds(ids: string[]): Promise<Material[]>;
+  findById(id: string): Promise<Material | undefined>;
+  save(material: Material): Promise<Material>;
+  delete(material: Material): Promise<void>;
 }

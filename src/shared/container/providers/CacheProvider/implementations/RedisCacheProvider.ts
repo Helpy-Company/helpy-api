@@ -5,7 +5,7 @@ import ICacheProvider from '../models/ICacheProvider';
 import ICacheProviderDTO from '../dtos/ICacheProviderDTO';
 
 class RedisCacheProvider implements ICacheProvider {
-  private client: RedisClient
+  private client: RedisClient;
 
   constructor() {
     this.client = new Redis(cacheConfig.config.redis);
@@ -35,7 +35,7 @@ class RedisCacheProvider implements ICacheProvider {
     const keys = await this.client.keys(`${prefix}:*`);
 
     const pipeline = this.client.pipeline();
-    keys.forEach((key) => {
+    keys.forEach(key => {
       pipeline.del(key);
     });
 

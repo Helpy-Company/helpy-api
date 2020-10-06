@@ -1,5 +1,4 @@
 import Material from '@modules/materials/infra/typeorm/entities/Material';
-import IProviderRepository from '@modules/workProviders/domain/repositories/IProviderRepository';
 import { inject, injectable } from 'tsyringe';
 import ICreateMaterialDTO from '../dtos/ICreateMaterialDTO';
 import IMaterialRepository from '../repositories/IMaterialRepository';
@@ -8,10 +7,7 @@ import IMaterialRepository from '../repositories/IMaterialRepository';
 class CreateMaterialsService {
   constructor(
     @inject('MaterialRepository')
-    private materialRepository: IMaterialRepository,
-
-    @inject('ProvidersRepository')
-    private providersRepository: IProviderRepository
+    private materialRepository: IMaterialRepository
   ) {}
 
   public async execute({

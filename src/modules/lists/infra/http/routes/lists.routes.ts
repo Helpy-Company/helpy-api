@@ -9,5 +9,6 @@ listsRouter.use(ensureAuthenticated);
 
 listsRouter.post('/', listsController.create);
 listsRouter.get('/', listsController.index);
+listsRouter.delete('/', listsController.delete);
 
 export default listsRouter;

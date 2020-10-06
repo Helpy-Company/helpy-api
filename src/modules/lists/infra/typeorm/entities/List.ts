@@ -11,6 +11,7 @@ import {
 
 import Provider from '@modules/workProviders/infra/typeorm/entities/Provider';
 import MaterialList from '@modules/materials/infra/typeorm/entities/MaterialList';
+import { Exclude } from 'class-transformer';
 
 @Entity('lists')
 class List {
@@ -38,6 +39,7 @@ class List {
   @CreateDateColumn()
   created_at: Date;
 
+  @Exclude()
   @UpdateDateColumn()
   updated_at: Date;
 }

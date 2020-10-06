@@ -1,4 +1,5 @@
 import List from '@modules/lists/infra/typeorm/entities/List';
+import { Exclude } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -32,6 +33,7 @@ class MaterialList {
   @CreateDateColumn()
   created_at: Date;
 
+  @Exclude()
   @UpdateDateColumn()
   updated_at: Date;
 }

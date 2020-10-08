@@ -41,12 +41,12 @@
 [x] Write tests
 
 [x] Redefinir senha
+[x] Write tests
+
+[x] Editar Perfil
 [] Write tests
 
-[] Editar Perfil
-[] Write tests
-
-[] Ver listas criadas pelos providers
+[x] Ver listas criadas pelos providers
 [] Write tests
 
 [] Receber notificações de novas listas

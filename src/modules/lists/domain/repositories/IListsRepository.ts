@@ -5,4 +5,5 @@ export default interface IListsRepository {
   create(data: ICreateListsDTO): Promise<List>;
   findAllByProviderId(id: string): Promise<List[]>;
   delete(id: string): Promise<void>;
+  index(): Promise<List[]>;
 }

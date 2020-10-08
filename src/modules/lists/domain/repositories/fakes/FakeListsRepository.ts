@@ -26,6 +26,10 @@ class FakeListsRepository implements IListsRepository {
 
     return lists;
   }
+
+  public async index(): Promise<List[]> {
+    return this.lists;
+  }
 }
 
 export default FakeListsRepository;

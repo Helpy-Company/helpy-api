@@ -40,6 +40,23 @@ class ListsRepository implements IListsRepository {
   public async delete(id: string): Promise<void> {
     await this.ormRepository.delete(id);
   }
+
+  public async index(): Promise<List[]> {
+    const lists = await this.ormRepository.find({
+      relations: ['provider', 'materials_lists', 'materials_lists.material'],
+    });
+
+    return lists;
+  }
+
+  public async findById(id: string): Promise<List | undefined> {
+    const list = await this.ormRepository.findOne({
+      where: { id },
+      relations: ['provider', 'materials_lists', 'materials_lists.material'],
+    });
+
+    return list;
+  }
 }
 
 export default ListsRepository;

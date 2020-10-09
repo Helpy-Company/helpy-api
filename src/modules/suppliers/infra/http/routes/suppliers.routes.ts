@@ -9,6 +9,7 @@ const emailVerificationController = new VerifyContractorsEmailController();
 
 supplierRouter.post('/', supplierController.create);
 supplierRouter.delete('/', ensureAuthenticated, supplierController.delete);
+supplierRouter.put('/', ensureAuthenticated, supplierController.update);
 
 supplierRouter.post('/email-verification', emailVerificationController.update);
 

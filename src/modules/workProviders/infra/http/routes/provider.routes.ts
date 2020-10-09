@@ -1,16 +1,22 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
+import multer from 'multer';
+import uploadConfig from '@config/upload';
 import ProviderController from '../controllers/ProviderController';
 import ProvidersServicesController from '../controllers/ProvidersServicesController';
 import ListServiceByController from '../controllers/ListServiceByController';
 import VerifyProviderEmailController from '../controllers/VerifyProviderEmailController';
+import ListProvidersListsController from '../controllers/ListProvidersListsController';
 
 const providerRouter = Router();
 const providerController = new ProviderController();
 const providerServicesController = new ProvidersServicesController();
 const emailVerificationController = new VerifyProviderEmailController();
 const listServiceByController = new ListServiceByController();
+const listProvidersListsController = new ListProvidersListsController();
+
+// const upload = multer(uploadConfig);
 
 providerRouter.post('/', providerController.create);
 providerRouter.post('/', providerController.create);
@@ -33,6 +39,12 @@ providerRouter.put(
   }),
   ensureAuthenticated,
   providerController.update
+);
+
+providerRouter.get(
+  '/lists-me',
+  ensureAuthenticated,
+  listProvidersListsController.index
 );
 
 providerRouter.get(

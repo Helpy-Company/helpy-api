@@ -5,10 +5,8 @@ import ListsController from '../controller/ListsController';
 const listsRouter = Router();
 const listsController = new ListsController();
 
-listsRouter.use(ensureAuthenticated);
-
-listsRouter.post('/', listsController.create);
+listsRouter.post('/', ensureAuthenticated, listsController.create);
 listsRouter.get('/', listsController.index);
-listsRouter.delete('/', listsController.delete);
+listsRouter.delete('/', ensureAuthenticated, listsController.delete);
 
 export default listsRouter;

@@ -23,13 +23,9 @@ class ListsController {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
-    const provider_id = request.user.id;
-
     const indexLists = container.resolve(ListListsService);
 
-    const lists = await indexLists.execute({
-      provider_id,
-    });
+    const lists = await indexLists.execute();
 
     return response.json(classToClass({ lists }));
   }

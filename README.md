@@ -41,17 +41,21 @@
 [x] Write tests
 
 [x] Redefinir senha
+[x] Write tests
+
+[x] Editar Perfil
 [] Write tests
 
-[] Editar Perfil
-[] Write tests
-
-[] Ver listas criadas pelos providers
+[x] Ver listas criadas pelos providers
 [] Write tests
 
 [] Receber notificações de novas listas
 [] Write tests
 
-[] Exportar listas excel
-[] Write tests
+[x] Exportar listas excel
+
+Lógica excel:
+  -> fazer um array de objectos com as infos que preciso:
+      -> Name, quantity, provider.email
+  -> montar o arquivo
 

@@ -1,5 +1,5 @@
 import List from '@modules/lists/infra/typeorm/entities/List';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 import IListsRepository from '../IListsRepository';
 
 class FakeListsRepository implements IListsRepository {
@@ -25,6 +25,10 @@ class FakeListsRepository implements IListsRepository {
     const lists = this.lists.filter(list => list.provider_id === id);
 
     return lists;
+  }
+
+  public async index(): Promise<List[]> {
+    return this.lists;
   }
 }
 

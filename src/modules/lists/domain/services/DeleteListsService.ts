@@ -1,6 +1,7 @@
 import IProviderRepository from '@modules/workProviders/domain/repositories/IProviderRepository';
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IListsRepository from '../repositories/IListsRepository';
 
 interface IRequestDTO {
@@ -15,7 +16,10 @@ class DeleteListsService {
     private providersRepository: IProviderRepository,
 
     @inject('ListsRepository')
-    private listsRepository: IListsRepository
+    private listsRepository: IListsRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider
   ) {}
 
   public async execute({ list_id, provider_id }: IRequestDTO): Promise<void> {
@@ -24,6 +28,7 @@ class DeleteListsService {
     if (!provider) {
       throw new AppError('Provider does not exists');
     }
+    await this.cacheProvider.invalidate(`lists-list:no-auth`);
 
     await this.listsRepository.delete(list_id);
   }

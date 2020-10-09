@@ -1,33 +1,65 @@
-import List from '@modules/lists/infra/typeorm/entities/List';
-import ListsRepository from '@modules/lists/infra/typeorm/repositories/ListsRepository';
-import IProviderRepository from '@modules/workProviders/domain/repositories/IProviderRepository';
+import IListsRepository from '@modules/lists/domain/repositories/IListsRepository';
 import { inject, injectable } from 'tsyringe';
-import AppError from '@shared/errors/AppError';
+import MaterialList from '@modules/materials/infra/typeorm/entities/MaterialList';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import List from '@modules/lists/infra/typeorm/entities/List';
 
-interface IRequest {
-  provider_id: string;
+interface IResponseDTO {
+  id: string;
+  title: string;
+  description: string;
+  created_at: Date;
+  provider: {
+    id: string;
+    name: string;
+    fantasyName: string;
+    phone: string;
+    email: string;
+  };
+  materials_lists: MaterialList[];
 }
 
 @injectable()
 class ListListsService {
   constructor(
     @inject('ListsRepository')
-    private listRepository: ListsRepository,
+    private listRepository: IListsRepository,
 
-    @inject('ProvidersRepository')
-    private providerRepository: IProviderRepository
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider
   ) {}
 
-  public async execute({ provider_id }: IRequest): Promise<List[]> {
-    const provider = await this.providerRepository.findById(provider_id);
+  public async execute(): Promise<IResponseDTO[]> {
+    let lists: List[];
+    let formattedList = await this.cacheProvider.recover<IResponseDTO[]>(
+      `lists-list:no-auth`
+    );
 
-    if (!provider) {
-      throw new AppError('Provider does not exists');
+    if (!formattedList) {
+      lists = await this.listRepository.index();
+      formattedList = lists.map(list => {
+        return {
+          id: list.id,
+          title: list.title,
+          description: list.description,
+          created_at: list.created_at,
+          provider: {
+            id: list.provider.id,
+            name: list.provider.name,
+            fantasyName: list.provider.fantasyName,
+            phone: list.provider.phone,
+            email: list.provider.email,
+          },
+          materials_lists: list.materials_lists,
+        };
+      });
+      await this.cacheProvider.save({
+        key: `lists-list:no-auth`,
+        value: formattedList,
+      });
     }
 
-    const list = await this.listRepository.findAllByProviderId(provider_id);
-
-    return list;
+    return formattedList;
   }
 }
 

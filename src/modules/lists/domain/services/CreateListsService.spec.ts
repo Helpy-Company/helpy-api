@@ -1,4 +1,5 @@
 import FakeProvidersRepository from '@modules/workProviders/domain/repositories/fakes/FakeProvidersRepository';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 import FakeListsRepository from '../repositories/fakes/FakeListsRepository';
 import CreateListsService from './CreateListsService';
@@ -6,14 +7,17 @@ import CreateListsService from './CreateListsService';
 let providersRepository: FakeProvidersRepository;
 let listsRepository: FakeListsRepository;
 let createListsService: CreateListsService;
+let fakeCacheProvider: FakeCacheProvider;
 
 describe('Create Lists', () => {
   beforeEach(() => {
     providersRepository = new FakeProvidersRepository();
     listsRepository = new FakeListsRepository();
+    fakeCacheProvider = new FakeCacheProvider();
     createListsService = new CreateListsService(
       listsRepository,
-      providersRepository
+      providersRepository,
+      fakeCacheProvider
     );
   });
 

@@ -48,6 +48,15 @@ class ListsRepository implements IListsRepository {
 
     return lists;
   }
+
+  public async findById(id: string): Promise<List | undefined> {
+    const list = await this.ormRepository.findOne({
+      where: { id },
+      relations: ['provider', 'materials_lists', 'materials_lists.material'],
+    });
+
+    return list;
+  }
 }
 
 export default ListsRepository;

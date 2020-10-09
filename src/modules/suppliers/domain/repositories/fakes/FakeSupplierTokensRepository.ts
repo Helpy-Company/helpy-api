@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 import SupplierToken from '@modules/suppliers/infra/typeorm/entities/SupplierToken';
 import ISuppliersTokensRepository from '../ISuppliersTokensRepository';
 

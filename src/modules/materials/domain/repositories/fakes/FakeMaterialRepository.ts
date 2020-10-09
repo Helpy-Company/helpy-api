@@ -1,5 +1,5 @@
 import Material from '@modules/materials/infra/typeorm/entities/Material';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 import ICreateMaterialDTO from '../../dtos/ICreateMaterialDTO';
 import IMaterialRepository from '../IMaterialRepository';
 

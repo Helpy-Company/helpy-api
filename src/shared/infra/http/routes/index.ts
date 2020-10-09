@@ -9,6 +9,7 @@ import supplierRouter from '@modules/suppliers/infra/http/routes/suppliers.route
 import materialRouter from '@modules/materials/infra/routes/material.routes';
 import listsRouter from '@modules/lists/infra/http/routes/lists.routes';
 import supplierPasswordRouter from '@modules/suppliers/infra/http/routes/suppliers.password.routes';
+import exportListsRouter from '@modules/lists/infra/http/routes/exportList.routes';
 import sessionsRouter from './sessions.routes';
 
 const routes = Router();
@@ -20,6 +21,7 @@ routes.use('/providers', providerRouter);
 routes.use('/password', providerPasswordRouter);
 routes.use('/materials', materialRouter);
 routes.use('/lists', listsRouter);
+routes.use('/export-lists', exportListsRouter);
 
 routes.use('/sessions', sessionsRouter);
 

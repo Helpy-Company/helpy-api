@@ -6,4 +6,5 @@ export default interface IListsRepository {
   findAllByProviderId(id: string): Promise<List[]>;
   delete(id: string): Promise<void>;
   index(): Promise<List[]>;
+  findById(id: string): Promise<List | undefined>;
 }

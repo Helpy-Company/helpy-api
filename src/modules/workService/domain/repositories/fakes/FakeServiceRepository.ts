@@ -1,5 +1,5 @@
 import IDeleteServiceDTO from '@modules/workService/domain/dtos/IDeleteServiceDTO';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 import ICreateServiceDTO from '../../dtos/ICreateServiceDTO';
 import Service from '../../../infra/typeorm/entities/Service';
 import IServiceRepository from '../IServiceRepository';

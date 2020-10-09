@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 import Contractor from '@modules/contractors/infra/typeorm/entities/Contractor';
 import IContractorRepository from '../IContractorsRepository';
 import ICreateContractorsDTO from '../../dtos/ICreateContractorsDTO';

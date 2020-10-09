@@ -1,5 +1,5 @@
 import List from '@modules/lists/infra/typeorm/entities/List';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 import IListsRepository from '../IListsRepository';
 
 class FakeListsRepository implements IListsRepository {

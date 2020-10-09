@@ -14,10 +14,10 @@ class EtherealMailProvider implements IMailProvider {
 
   constructor(
     @inject('MailTemplateProvider')
-    mailTemplateProvider: IMailTemplateProvider,
+    mailTemplateProvider: IMailTemplateProvider
   ) {
     this.mailTemplateProvider = mailTemplateProvider;
-    nodemailer.createTestAccount().then((testAccount) => {
+    nodemailer.createTestAccount().then(testAccount => {
       this.account = testAccount;
       this.transporter = nodemailer.createTransport({
         host: this.account.smtp.host,

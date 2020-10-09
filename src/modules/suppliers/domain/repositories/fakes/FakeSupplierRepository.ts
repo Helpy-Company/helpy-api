@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 import ISupplierRepository from '../ISuppliersRepository';
 import ICreateSuppliersDTO from '../../dtos/ICreateSuppliersDTO';
 import Supplier from '../../../infra/typeorm/entities/Supplier';

@@ -12,16 +12,16 @@ describe('Update Material', () => {
 
   it('should be able to update a material', async () => {
     const material = await materialRepository.create({
-      name: 'name',
+      description: 'name',
       quantity: 10,
     });
 
     await updateMaterialService.execute({
       id: material.id,
-      name: 'name2',
+      description: 'name2',
       quantity: 20,
     });
 
-    expect(material.name).toBe('name2');
+    expect(material.description).toBe('name2');
   });
 });

@@ -6,12 +6,12 @@ import DeleteMaterialService from '@modules/materials/domain/services/DeleteMate
 
 class MaterialController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, quantity } = request.body;
+    const { description, quantity } = request.body;
 
     const createMaterial = container.resolve(CreateMaterialService);
 
     const material = await createMaterial.execute({
-      name,
+      description,
       quantity,
     });
 
@@ -19,13 +19,13 @@ class MaterialController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { id, name, quantity } = request.body;
+    const { id, description, quantity } = request.body;
 
     const updateMaterial = container.resolve(UpdateMaterialService);
 
     const material = await updateMaterial.execute({
       id,
-      name,
+      description,
       quantity,
     });
 

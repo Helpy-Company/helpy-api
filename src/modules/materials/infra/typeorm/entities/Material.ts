@@ -20,7 +20,7 @@ class Material {
   material_list: MaterialList;
 
   @Column()
-  name: string;
+  description: string;
 
   @Column()
   quantity: number;

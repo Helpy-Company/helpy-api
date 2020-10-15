@@ -40,7 +40,7 @@ class ExportListsService {
     const fileData = list.materials_lists.map<ICSVProviderDTO>(
       material_list => {
         return {
-          desc: material_list.material.name,
+          desc: material_list.material.description,
           quant: material_list.material.quantity,
           price: '',
           email,

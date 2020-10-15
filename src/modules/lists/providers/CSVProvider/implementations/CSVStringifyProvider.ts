@@ -37,10 +37,7 @@ class CSVStringifyProvider implements ICSVProvider {
       },
       (err, output) => {
         writeStream.write(output, 'utf-8');
-        writeStream.on('finish', () => {
-          console.log('wrote all data to file');
-        });
-
+        writeStream.on('finish', () => {});
         writeStream.end();
       }
     );

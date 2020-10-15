@@ -11,11 +11,11 @@ class CreateMaterialsService {
   ) {}
 
   public async execute({
-    name,
+    description,
     quantity,
   }: ICreateMaterialDTO): Promise<Material> {
     const material = await this.materialRepository.create({
-      name,
+      description,
       quantity,
     });
 

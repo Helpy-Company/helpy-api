@@ -28,7 +28,7 @@ providerRouter.put(
       email: Joi.string().email().required(),
       CEP: Joi.string(),
       phone: Joi.string(),
-      fantasyName: Joi.string(),
+      fantasyName: Joi.string().allow(''),
       documentNumber: Joi.string(),
       bio: Joi.string().allow(''),
       old_password: Joi.string(),

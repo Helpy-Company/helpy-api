@@ -12,7 +12,7 @@ describe('Create Material', () => {
 
   it('should be able to create a material', async () => {
     const material = await createMaterialService.execute({
-      name: 'name',
+      description: 'name',
       quantity: 10,
     });
 

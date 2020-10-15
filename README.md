@@ -54,8 +54,7 @@
 
 [x] Exportar listas excel
 
-Lógica excel:
-  -> fazer um array de objectos com as infos que preciso:
-      -> Name, quantity, provider.email
-  -> montar o arquivo
 
+## App
+
+[] Integrar com meio de pagamento.

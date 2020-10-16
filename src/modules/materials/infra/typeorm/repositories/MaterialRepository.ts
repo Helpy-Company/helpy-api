@@ -11,11 +11,11 @@ class MaterailListsRepository implements IMaterialRepository {
   }
 
   public async create({
-    name,
+    description,
     quantity,
   }: ICreateMaterialDTO): Promise<Material> {
     const material = this.ormRepository.create({
-      name,
+      description,
       quantity,
     });
 

@@ -10,6 +10,6 @@ const materialController = new MaterialController();
 
 materialRouter.post('/', materialController.create);
 materialRouter.put('/', materialController.update);
-materialRouter.delete('/', materialController.delete);
+materialRouter.delete('/:id', materialController.delete);
 
 export default materialRouter;

@@ -33,11 +33,11 @@ class MaterialController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { material_id } = request.body;
+    const { id } = request.params;
 
     const deleteMaterial = container.resolve(DeleteMaterialService);
 
-    await deleteMaterial.execute(material_id);
+    await deleteMaterial.execute(id);
 
     return response.status(200).send();
   }

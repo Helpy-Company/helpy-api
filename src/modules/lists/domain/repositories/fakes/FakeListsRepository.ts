@@ -30,6 +30,12 @@ class FakeListsRepository implements IListsRepository {
   public async index(): Promise<List[]> {
     return this.lists;
   }
+
+  public async findById(id: string): Promise<List | undefined> {
+    const list = this.lists.find(l => l.id === id);
+
+    return list;
+  }
 }
 
 export default FakeListsRepository;

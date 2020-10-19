@@ -31,7 +31,7 @@ class ListsController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { list_id } = request.body;
+    const { list_id } = request.params;
     const provider_id = request.user.id;
 
     const deleteList = container.resolve(DeleteListsService);

@@ -7,6 +7,6 @@ const listsController = new ListsController();
 
 listsRouter.post('/', ensureAuthenticated, listsController.create);
 listsRouter.get('/', listsController.index);
-listsRouter.delete('/', ensureAuthenticated, listsController.delete);
+listsRouter.delete('/:list_id', ensureAuthenticated, listsController.delete);
 
 export default listsRouter;

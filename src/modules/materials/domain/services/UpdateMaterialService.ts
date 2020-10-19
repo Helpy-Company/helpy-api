@@ -5,7 +5,7 @@ import IMaterialRepository from '../repositories/IMaterialRepository';
 
 interface IRequestDTO {
   id: string;
-  name: string;
+  description: string;
   quantity: number;
 }
 
@@ -16,14 +16,18 @@ class UpdateMaterialService {
     private materialRepository: IMaterialRepository
   ) {}
 
-  public async execute({ id, name, quantity }: IRequestDTO): Promise<Material> {
+  public async execute({
+    id,
+    description,
+    quantity,
+  }: IRequestDTO): Promise<Material> {
     const material = await this.materialRepository.findById(id);
 
     if (!material) {
       throw new AppError('Material does not exists');
     }
 
-    material.name = name || material.name;
+    material.description = description || material.description;
     material.quantity = quantity || material.quantity;
 
     await this.materialRepository.save(material);

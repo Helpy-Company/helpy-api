@@ -53,6 +53,7 @@ class ListListsService {
           materials_lists: list.materials_lists,
         };
       });
+
       await this.cacheProvider.save({
         key: `lists-list:no-auth`,
         value: formattedList,

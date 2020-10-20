@@ -6,13 +6,11 @@ import uploadConfig from '@config/upload';
 class ExportListController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { list_id } = request.body;
-    const supplier_id = request.user.id;
 
     const exportList = container.resolve(ExportListService);
 
     const file = await exportList.execute({
       list_id,
-      supplier_id,
     });
 
     if (uploadConfig.driver === 's3') {

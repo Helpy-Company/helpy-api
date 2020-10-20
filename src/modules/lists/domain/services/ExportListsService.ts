@@ -8,7 +8,6 @@ import IListsRepository from '../repositories/IListsRepository';
 
 interface IRequestDTO {
   list_id: string;
-  supplier_id: string;
 }
 
 @injectable()
@@ -27,7 +26,7 @@ class ExportListsService {
     private storageProvider: IStorageProvider
   ) {}
 
-  public async execute({ list_id, supplier_id }: IRequestDTO): Promise<string> {
+  public async execute({ list_id }: IRequestDTO): Promise<string> {
     const list = await this.listsRepository.findById(list_id);
 
     if (!list) {

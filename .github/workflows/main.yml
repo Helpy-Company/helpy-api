@@ -14,6 +14,16 @@ jobs:
         with:
           node-version: 12.x
     #Instalar as dependencias NPM/YARN
+      - name: Yarn cache directory
+        id: yarn-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Yarn cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: Install dependencies
         run: yarn
 
@@ -43,7 +53,6 @@ jobs:
             cd ~/app/helpy-api
             yarn
     
-          
     #Executar as migrations do TypeORM      
       - name: Run TypeORM migratons on Digital ocean
         uses: appleboy/ssh-action@master

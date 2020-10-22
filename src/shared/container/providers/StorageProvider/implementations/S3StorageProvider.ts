@@ -21,7 +21,6 @@ class S3StorageProvider implements IStorageProvider {
 
     const fileContent = await readableFile.xlsx.writeBuffer({
       filename: file,
-      useStyles: true,
     });
 
     const splitPath = path.resolve(

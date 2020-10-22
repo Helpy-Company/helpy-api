@@ -51,7 +51,7 @@ class ExportListsService {
 
     const file = await this.storageProvider.saveFile(localFile);
 
-    // await this.csvStringifyProvider.deleteFile(localFile);
+    await this.csvStringifyProvider.deleteFile(localFile);
 
     return file;
   }

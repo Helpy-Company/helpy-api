@@ -130,7 +130,7 @@ class CSVStringifyProvider implements ICSVProvider {
       '..',
       '..',
       'tmp',
-      `${data[0].email}-${uuid()}.xlsx`
+      `${data[0].email}-${uuid()}.csv`
     );
 
     await wb.xlsx.writeFile(file);

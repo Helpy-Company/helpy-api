@@ -115,13 +115,15 @@ class CSVStringifyProvider implements ICSVProvider {
       bgColor: { argb: '542ea6' },
     };
 
-    for (let i = 0; i < data.length; i += 1) {
+    let j = 0;
+    for (let i = 2; i < data.length + 2; i += 1) {
       ws.insertRow(i, {
-        id: i,
-        desc: data[i].desc,
-        quant: data[i].quant,
-        price: data[i].price,
+        id: j,
+        desc: data[j].desc,
+        quant: data[j].quant,
+        price: data[j].price,
       });
+      j += 1;
     }
 
     const file = path.resolve(

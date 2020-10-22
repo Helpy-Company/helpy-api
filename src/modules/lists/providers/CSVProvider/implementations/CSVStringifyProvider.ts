@@ -1,5 +1,4 @@
 import fs from 'fs';
-import { v4 as uuid } from 'uuid';
 import path from 'path';
 import ExcelJS from 'exceljs';
 import wbConfig from '@config/wb';
@@ -116,7 +115,7 @@ class CSVStringifyProvider implements ICSVProvider {
       bgColor: { argb: '542ea6' },
     };
 
-    for (let i = 2; i < data.length; i += 1) {
+    for (let i = 0; i < data.length; i += 1) {
       ws.insertRow(i, {
         id: i,
         desc: data[i].desc,

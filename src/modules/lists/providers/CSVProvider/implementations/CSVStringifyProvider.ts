@@ -59,7 +59,6 @@ class CSVStringifyProvider implements ICSVProvider {
             bottom: { style: 'thin' },
             right: { style: 'thin' },
           },
-          numFmt: '"R$"#,##0.00;[Red]-"R$"#,##0.00',
         },
       },
     ];
@@ -130,7 +129,7 @@ class CSVStringifyProvider implements ICSVProvider {
       '..',
       '..',
       'tmp',
-      `${data[0].email}-${uuid()}.xls`
+      `${data[0].email}-${uuid()}.xlsx`
     );
 
     await wb.xlsx.writeFile(file);

@@ -3,6 +3,7 @@ import path from 'path';
 import aws, { S3 } from 'aws-sdk';
 import mime from 'mime';
 import uploadConfig from '@config/upload';
+import Excel from 'exceljs';
 import IStorageProvider from '../models/IStorageProvider';
 
 class S3StorageProvider implements IStorageProvider {
@@ -15,8 +16,12 @@ class S3StorageProvider implements IStorageProvider {
   }
 
   public async saveFile(file: string): Promise<string> {
-    const fileContent = await fs.promises.readFile(file, {
-      encoding: 'utf-8',
+    const wb = new Excel.Workbook();
+    const readableFile = await wb.xlsx.readFile(file);
+
+    const fileContent = await readableFile.xlsx.writeBuffer({
+      filename: file,
+      useStyles: true,
     });
 
     const splitPath = path.resolve(

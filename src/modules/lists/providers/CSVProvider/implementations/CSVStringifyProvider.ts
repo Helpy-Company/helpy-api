@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import path from 'path';
 import ExcelJS from 'exceljs';
 import wbConfig from '@config/wb';
+import crypto from 'crypto';
 import ICSVProviderDTO from '../dtos/ICSVProviderDTO';
 import ICSVProvider from '../models/ICSVProvider';
 
@@ -11,12 +12,15 @@ class CSVStringifyProvider implements ICSVProvider {
     const wb = new ExcelJS.Workbook();
     wb.creator = wbConfig.creator;
 
-    const ws = wb.addWorksheet(`${data[0].email}-${uuid()}`, {
-      headerFooter: {
-        firstHeader: 'Bem-vindo Helpy',
-        firstFooter: 'teste',
-      },
-    });
+    const ws = wb.addWorksheet(
+      `${data[0].email}-${crypto.randomBytes(4).toString('hex')}`,
+      {
+        headerFooter: {
+          firstHeader: 'Bem-vindo Helpy',
+          firstFooter: 'teste',
+        },
+      }
+    );
 
     ws.columns = [
       {
@@ -130,7 +134,7 @@ class CSVStringifyProvider implements ICSVProvider {
       '..',
       '..',
       'tmp',
-      `${data[0].email}-${uuid()}.xlsx`
+      `${data[0].email}-${crypto.randomBytes(4).toString('hex')}.xlsx`
     );
 
     await wb.xlsx.writeFile(file);

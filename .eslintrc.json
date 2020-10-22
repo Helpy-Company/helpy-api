@@ -24,6 +24,7 @@
     "prettier"
   ],
   "rules": {
+    "no-plusplus": "warn",
     "@typescript-eslint/naming-convention": [
       "error",
       {

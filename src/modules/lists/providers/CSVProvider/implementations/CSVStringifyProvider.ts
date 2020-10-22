@@ -59,6 +59,7 @@ class CSVStringifyProvider implements ICSVProvider {
             bottom: { style: 'thin' },
             right: { style: 'thin' },
           },
+          numFmt: '"R$"#,##0.00;[Red]-"R$"#,##0.00',
         },
       },
     ];

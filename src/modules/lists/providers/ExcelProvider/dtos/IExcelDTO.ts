@@ -1,4 +1,4 @@
-export default interface ICSVProviderDTO {
+export default interface IExcelDTO {
   desc: string;
   quant: number;
   price: string;

@@ -1,7 +1,7 @@
 import { container } from 'tsyringe';
 
 import './providers';
-import '@modules/lists/providers/CSVProvider';
+import '@modules/lists/providers/ExcelProvider';
 
 import IContractorsRepository from '@modules/contractors/domain/repositories/IContractorsRepository';
 import ContractorsRepository from '@modules/contractors/infra/typeorm/repositories/ContractorsRespository';

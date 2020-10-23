@@ -1,8 +1,8 @@
 import ISuppliersRepository from '@modules/suppliers/domain/repositories/ISuppliersRepository';
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
-import ICSVProviderDTO from '@modules/lists/providers/CSVProvider/dtos/ICSVProviderDTO';
-import ICSVProvider from '@modules/lists/providers/CSVProvider/models/ICSVProvider';
+import IExcelDTO from '@modules/lists/providers/ExcelProvider/dtos/IExcelDTO';
+import IExcelProvider from '@modules/lists/providers/ExcelProvider/models/IExcelProvider';
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 import IListsRepository from '../repositories/IListsRepository';
 
@@ -19,8 +19,8 @@ class ExportListsService {
     @inject('ListsRepository')
     private listsRepository: IListsRepository,
 
-    @inject('CSVStringifyProvider')
-    private csvStringifyProvider: ICSVProvider,
+    @inject('ExcelProvider')
+    private excelProvider: IExcelProvider,
 
     @inject('StorageProvider')
     private storageProvider: IStorageProvider
@@ -36,22 +36,20 @@ class ExportListsService {
     const { email } = list.provider;
 
     // montaro objeto com para fazer o file.csv
-    const fileData = list.materials_lists.map<ICSVProviderDTO>(
-      material_list => {
-        return {
-          desc: material_list.material.description,
-          quant: material_list.material.quantity,
-          price: '',
-          email,
-        };
-      }
-    );
+    const fileData = list.materials_lists.map<IExcelDTO>(material_list => {
+      return {
+        desc: material_list.material.description,
+        quant: material_list.material.quantity,
+        price: '',
+        email,
+      };
+    });
 
-    const localFile = await this.csvStringifyProvider.createFile(fileData);
+    const localFile = await this.excelProvider.createFile(fileData);
 
     const file = await this.storageProvider.saveFile(localFile);
 
-    await this.csvStringifyProvider.deleteFile(localFile);
+    await this.excelProvider.deleteFile(localFile);
 
     return file;
   }

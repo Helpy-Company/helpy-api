@@ -3,11 +3,11 @@ import path from 'path';
 import ExcelJS from 'exceljs';
 import wbConfig from '@config/wb';
 import crypto from 'crypto';
-import ICSVProviderDTO from '../dtos/ICSVProviderDTO';
-import ICSVProvider from '../models/ICSVProvider';
+import IExcelDTO from '../dtos/IExcelDTO';
+import IExcelProvider from '../models/IExcelProvider';
 
-class CSVStringifyProvider implements ICSVProvider {
-  public async createFile(data: ICSVProviderDTO[]): Promise<string> {
+class ExcelProvider implements IExcelProvider {
+  public async createFile(data: IExcelDTO[]): Promise<string> {
     const wb = new ExcelJS.Workbook();
     wb.creator = wbConfig.creator;
 
@@ -148,4 +148,4 @@ class CSVStringifyProvider implements ICSVProvider {
   }
 }
 
-export default CSVStringifyProvider;
+export default ExcelProvider;

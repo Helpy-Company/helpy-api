@@ -11,7 +11,14 @@ import routes from './routes/index';
 import '@shared/container';
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      String(process.env.APP_WEB_URL),
+      String(process.env.APP_WEB_DASHBOARD_URL),
+    ],
+  })
+);
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);

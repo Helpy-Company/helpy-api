@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 
-import IContractorTokensRepository from '@modules/contractors/repositories/IContractorsTokensRepository';
+import IContractorTokensRepository from '@modules/contractors/domain/repositories/IContractorsTokensRepository';
 
 import ContractorToken from '../entities/ContractorToken';
 

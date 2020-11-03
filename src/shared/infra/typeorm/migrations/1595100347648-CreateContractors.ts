@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateContractors1595100347648 implements MigrationInterface {
+export default class CreateContractors1595100347648
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -41,7 +42,7 @@ export default class CreateContractors1595100347648 implements MigrationInterfac
             default: 'now()',
           },
         ],
-      }),
+      })
     );
   }
 

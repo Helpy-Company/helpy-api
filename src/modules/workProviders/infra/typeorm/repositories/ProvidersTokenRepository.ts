@@ -4,7 +4,7 @@ import IProviderTokensRepository from '@modules/workProviders/domain/repositorie
 
 import ProviderToken from '../entities/ProviderToken';
 
-class CompaniesTokenRepository implements IProviderTokensRepository {
+class ProvidersTokenRepository implements IProviderTokensRepository {
   private ormRepository: Repository<ProviderToken>;
 
   constructor() {
@@ -12,18 +12,20 @@ class CompaniesTokenRepository implements IProviderTokensRepository {
   }
 
   public async findByToken(token: string): Promise<ProviderToken | undefined> {
-    const companyToken = await this.ormRepository.findOne({ where: { token } });
+    const providerToken = await this.ormRepository.findOne({
+      where: { token },
+    });
 
-    return companyToken;
+    return providerToken;
   }
 
   public async generate(provider_id: string): Promise<ProviderToken> {
-    const companyToken = this.ormRepository.create({ provider_id });
+    const providerToken = this.ormRepository.create({ provider_id });
 
-    await this.ormRepository.save(companyToken);
+    await this.ormRepository.save(providerToken);
 
-    return companyToken;
+    return providerToken;
   }
 }
 
-export default CompaniesTokenRepository;
+export default ProvidersTokenRepository;

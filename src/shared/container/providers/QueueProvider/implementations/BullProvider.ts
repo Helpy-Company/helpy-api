@@ -16,7 +16,7 @@ class BullProvider implements IQueueProvider {
       },
     });
     if (Array.isArray(data)) {
-      const parsedJobs = data.map((jobData) => ({ data: jobData }));
+      const parsedJobs = data.map(jobData => ({ data: jobData }));
 
       await this.queue.addBulk(parsedJobs);
 

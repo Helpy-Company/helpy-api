@@ -13,7 +13,7 @@
   "dependencies": {
     "@sentry/node": "^5.23.0",
     "@types/bcrypt": "^3.0.0",
-    "aws-sdk": "^2.732.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "^5.0.0",
     "brazilian-values": "^0.7.5",
     "bull": "^3.18.0",
